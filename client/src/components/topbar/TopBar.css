@@ -1,0 +1,25 @@
+/* TopBar */
+.topbar {
+  background-color: #e3e3e3;
+  height: 75px;
+  border-bottom: 1px solid #000;
+  position: relative;
+}
+
+.topbar__user {
+  position: absolute;
+  width: 250px;
+  height: 100%;
+  top: 0;
+  right: 0;
+  border-left: 1px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+/* TopBarSecondary */
+.topbar-secondary {
+  background-color: #e3e3e3;
+  height: 75px;
+}
