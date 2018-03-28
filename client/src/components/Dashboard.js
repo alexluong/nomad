@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import RaisedButton from "material-ui/RaisedButton";
+// import RaisedButton from "material-ui/RaisedButton";
 
 export default class Dashboard extends Component {
   render() {
     return (
       <div>
-        <RaisedButton label="Dashboard" />
+        <button>Dashboard</button>
       </div>
     );
   }
