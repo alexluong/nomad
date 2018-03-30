@@ -1,7 +1,7 @@
 .top-panel {
   &__primary {
     background-color: #e3e3e3;
-    height: 7.5rem;
+    height: $top-primary-height;
     border-bottom: 1px solid #000;
     position: relative;
     &-side {
@@ -18,7 +18,7 @@
   }
   &__secondary {
     background-color: #e3e3e3;
-    height: 7.5rem;
+    height: $top-secondary-height;
     border-bottom: 1px solid #000;
   }
 }

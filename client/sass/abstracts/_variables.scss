@@ -1,1 +1,8 @@
-$sidebar-width: 15rem;
+// Typography
+$default-font-size: 1.6rem;
+
+// Layout
+$side-panel-width: 15rem;
+$top-primary-height: 7.5rem;
+$top-secondary-height: 7.5rem;
+$top-panel-height: calc(#{$top-primary-height} +  #{$top-secondary-height});

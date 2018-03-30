@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // import Drawer from 'material-ui/Drawer';
 // import MenuItem from 'material-ui/MenuItem';
 import TopPanel from './components/top-panel/TopPanel';
-import Sidebar from './components/Sidebar';
+import SidePanel from './components/SidePanel';
 
 // Pages
 // import SampleApp from './components/SampleApp';
@@ -22,32 +22,31 @@ class App extends Component {
     return (
       <Provider store={this.props.store} >
         <Router>
-          <div id="app">
-            <Sidebar />
-            {/* <Drawer
-              open={true}
-              width={200}
-            >
-              <p>LOGO</p>
-              <NavLink to="/"><MenuItem>Dashboard</MenuItem></NavLink>
-              <NavLink to="/progress"><MenuItem>Progress</MenuItem></NavLink>
-              <NavLink to="/profile"><MenuItem>Profile</MenuItem></NavLink>
-              <NavLink to="/settings"><MenuItem>Settings</MenuItem></NavLink>
-            </Drawer> */}
-            <div id="main">
-              <TopPanel />
-              <Switch>
-                <Route path="/progress" component={Progress} />
-                <Route path="/profile" component={Profile} />
-                <Route path="/settings" component={Settings} />
-                <Route path="/signin" component={SignInPage} />
-                {/* <Route path="/" component={SampleApp} /> */}
-                <Route path="/dashboard" component={Dashboard} />
-              </Switch>
-            </div>
-          </div>
+          <Switch>
+            <Route path="/signin" component={SignInPage} />
+            <Route path="/" component={MainApp} />
+          </Switch>
         </Router>
       </Provider>
+    );
+  }
+}
+
+class MainApp extends Component {
+  render() {
+    return (
+      <div id="app">
+        <SidePanel />
+        <TopPanel />
+        <main className="main">
+          <Switch>
+            <Route path='/dashboard' component={Dashboard} />
+            <Route path='/progress' component={Progress} />
+            <Route path='/profile' component={Profile} />
+            <Route path='/settings' component={Settings} />
+          </Switch>
+        </main>
+      </div>
     );
   }
 }

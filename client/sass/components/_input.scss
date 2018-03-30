@@ -1,0 +1,11 @@
+input {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: 3;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  &:active,
+  &:focus {
+    outline: none;
+  }
+}

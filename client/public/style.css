@@ -22,8 +22,48 @@ body {
 
 #app {
   height: 100%;
-  display: flex;
-  flex-direction: row; }
+  display: grid;
+  grid-template-areas: "side-panel top-panel" "side-panel main";
+  grid-template-columns: 15rem 1fr;
+  grid-template-rows: calc(7.5rem +  7.5rem) 1fr; }
+  #app .side-panel {
+    grid-area: side-panel; }
+  #app .top-panel {
+    grid-area: top-panel; }
+  #app .main {
+    grid-area: main; }
+
+.heading-primary {
+  color: #000;
+  font-size: 3.6rem;
+  margin-bottom: 6rem; }
+
+.btn, .btn:link, .btn:visited {
+  font-family: inherit;
+  font-size: inherit;
+  text-decoration: none;
+  padding: .75rem 2.5rem;
+  display: inline-block;
+  border-radius: .5rem;
+  transition: all .2s;
+  color: #000;
+  text-align: center;
+  background-color: buttonface;
+  line-height: inherit;
+  border: none;
+  cursor: pointer; }
+
+.btn:active, .btn:focus {
+  outline: none; }
+
+input {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: 3;
+  padding-left: 2rem;
+  padding-right: 2rem; }
+  input:active, input:focus {
+    outline: none; }
 
 .top-panel__primary {
   background-color: #e3e3e3;
@@ -46,21 +86,43 @@ body {
   height: 7.5rem;
   border-bottom: 1px solid #000; }
 
-.sidebar {
-  flex-basis: 15rem;
+.side-panel {
   border-right: 1px solid #000;
   height: 100%; }
-  .sidebar__item {
+  .side-panel__item {
     width: 100%;
     height: 10rem;
     line-height: 10rem; }
-    .sidebar__item a {
+    .side-panel__item a {
       padding-left: 2rem;
       display: block;
       width: 100%;
       text-decoration: none; }
-      .sidebar__item a.active {
+      .side-panel__item a.active {
         border-left: 5px solid purple; }
 
-#main {
-  flex-basis: calc(100vw - 15rem); }
+.signin {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-column-gap: 3rem;
+  grid-auto-columns: 1fr;
+  grid-template-areas: ". info info info info . . form form form form ."; }
+  .signin__info {
+    grid-area: info;
+    height: 100%;
+    background-color: purple; }
+  .signin__form {
+    grid-area: form;
+    height: 100%;
+    display: flex;
+    align-items: center; }
+    .signin__form-box {
+      padding: 5rem 8rem;
+      background-color: pink;
+      width: 100%;
+      height: 44rem; }
+      .signin__form-box input, .signin__form-box .btn {
+        display: block;
+        width: 100%;
+        margin-bottom: 2rem; }
