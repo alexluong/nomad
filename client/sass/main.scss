@@ -12,6 +12,7 @@
 // Components
 @import "components/button.scss";
 @import "components/input.scss";
+@import "components/card.scss";
 
 // Layout
 @import "layout/top-panel";
@@ -20,3 +21,4 @@
 
 // Pages
 @import "pages/signin";
+@import "pages/dashboard";

@@ -11,7 +11,7 @@ import SidePanel from './components/SidePanel';
 
 // Pages
 // import SampleApp from './components/SampleApp';
-import Dashboard  from './components/Dashboard';
+import DashboardPage  from './components/DashboardPage';
 import Progress   from './components/Progress' ;
 import Profile    from './components/Profile'  ;
 import Settings   from './components/Settings' ; 
@@ -40,7 +40,7 @@ class MainApp extends Component {
         <TopPanel />
         <main className="main">
           <Switch>
-            <Route path='/dashboard' component={Dashboard} />
+            <Route path='/dashboard' component={DashboardPage} />
             <Route path='/progress' component={Progress} />
             <Route path='/profile' component={Profile} />
             <Route path='/settings' component={Settings} />

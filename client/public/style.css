@@ -65,6 +65,22 @@ input {
   input:active, input:focus {
     outline: none; }
 
+.card {
+  background-color: pink;
+  width: 40rem;
+  height: 30rem;
+  margin-top: 10rem; }
+  .card__header {
+    height: 10rem;
+    border-bottom: 1px solid #000; }
+
+.activity {
+  padding-left: 3rem;
+  padding-right: 3rem;
+  line-height: 5rem;
+  display: flex;
+  justify-content: space-between; }
+
 .top-panel__primary {
   background-color: #e3e3e3;
   height: 7.5rem;
@@ -126,3 +142,9 @@ input {
         display: block;
         width: 100%;
         margin-bottom: 2rem; }
+
+.dashboard {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap; }
