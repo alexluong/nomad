@@ -1,7 +1,7 @@
-import { ApiModelProperty } from '@nestjs/swagger';
+import { ApiModelProperty, ApiModelPropertyOptional } from '@nestjs/swagger';
 import { SharedModel } from '../../shared/interfaces/shared.model';
 
-export interface UserModel extends SharedModel {
+export interface IUserModel extends SharedModel {
     email: string;
     password: string;
     role: UserRole;
@@ -9,19 +9,51 @@ export interface UserModel extends SharedModel {
     username?: string;
 }
 
-export class IUserModel {
+
+export class UserProfile {
+    @ApiModelProperty()
+    age: number;
+    @ApiModelProperty()
+    country: string;
+    @ApiModelProperty({
+        enum: ['Male', 'Female', 'Not Specified']
+    })
+    gender: UserGender;
+    @ApiModelProperty()
+    nameFirst: string;
+    @ApiModelProperty()
+    nameLast: string;
+    @ApiModelProperty()
+    name: string;
+}
+
+export class UserModel {
     @ApiModelProperty()
     email: string;
     @ApiModelProperty()
     password: string;
-    @ApiModelProperty()
+    @ApiModelProperty({
+        enum: ['Admin', 'User']
+    })
     role: UserRole;
-    @ApiModelProperty()
+    @ApiModelProperty({
+        type: UserProfile
+    })
     profile?: UserProfile;
     @ApiModelProperty()
     username?: string;
     @ApiModelProperty()
     _id?: string;
+    @ApiModelPropertyOptional({
+        type: String,
+        format: 'date-time'
+    })
+    createdAt?: Date;
+    @ApiModelPropertyOptional({
+        type: String,
+        format: 'date-time'
+    })
+    updatedAt?: Date;
 }
 
 export enum UserRole {
@@ -33,13 +65,4 @@ export enum UserGender {
     Male = 'Male' as any,
     Female = 'Female' as any,
     NotSpecified = 'Not Specified' as any
-}
-
-export interface UserProfile {
-    age: number;
-    country: string;
-    gender: UserGender;
-    nameFirst: string;
-    nameLast: string;
-    name: string;
 }

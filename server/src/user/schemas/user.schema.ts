@@ -1,5 +1,5 @@
 import { model, Model, Schema } from 'mongoose';
-import { UserModel } from '../interfaces/user.model';
+import { IUserModel } from '../interfaces/user.model';
 
 export const UserSchema = new Schema({
     username: {
@@ -38,4 +38,4 @@ UserSchema.virtual('profile.name').get(function () {
     return `${this.profile.nameFirst} ${this.profile.nameLast}`;
 });
 
-export const User: Model<UserModel> = model<UserModel>('User', UserSchema) as Model<UserModel>;
+export const User: Model<IUserModel> = model<IUserModel>('User', UserSchema) as Model<IUserModel>;

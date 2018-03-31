@@ -1,9 +1,9 @@
 import { ApiModelProperty } from '@nestjs/swagger';
-import { IUserModel } from './user.model';
+import { UserModel } from './user.model';
 
 export class UserLoginResponse {
     @ApiModelProperty()
     authToken: string;
     @ApiModelProperty()
-    user: IUserModel;
+    user: UserModel;
 }

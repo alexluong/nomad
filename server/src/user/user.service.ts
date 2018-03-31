@@ -3,7 +3,7 @@ import { compare, genSalt, hash } from 'bcryptjs';
 import { AuthService } from '../auth/auth.service';
 import { UserLoginResponse } from './interfaces/user-login.response';
 import { UserRegisterParams } from './interfaces/user-register.params';
-import { IUserModel, UserModel } from './interfaces/user.model';
+import { UserModel, IUserModel } from './interfaces/user.model';
 import { UserServiceInterface } from './interfaces/user.service.interface';
 import { User } from './schemas/user.schema';
 import { UserRepository } from './user.repository';
@@ -15,8 +15,8 @@ export class UserService implements UserServiceInterface {
                 private _authService: AuthService) {
     }
 
-    async createNewUser(registerParams: UserRegisterParams): Promise<UserModel> {
-        const newUser: UserModel = new User();
+    async createNewUser(registerParams: UserRegisterParams): Promise<IUserModel> {
+        const newUser: IUserModel = new User();
         newUser.email = registerParams.email;
         newUser.username = registerParams.username;
         const salt = await genSalt(10);
@@ -25,13 +25,13 @@ export class UserService implements UserServiceInterface {
         return await this._userRepository.create(newUser);
     }
 
-    async loginUser(currentUser: UserModel): Promise<UserLoginResponse> {
+    async loginUser(currentUser: IUserModel): Promise<UserLoginResponse> {
         const payload = {user: currentUser};
         const token = await this._authService.signPayload(payload);
 
         return {
             authToken: token,
-            user: currentUser as IUserModel
+            user: currentUser as UserModel
         };
     }
 
@@ -39,7 +39,7 @@ export class UserService implements UserServiceInterface {
         return await compare(input, password);
     }
 
-    async findByUsernameOrEmail(username?: string, email?: string): Promise<UserModel> {
+    async findByUsernameOrEmail(username?: string, email?: string): Promise<IUserModel> {
         return await this._userRepository.getUserByUsernameOrEmail(username, email);
     }
 

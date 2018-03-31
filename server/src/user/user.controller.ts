@@ -5,7 +5,7 @@ import { ApiException } from '../shared/interfaces/shared.model';
 import { UserLoginParams } from './interfaces/user-login.params';
 import { UserLoginResponse } from './interfaces/user-login.response';
 import { UserRegisterParams } from './interfaces/user-register.params';
-import { IUserModel, UserModel } from './interfaces/user.model';
+import { UserModel, IUserModel } from './interfaces/user.model';
 import { UserService } from './user.service';
 
 @Controller('users')
@@ -20,21 +20,21 @@ export class UserController {
     @ApiResponse({
         status: 201,
         description: 'Register successfully',
-        type: IUserModel
+        type: UserModel
     })
     @ApiResponse({
         status: 400,
         description: 'Bad request',
         type: ApiException
     })
-    async register(@Body() registerParams: UserRegisterParams): Promise<UserModel> {
+    async register(@Body() registerParams: UserRegisterParams): Promise<IUserModel> {
         const email: string = registerParams.email;
         const username: string = registerParams.username;
 
         if (!email || !username)
             throw new HttpException('Email is required', HttpStatus.BAD_REQUEST);
 
-        const existed: UserModel = await this._userService.findByUsernameOrEmail(username, email);
+        const existed: IUserModel = await this._userService.findByUsernameOrEmail(username, email);
 
         if (existed instanceof MongoError)
             throw new HttpException('Server error occurred', HttpStatus.AMBIGUOUS);
@@ -64,7 +64,7 @@ export class UserController {
             throw new HttpException('Username/Email required', HttpStatus.BAD_REQUEST);
         }
 
-        const fetchedUser: UserModel = await this._userService.findByUsernameOrEmail(username, email);
+        const fetchedUser: IUserModel = await this._userService.findByUsernameOrEmail(username, email);
 
         if (fetchedUser instanceof MongoError)
             throw new HttpException('Server error occurred', HttpStatus.AMBIGUOUS);
@@ -92,7 +92,7 @@ export class UserController {
         type: ApiException
     })
     async checkUsernameAvailability(@Query('username') username: string): Promise<boolean> {
-        const existed: UserModel = await this._userService.findByUsernameOrEmail(username);
+        const existed: IUserModel = await this._userService.findByUsernameOrEmail(username);
         return !existed;
     }
 }

@@ -1,13 +1,13 @@
 import { UserLoginResponse } from './user-login.response';
 import { UserRegisterParams } from './user-register.params';
-import { UserModel } from './user.model';
+import { IUserModel } from './user.model';
 
 export interface UserServiceInterface {
-    createNewUser(registerParams: UserRegisterParams): Promise<UserModel>;
+    createNewUser(registerParams: UserRegisterParams): Promise<IUserModel>;
 
-    loginUser(currentUser: UserModel): Promise<UserLoginResponse>;
+    loginUser(currentUser: IUserModel): Promise<UserLoginResponse>;
 
     comparePassword(input: string, password: string): Promise<boolean>;
 
-    findByUsernameOrEmail(username?: string, email?: string): Promise<UserModel>;
+    findByUsernameOrEmail(username?: string, email?: string): Promise<IUserModel>;
 }

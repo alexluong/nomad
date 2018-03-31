@@ -1,6 +1,6 @@
 import { CanActivate, ExecutionContext, Guard } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { UserModel } from '../../user/interfaces/user.model';
+import { IUserModel } from '../../user/interfaces/user.model';
 
 @Guard()
 export class RolesGuard implements CanActivate {
@@ -14,7 +14,7 @@ export class RolesGuard implements CanActivate {
             return true;
         }
 
-        const user = req.user as UserModel;
+        const user = req.user as IUserModel;
         const hasRole = () => !!roles.find(role => user.role.toString() === role);
 
         return user && hasRole();
