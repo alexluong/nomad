@@ -22,7 +22,7 @@ export class AuthService {
     }
 
     async validateUser(payload: JwtPayloadInterface): Promise<boolean> {
-        const result = this._userRepository.getById(payload.user._id);
+        const result = await this._userRepository.getById(payload.user._id);
         return !!result;
     }
 }

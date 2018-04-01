@@ -14,6 +14,8 @@ async function bootstrap() {
         .setDescription('Api Documentation')
         .setVersion('1.0.0')
         .addTag('System', 'System/Authentication APIs')
+        .addTag('List', 'List APIs')
+        .addBearerAuth()
         .setBasePath('/api')
         .setSchemes('http', 'https')
         .build();

@@ -1,5 +1,7 @@
-import { Controller, Post } from '@nestjs/common';
+import { Controller, Post, Req } from '@nestjs/common';
 import { ApiResponse, ApiUseTags } from '@nestjs/swagger';
+import { Request } from 'express';
+import { IUserModel } from '../user/interfaces/user.model';
 import { ActiveService } from './active.service';
 import { ActiveModel, IActiveModel } from './interfaces/active.model';
 
@@ -11,12 +13,13 @@ export class ActiveController {
 
     }
 
-    @Post('')
+    @Post('create')
     @ApiResponse({
         status: 200,
         type: ActiveModel
     })
-    async test(): Promise<IActiveModel> {
-        return;
+    async createList(@Req() req: Request): Promise<IActiveModel> {
+        const currentUser: IUserModel = req['user'] as IUserModel;
+        return await this._activeService.createNewActiveLists(currentUser._id);
     }
 }

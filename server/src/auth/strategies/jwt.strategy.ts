@@ -11,19 +11,19 @@ export class JwtStrategy extends Strategy {
     constructor(private readonly _authService: AuthService) {
         super({
                 jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+                passReqToCallback: true,
                 secretOrKey: process.env.JWT_SECRET || environment.jwtAuthSecret
             },
-            async (payload: JwtPayloadInterface, done: VerifiedCallback) => await this.verify(payload, done));
+            async (req, payload, next) => await this.verify(req, payload, next));
         use(this);
     }
 
-    public async verify(payload: JwtPayloadInterface, done: VerifiedCallback) {
+    public async verify(req, payload: JwtPayloadInterface, done: VerifiedCallback) {
         const isValid = await this._authService.validateUser(payload);
-
         if (!isValid) {
-            return done('Unauthorized', false);
+            return done('Unauthorized from Strategy', false);
         }
 
-        return done(null, payload, {issuedAt: payload.iat});
+        return done(null, payload.user);
     }
 }

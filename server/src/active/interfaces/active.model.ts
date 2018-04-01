@@ -2,10 +2,10 @@ import { ApiModelProperty, ApiModelPropertyOptional } from '@nestjs/swagger';
 import { SharedModel } from '../../shared/interfaces/shared.model';
 
 export interface IActiveModel extends SharedModel {
-    name: string;
-    description?: string;
-    status: ProgressStatus;
-    activities: Activity[];
+    activeLists: List[];
+    progress: ActiveProgress;
+    userId: string;
+    lastUpdatedActivity: LastUpdated;
 }
 
 export enum ProgressStatus {
