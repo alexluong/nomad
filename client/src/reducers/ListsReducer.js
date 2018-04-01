@@ -5,6 +5,7 @@ export default function() {
         listID: "list1",
         listName: "List Number 1",
         listDescription: "List Number 1 Description",
+        listImgURL: "https://www.aluminati.net/wp-content/uploads/2016/03/img-placeholder.png",
         activities: [
           {
             actID: "activity1",
@@ -27,6 +28,7 @@ export default function() {
         listID: "list2",
         listName: "List Number 2",
         listDescription: "List Number 2 Description",
+        listImgURL: "https://www.aluminati.net/wp-content/uploads/2016/03/img-placeholder.png",
         activities: [
           {
             actID: "activity4",
@@ -49,6 +51,7 @@ export default function() {
         listID: "list3",
         listName: "List Number 3",
         listDescription: "List Number 3 Description",
+        listImgURL: "https://www.aluminati.net/wp-content/uploads/2016/03/img-placeholder.png",
         activities: [
           {
             actID: "activity4",
@@ -56,7 +59,7 @@ export default function() {
             description: "Stuff"
           },
           {
-            actID: "activity4",
+            actID: "activity7",
             actName: "Activity Number 1 of List 2",
             description: "Stuff"
           },
@@ -76,6 +79,7 @@ export default function() {
         listID: "list4",
         listName: "List Number 4",
         listDescription: "List Number 4 Description",
+        listImgURL: "https://www.aluminati.net/wp-content/uploads/2016/03/img-placeholder.png",
         activities: [
           {
             actID: "activity4",

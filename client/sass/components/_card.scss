@@ -1,11 +1,23 @@
 .card {
-  background-color: pink;
-  width: 40rem;
+  width: $card-width;
   height: 30rem;
   margin-top: 10rem;
+  display: flex;
+  flex-direction: column;
   &__header {
-    height: 10rem;
-    border-bottom: 1px solid #000;
+    flex-basis: 10rem;
+    background-position: center; 
+    background-size: $card-width;
+  }
+  &__main {
+    background-color: pink;
+    flex: auto;
+  }
+  &__footer {
+    .pagination-nav {
+      background-color: pink;
+      margin-bottom: 5px;
+    }
   }
 }
 

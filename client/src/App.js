@@ -11,7 +11,7 @@ import SidePanel from './components/SidePanel';
 
 // Pages
 // import SampleApp from './components/SampleApp';
-import DashboardPage  from './components/DashboardPage';
+import DashboardPage  from './components/dashboard/DashboardPage';
 import Progress   from './components/Progress' ;
 import Profile    from './components/Profile'  ;
 import Settings   from './components/Settings' ; 
