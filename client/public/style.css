@@ -66,13 +66,21 @@ input {
     outline: none; }
 
 .card {
-  background-color: pink;
   width: 40rem;
   height: 30rem;
-  margin-top: 10rem; }
+  margin-top: 10rem;
+  display: flex;
+  flex-direction: column; }
   .card__header {
-    height: 10rem;
-    border-bottom: 1px solid #000; }
+    flex-basis: 10rem;
+    background-position: center;
+    background-size: 40rem; }
+  .card__main {
+    background-color: pink;
+    flex: auto; }
+  .card__footer .pagination-nav {
+    background-color: pink;
+    margin-bottom: 5px; }
 
 .activity {
   padding-left: 3rem;
@@ -80,6 +88,31 @@ input {
   line-height: 5rem;
   display: flex;
   justify-content: space-between; }
+
+.pagination {
+  background-color: blue;
+  height: .8rem;
+  width: 100%;
+  border-radius: 1000rem;
+  overflow: hidden;
+  display: flex; }
+  .pagination__item {
+    flex: 1; }
+    .pagination__item:hover {
+      cursor: pointer; }
+    .pagination__item.active {
+      background-color: red; }
+  .pagination__item:not(:first-child) {
+    border-left: 1px solid #fff; }
+
+.pagination-nav {
+  font-style: italic;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  display: flex;
+  justify-content: space-between; }
+  .pagination-nav *:hover {
+    cursor: pointer; }
 
 .top-panel__primary {
   background-color: #e3e3e3;
@@ -115,7 +148,7 @@ input {
       width: 100%;
       text-decoration: none; }
       .side-panel__item a.active {
-        border-left: 5px solid purple; }
+        border-left: 10px solid purple; }
 
 .signin {
   width: 100vw;
