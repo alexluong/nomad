@@ -14,6 +14,8 @@ export enum ProgressStatus {
     Completed = 'Completed' as any
 }
 
+export type ActivityActionType = 'complete' | 'ignore';
+
 export class Activity {
     @ApiModelProperty()
     name: string;
@@ -43,18 +45,22 @@ export class List {
 
 export class ActiveProgress {
     @ApiModelPropertyOptional({
+        type: String,
         isArray: true
     })
     completedLists?: string[];
     @ApiModelPropertyOptional({
+        type: String,
         isArray: true
     })
     completedActivities?: string[];
     @ApiModelPropertyOptional({
+        type: String,
         isArray: true
     })
     ignoredLists?: string[];
     @ApiModelPropertyOptional({
+        type: String,
         isArray: true
     })
     ignoredActivities?: string[];

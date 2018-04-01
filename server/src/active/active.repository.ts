@@ -12,4 +12,9 @@ export class ActiveRepository extends SharedRepository<IActiveModel> implements 
     constructor(@InjectModel(ActiveSchema) private readonly _activeModel: Model<IActiveModel>) {
         super(_activeModel);
     }
+
+    async getByUserId(userId: string): Promise<IActiveModel> {
+        const query = {userId};
+        return await this._activeModel.findOne(query).exec();
+    }
 }

@@ -13,8 +13,10 @@ import { ActiveSchema } from './schemas/active.schema';
 })
 export class ActiveModule implements NestModule {
     public configure(consumer: MiddlewaresConsumer) {
-        consumer.apply(JwtMiddleware).forRoutes({
-            path: '/api/lists/create', method: RequestMethod.POST
-        });
+        consumer.apply(JwtMiddleware).forRoutes(
+            {path: '/api/lists/create', method: RequestMethod.POST},
+            {path: 'api/lists/update', method: RequestMethod.PUT},
+            {path: 'api/lists/ignoreList', method: RequestMethod.PUT}
+        );
     }
 }
