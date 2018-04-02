@@ -50,13 +50,13 @@ export class ActiveController {
         status: 200,
         type: ActiveModel
     })
-    async ignoreList(@Req() req: Request, @Query('listName') listName: string): Promise<IActiveModel> {
+    async ignoreList(@Req() req: Request, @Query('listId') listId: string): Promise<IActiveModel> {
         const currentUser: IUserModel = req['user'] as IUserModel;
-        const list: List = await this._activeService.getListByListId(currentUser._id, listName);
+        const list: List = await this._activeService.getListByListId(currentUser._id, listId);
 
         if (list.status !== ProgressStatus.Opened) {
             throw new HttpException('List status can only be updated once', HttpStatus.BAD_REQUEST);
         }
-        return await this._activeService.ignoreList(listName, currentUser._id);
+        return await this._activeService.ignoreList(listId, currentUser._id);
     }
 }
