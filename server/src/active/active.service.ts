@@ -48,15 +48,10 @@ export class ActiveService implements ActiveServiceInterface {
         return await this._activeRepository.create(newActive);
     }
 
-    async ignoreList(listName: string, userId: string): Promise<IActiveModel> {
+    async ignoreList(listId: string, userId: string): Promise<IActiveModel> {
         const active: IActiveModel = await this._activeRepository.getByUserId(userId);
-        const updatedActive: IActiveModel = new Active();
-        updatedActive._id = active._id;
-        updatedActive.userId = userId;
-        updatedActive.lastUpdatedActivity = active.lastUpdatedActivity;
-        updatedActive.progress = active.progress;
 
-        const list: List = active.activeLists.find(l => l.name === listName);
+        const list: List = active.activeLists.find(l => l._id === listId);
         list.status = ProgressStatus.Ignored;
 
         active.activeLists.forEach((l, i) => {
@@ -68,31 +63,26 @@ export class ActiveService implements ActiveServiceInterface {
             }
         });
 
-        updatedActive.activeLists = active.activeLists;
-        updatedActive.progress.ignoredLists.push(listName);
+        active.progress.ignoredLists.push(listId);
 
-        return await this._activeRepository.update(active._id, updatedActive);
+        return await this._activeRepository.update(active);
     }
 
-    async updateActivity(action: ActivityActionType = 'complete', listName: string, activity: Activity, userId: string): Promise<IActiveModel> {
+    async updateActivity(action: ActivityActionType = 'complete', listId: string, activityId: string, userId: string): Promise<IActiveModel> {
         const active: IActiveModel = await this._activeRepository.getByUserId(userId);
         const lists: List[] = active.activeLists;
-        const currentList: List = lists.find(list => list.name === listName);
-        const updatedActive: IActiveModel = new Active();
-        updatedActive._id = active._id;
-        updatedActive.userId = userId;
-        updatedActive.progress = active.progress;
+        const currentList: List = lists.find(list => list._id === listId);
 
         currentList.activities.forEach((a: Activity) => {
-            if (a.name === activity.name && a.status === ProgressStatus.Opened) {
+            if (a._id === activityId && a.status === ProgressStatus.Opened) {
                 switch (action) {
                     case 'complete':
                         a.status = ProgressStatus.Completed;
-                        updatedActive.progress.completedActivities.push(a.name);
+                        active.progress.completedActivities.push(a.name);
                         break;
                     case 'ignore':
                         a.status = ProgressStatus.Ignored;
-                        updatedActive.progress.ignoredActivities.push(a.name);
+                        active.progress.ignoredActivities.push(a.name);
                         break;
                     default:
                         break;
@@ -100,8 +90,8 @@ export class ActiveService implements ActiveServiceInterface {
             }
         });
 
-        updatedActive.lastUpdatedActivity = {
-            activityName: activity.name,
+        active.lastUpdatedActivity = {
+            activityId,
             action: action === 'complete' ? ProgressStatus.Completed : ProgressStatus.Ignored,
             updatedAt: new Date(Date.now())
         };
@@ -110,18 +100,18 @@ export class ActiveService implements ActiveServiceInterface {
 
         if (!includes(activitiesStatuses, ProgressStatus.Opened)) {
             currentList.status = ProgressStatus.Completed;
-            updatedActive.progress.completedLists.push(currentList.name);
+            active.progress.completedLists.push(currentList.name);
         }
 
         lists.forEach((list, i) => {
-            if (list.name === listName) {
+            if (list._id === listId) {
                 lists[i] = currentList;
             }
         });
 
-        updatedActive.activeLists = lists;
+        active.activeLists = lists;
 
-        return await this._activeRepository.update(active._id, updatedActive);
+        return await this._activeRepository.update(active);
     }
 
     async canCreate(userId: string): Promise<boolean> {
@@ -129,8 +119,13 @@ export class ActiveService implements ActiveServiceInterface {
         return !result;
     }
 
-    async getListByListName(userId: string, listName: string): Promise<List> {
+    async getListByListId(userId: string, listId: string): Promise<List> {
         const active: IActiveModel = await this._activeRepository.getByUserId(userId);
-        return active.activeLists.find(l => l.name === listName);
+        return active.activeLists.find(l => l._id === listId);
+    }
+
+    async getActivityByActivityId(userId: string, listId: string, activityId: string): Promise<Activity> {
+        const active: IActiveModel = await this._activeRepository.getByUserId(userId);
+        return active.activeLists.find(l => l._id === listId).activities.find(a => a._id === activityId);
     }
 }

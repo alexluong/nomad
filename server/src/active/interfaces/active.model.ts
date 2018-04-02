@@ -25,6 +25,8 @@ export class Activity {
         enum: ['Opened', 'Ignored', 'Completed']
     })
     status: ProgressStatus;
+    @ApiModelPropertyOptional()
+    _id?: string;
 }
 
 export class List {
@@ -41,6 +43,8 @@ export class List {
         isArray: true
     })
     activities: Activity[];
+    @ApiModelPropertyOptional()
+    _id?: string;
 }
 
 export class ActiveProgress {
@@ -68,7 +72,7 @@ export class ActiveProgress {
 
 export class LastUpdated {
     @ApiModelProperty()
-    activityName: string;
+    activityId: string;
     @ApiModelProperty({
         enum: ['Opened', 'Ignored', 'Completed']
     })
