@@ -1,6 +1,7 @@
 import { Component } from '@nestjs/common';
 import { readFileSync } from 'fs';
 import { includes } from 'lodash';
+import { Types } from 'mongoose';
 import { join } from 'path';
 import { ActiveRepository } from './active.repository';
 import { Activity, ActivityActionType, IActiveModel, List, ProgressStatus } from './interfaces/active.model';
@@ -51,11 +52,11 @@ export class ActiveService implements ActiveServiceInterface {
     async ignoreList(listId: string, userId: string): Promise<IActiveModel> {
         const active: IActiveModel = await this._activeRepository.getByUserId(userId);
 
-        const list: List = active.activeLists.find(l => l._id === listId);
+        const list: List = await this.getListByListId(userId, listId);
         list.status = ProgressStatus.Ignored;
 
         active.activeLists.forEach((l, i) => {
-            if (l.name === list.name) {
+            if (list._id.equals(l._id)) {
                 list.activities.forEach(a => {
                     a.status = ProgressStatus.Ignored;
                 });
@@ -71,10 +72,10 @@ export class ActiveService implements ActiveServiceInterface {
     async updateActivity(action: ActivityActionType = 'complete', listId: string, activityId: string, userId: string): Promise<IActiveModel> {
         const active: IActiveModel = await this._activeRepository.getByUserId(userId);
         const lists: List[] = active.activeLists;
-        const currentList: List = lists.find(list => list._id === listId);
+        const currentList: List = await this.getListByListId(userId, listId);
 
         currentList.activities.forEach((a: Activity) => {
-            if (a._id === activityId && a.status === ProgressStatus.Opened) {
+            if (Types.ObjectId(activityId).equals(a._id) && a.status === ProgressStatus.Opened) {
                 switch (action) {
                     case 'complete':
                         a.status = ProgressStatus.Completed;
@@ -91,7 +92,7 @@ export class ActiveService implements ActiveServiceInterface {
         });
 
         active.lastUpdatedActivity = {
-            activityId,
+            activityId: activityId,
             action: action === 'complete' ? ProgressStatus.Completed : ProgressStatus.Ignored,
             updatedAt: new Date(Date.now())
         };
@@ -104,7 +105,7 @@ export class ActiveService implements ActiveServiceInterface {
         }
 
         lists.forEach((list, i) => {
-            if (list._id === listId) {
+            if (Types.ObjectId(listId).equals(list._id)) {
                 lists[i] = currentList;
             }
         });
@@ -121,11 +122,16 @@ export class ActiveService implements ActiveServiceInterface {
 
     async getListByListId(userId: string, listId: string): Promise<List> {
         const active: IActiveModel = await this._activeRepository.getByUserId(userId);
-        return active.activeLists.find(l => l._id === listId);
+        return active.activeLists.find(l => {
+            return Types.ObjectId(listId).equals(l._id);
+        });
     }
 
     async getActivityByActivityId(userId: string, listId: string, activityId: string): Promise<Activity> {
         const active: IActiveModel = await this._activeRepository.getByUserId(userId);
-        return active.activeLists.find(l => l._id === listId).activities.find(a => a._id === activityId);
+        return active.activeLists
+            .find(l => Types.ObjectId(listId).equals(l._id))
+            .activities
+            .find(a => Types.ObjectId(activityId).equals(a._id));
     }
 }

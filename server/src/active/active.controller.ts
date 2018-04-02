@@ -39,6 +39,10 @@ export class ActiveController {
         const currentUser: IUserModel = req['user'] as IUserModel;
         const activity: Activity = await this._activeService.getActivityByActivityId(currentUser._id, listId, activityId);
 
+        if (!activity || activity === undefined) {
+            throw new HttpException(`Activity with ${activityId} cannot be found`, HttpStatus.NOT_FOUND);
+        }
+
         if (activity.status !== ProgressStatus.Opened) {
             throw new HttpException('Activity status can only be updated once', HttpStatus.BAD_REQUEST);
         }
@@ -53,7 +57,9 @@ export class ActiveController {
     async ignoreList(@Req() req: Request, @Query('listId') listId: string): Promise<IActiveModel> {
         const currentUser: IUserModel = req['user'] as IUserModel;
         const list: List = await this._activeService.getListByListId(currentUser._id, listId);
-
+        if (!list || list === undefined) {
+            throw new HttpException(`List with ${listId} cannot be found`, HttpStatus.NOT_FOUND);
+        }
         if (list.status !== ProgressStatus.Opened) {
             throw new HttpException('List status can only be updated once', HttpStatus.BAD_REQUEST);
         }
