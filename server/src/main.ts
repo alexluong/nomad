@@ -8,7 +8,7 @@ import { ValidationPipe } from './shared/pipes/validation.pipe';
 const port = process.env.PORT || environment.express.port;
 
 async function bootstrap() {
-    const app = await NestFactory.create(ApplicationModule);
+    const app = await NestFactory.create(ApplicationModule, {cors: true});
     const swaggerOptions = new DocumentBuilder()
         .setTitle('API Documentation')
         .setDescription('Api Documentation')

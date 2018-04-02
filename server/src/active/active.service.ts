@@ -1,6 +1,6 @@
 import { Component } from '@nestjs/common';
 import { readFileSync } from 'fs';
-import { includes } from 'lodash';
+import { find, forEach, includes, map } from 'lodash';
 import { Types } from 'mongoose';
 import { join } from 'path';
 import { ActiveRepository } from './active.repository';
@@ -18,15 +18,16 @@ export class ActiveService implements ActiveServiceInterface {
     private constructListDataFromJSON(): List[] {
         const data = JSON.parse(readFileSync(join(__dirname, '../../assets/standard.json'), {encoding: 'utf8'}));
         const lists: List[] = [];
-        data.forEach(list => {
+
+        forEach(data, list => {
             const newList: List = Object.assign({}, list, {
                 status: ProgressStatus.Opened
             });
             lists.push(newList);
         });
 
-        lists.forEach(list => {
-            list.activities.forEach((activity: Activity) => {
+        forEach(lists, list => {
+            forEach(list.activities, activity => {
                 activity.status = ProgressStatus.Opened;
             });
         });
@@ -55,9 +56,9 @@ export class ActiveService implements ActiveServiceInterface {
         const list: List = await this.getListByListId(userId, listId);
         list.status = ProgressStatus.Ignored;
 
-        active.activeLists.forEach((l, i) => {
+        forEach(active.activeLists, (l, i) => {
             if (list._id.equals(l._id)) {
-                list.activities.forEach(a => {
+                forEach(list.activities, a => {
                     a.status = ProgressStatus.Ignored;
                 });
                 active.activeLists[i] = list;
@@ -74,7 +75,7 @@ export class ActiveService implements ActiveServiceInterface {
         const lists: List[] = active.activeLists;
         const currentList: List = await this.getListByListId(userId, listId);
 
-        currentList.activities.forEach((a: Activity) => {
+        forEach(currentList.activities, (a: Activity) => {
             if (Types.ObjectId(activityId).equals(a._id) && a.status === ProgressStatus.Opened) {
                 switch (action) {
                     case 'complete':
@@ -97,14 +98,14 @@ export class ActiveService implements ActiveServiceInterface {
             updatedAt: new Date(Date.now())
         };
 
-        const activitiesStatuses: ProgressStatus[] = currentList.activities.map(a => a.status);
+        const activitiesStatuses: ProgressStatus[] = map(currentList.activities, a => a.status);
 
         if (!includes(activitiesStatuses, ProgressStatus.Opened)) {
             currentList.status = ProgressStatus.Completed;
             active.progress.completedLists.push(currentList.name);
         }
 
-        lists.forEach((list, i) => {
+        forEach(lists, (list, i) => {
             if (Types.ObjectId(listId).equals(list._id)) {
                 lists[i] = currentList;
             }
@@ -122,16 +123,15 @@ export class ActiveService implements ActiveServiceInterface {
 
     async getListByListId(userId: string, listId: string): Promise<List> {
         const active: IActiveModel = await this._activeRepository.getByUserId(userId);
-        return active.activeLists.find(l => {
+        return find(active.activeLists, l => {
             return Types.ObjectId(listId).equals(l._id);
         });
     }
 
     async getActivityByActivityId(userId: string, listId: string, activityId: string): Promise<Activity> {
         const active: IActiveModel = await this._activeRepository.getByUserId(userId);
-        return active.activeLists
-            .find(l => Types.ObjectId(listId).equals(l._id))
-            .activities
-            .find(a => Types.ObjectId(activityId).equals(a._id));
+        return find(
+            find(active.activeLists, l => Types.ObjectId(listId).equals(l._id)).activities,
+            a => Types.ObjectId(activityId).equals(a._id));
     }
 }
