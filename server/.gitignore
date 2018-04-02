@@ -2,10 +2,9 @@
 /node_modules
 
 # IDE
-/.idea
+.idea
 /.awcache
 /.vscode
-/server/.idea
 
 # misc
 npm-debug.log
