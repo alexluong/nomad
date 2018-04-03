@@ -28,7 +28,7 @@ export class SharedRepository<T extends Document> implements SharedRepositoryInt
         return await this.model.find({_id: {$in: ids}}).exec();
     }
 
-    async update(id: string, resource: T): Promise<T> {
-        return await this.model.findByIdAndUpdate(id, resource, {new: true}).exec();
+    async update(resource: T): Promise<T> {
+        return await this.model.findByIdAndUpdate(resource._id, resource, {new: true}).exec();
     }
 }

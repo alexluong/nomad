@@ -1,4 +1,4 @@
-import { Body, Controller, HttpException, HttpStatus, Post, Put, Query, Req } from '@nestjs/common';
+import { Controller, Get, HttpException, HttpStatus, Post, Query, Req } from '@nestjs/common';
 import { ApiBearerAuth, ApiResponse, ApiUseTags } from '@nestjs/swagger';
 import { Request } from 'express';
 import { IUserModel } from '../user/interfaces/user.model';
@@ -30,30 +30,39 @@ export class ActiveController {
         return await this._activeService.createNewActiveLists(currentUser._id);
     }
 
-    @Put('update')
+    @Get('update')
     @ApiResponse({
         status: 200,
         type: ActiveModel
     })
-    async updateActivity(@Req() req: Request, @Body() activity: Activity, @Query('listName') listName: string, @Query('action') action?: 'complete' | 'ignore'): Promise<IActiveModel> {
+    async updateActivity(@Req() req: Request, @Query('activityId') activityId: string, @Query('listId') listId: string, @Query('action') action?: 'complete' | 'ignore'): Promise<IActiveModel> {
         const currentUser: IUserModel = req['user'] as IUserModel;
+        const activity: Activity = await this._activeService.getActivityByActivityId(currentUser._id, listId, activityId);
+
+        if (!activity || activity === undefined) {
+            throw new HttpException(`Activity with ${activityId} cannot be found`, HttpStatus.NOT_FOUND);
+        }
+
         if (activity.status !== ProgressStatus.Opened) {
             throw new HttpException('Activity status can only be updated once', HttpStatus.BAD_REQUEST);
         }
-        return await this._activeService.updateActivity(action, listName, activity, currentUser._id);
+        return await this._activeService.updateActivity(action, listId, activityId, currentUser._id);
     }
 
-    @Put('ignoreList')
+    @Get('ignoreList')
     @ApiResponse({
         status: 200,
         type: ActiveModel
     })
-    async ignoreList(@Req() req: Request, @Query('listName') listName: string): Promise<IActiveModel> {
+    async ignoreList(@Req() req: Request, @Query('listId') listId: string): Promise<IActiveModel> {
         const currentUser: IUserModel = req['user'] as IUserModel;
-        const list: List = await this._activeService.getListByListName(currentUser._id, listName);
+        const list: List = await this._activeService.getListByListId(currentUser._id, listId);
+        if (!list || list === undefined) {
+            throw new HttpException(`List with ${listId} cannot be found`, HttpStatus.NOT_FOUND);
+        }
         if (list.status !== ProgressStatus.Opened) {
             throw new HttpException('List status can only be updated once', HttpStatus.BAD_REQUEST);
         }
-        return await this._activeService.ignoreList(listName, currentUser._id);
+        return await this._activeService.ignoreList(listId, currentUser._id);
     }
 }

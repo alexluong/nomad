@@ -9,7 +9,7 @@ export interface SharedRepositoryInterface<T extends Document> {
 
     create(resource: T): Promise<T>;
 
-    update(id: string, resource: T): Promise<T>;
+    update(resource: T): Promise<T>;
 
     delete(id: string): Promise<T>;
 }

@@ -1,4 +1,5 @@
 import { ApiModelProperty, ApiModelPropertyOptional } from '@nestjs/swagger';
+import { Types } from 'mongoose';
 import { SharedModel } from '../../shared/interfaces/shared.model';
 
 export interface IActiveModel extends SharedModel {
@@ -25,6 +26,10 @@ export class Activity {
         enum: ['Opened', 'Ignored', 'Completed']
     })
     status: ProgressStatus;
+    @ApiModelPropertyOptional({
+        type: String
+    })
+    _id?: Types.ObjectId;
 }
 
 export class List {
@@ -41,6 +46,10 @@ export class List {
         isArray: true
     })
     activities: Activity[];
+    @ApiModelPropertyOptional({
+        type: String
+    })
+    _id?: Types.ObjectId;
 }
 
 export class ActiveProgress {
@@ -68,7 +77,7 @@ export class ActiveProgress {
 
 export class LastUpdated {
     @ApiModelProperty()
-    activityName: string;
+    activityId: string;
     @ApiModelProperty({
         enum: ['Opened', 'Ignored', 'Completed']
     })
@@ -106,6 +115,8 @@ export class ActiveModel {
         format: 'date-time'
     })
     updatedAt?: Date;
-    @ApiModelProperty()
-    _id?: string;
+    @ApiModelPropertyOptional({
+        type: String
+    })
+    _id?: Types.ObjectId;
 }

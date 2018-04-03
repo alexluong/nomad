@@ -48,7 +48,7 @@ export const ActiveSchema = new Schema({
         type: String
     },
     lastUpdatedActivity: {
-        activityName: {
+        activityId: {
             type: String
         },
         action: {
