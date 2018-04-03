@@ -58,6 +58,9 @@ export const ActiveSchema = new Schema({
         updatedAt: {
             type: Date
         }
+    },
+    listImgURL: {
+        type: String
     }
 }, {timestamps: true});
 

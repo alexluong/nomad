@@ -46,6 +46,8 @@ export class List {
         isArray: true
     })
     activities: Activity[];
+    @ApiModelProperty()
+    listImgURL: string;
     @ApiModelPropertyOptional({
         type: String
     })

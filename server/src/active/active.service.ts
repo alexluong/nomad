@@ -11,6 +11,8 @@ import { Active } from './schemas/active.schema';
 @Component()
 export class ActiveService implements ActiveServiceInterface {
 
+    private mockedImgURL: 'https://www.aluminati.net/wp-content/uploads/2016/03/img-placeholder.png';
+
     constructor(private readonly _activeRepository: ActiveRepository) {
 
     }
@@ -21,7 +23,8 @@ export class ActiveService implements ActiveServiceInterface {
 
         forEach(data, list => {
             const newList: List = Object.assign({}, list, {
-                status: ProgressStatus.Opened
+                status: ProgressStatus.Opened,
+                listImgURL: this.mockedImgURL
             });
             lists.push(newList);
         });
