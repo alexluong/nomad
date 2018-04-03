@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { Provider } from 'react-redux';
-// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Router } from 'react-router';
+import { Route, Switch } from 'react-router-dom';
+import { createBrowserHistory } from 'history'
 
-// Material UI
-// import Drawer from 'material-ui/Drawer';
-// import MenuItem from 'material-ui/MenuItem';
+// Layout
 import TopPanel from './components/top-panel/TopPanel';
 import SidePanel from './components/SidePanel';
 
@@ -17,11 +16,12 @@ import Profile    from './components/Profile'  ;
 import Settings   from './components/Settings' ; 
 import SignInPage from './components/auth/SignInPage';
 
+export const history = createBrowserHistory();
 class App extends Component {
   render() {
     return (
       <Provider store={this.props.store} >
-        <Router>
+        <Router history={history}>
           <Switch>
             <Route path="/signin" component={SignInPage} />
             <Route path="/" component={MainApp} />

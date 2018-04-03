@@ -1,16 +1,29 @@
-import { AUTH_USER } from './types';
+import axios from 'axios';
+import { history } from '../App';
+// import { AUTH_USER } from './types';
 
-export function doSampleAction(sampleObject) {
-  // doSampleAction is an ActionCreator
-  // Need to return an action: an object with a type property
-  return {
-    type: 'SAMPLE_ACTION',
-    payload: sampleObject
-  };
-}
+const ROOT_URL = 'http://localhost:8080/api';
 
 export function signIn({ email, password }) {
-  return {
-    type: AUTH_USER
-  };
+  history.push('/dashboard');
+  return function(dispatch) {
+    // Send request to the server
+    console.log(email, password);
+    axios.post(`${ROOT_URL}/users/login`, { email, password })
+      .then(response => {
+        console.log(response);
+        history.push('/dashboard');
+      })
+      .catch(error => {
+        console.log(error.response);
+      });
+
+    // If request is good:
+    // - Update state to indicate user is authenticated
+    // - Save the JWT token
+    // - Redirect to '/dashboard'
+
+    // If request is bad:
+    // - Show an error
+  }
 }

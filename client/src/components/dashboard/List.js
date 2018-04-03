@@ -46,14 +46,14 @@ export default class List extends Component {
                 numPage > 1 ? (
                   <div className="pagination-nav">
                     {
-                      activePage != 0 ? (
+                      activePage !== 0 ? (
                         <span
                         onClick={() => this.setState({activePage: activePage - 1})} 
                         >Less</span>
                       ) : (<span></span>)
                     }
                     {
-                      activePage != numPage - 1 ? (
+                      activePage !== numPage - 1 ? (
                         <span
                         onClick={() => this.setState({activePage: activePage + 1})} 
                         >More</span>

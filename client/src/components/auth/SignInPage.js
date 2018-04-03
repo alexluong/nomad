@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 
 class SignInPage extends Component {
   onSignIn({ email, password }) {
-    console.log({ email,password });
     this.props.signIn({ email, password });
   }
 
