@@ -1,7 +1,7 @@
 import { ApiModelProperty, ApiModelPropertyOptional } from '@nestjs/swagger';
 import { IsEmail, IsOptional, IsString } from 'class-validator';
 
-export class UserLoginParams {
+export class UserLoginParams  {
     @ApiModelPropertyOptional()
     @IsString()
     @IsOptional()

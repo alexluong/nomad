@@ -1,4 +1,4 @@
-import { ActivityActionType, IActiveModel, List } from './active.model';
+import { ActivityActionType, IActiveModel, List, Activity, ActiveProgress } from './active.model';
 
 export interface ActiveServiceInterface {
     createNewActiveLists(userId: string): Promise<IActiveModel>;
@@ -10,4 +10,10 @@ export interface ActiveServiceInterface {
     ignoreList(listName: string, userId: string): Promise<IActiveModel>;
 
     getListByListId(userId: string, listId: string): Promise<List>;
+
+    cannotIgnore(list: List): Promise<boolean>;
+
+    getActivityByActivityId(userId: string, listId: string, activityId: string): Promise<Activity>;
+
+    getProgress(userId: string): Promise<ActiveProgress>;
 }

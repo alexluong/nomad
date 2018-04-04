@@ -18,7 +18,9 @@ export class UserRegisterParams {
 
     @ApiModelProperty({
         description: 'Password',
-        required: true
+        required: true,
+        type: String,
+        format: 'password'
     })
     @IsString()
     password: string;

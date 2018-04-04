@@ -3,14 +3,13 @@ import { ApiBearerAuth, ApiResponse, ApiUseTags } from '@nestjs/swagger';
 import { Request } from 'express';
 import { IUserModel } from '../user/interfaces/user.model';
 import { ActiveService } from './active.service';
-import { ActiveModel, Activity, IActiveModel, List, ProgressStatus } from './interfaces/active.model';
+import { ActiveModel, Activity, IActiveModel, List, ProgressStatus, ActiveProgress } from './interfaces/active.model';
 
 @Controller('lists')
 @ApiUseTags('List')
 @ApiBearerAuth()
 export class ActiveController {
-    constructor(private _activeService: ActiveService) {
-    }
+    constructor(private _activeService: ActiveService) {}
 
     @Post('create')
     @ApiResponse({
@@ -65,7 +64,16 @@ export class ActiveController {
             throw new HttpException('List status can only be updated if the Activities have not been updated.', HttpStatus.BAD_REQUEST);
         }
 
-
         return await this._activeService.ignoreList(listId, currentUser._id);
+    }
+
+    @Get('progress')
+    @ApiResponse({
+        status: 200,
+        type: ActiveProgress
+    })
+    async getCurrentProgress(@Req() req: Request): Promise<ActiveProgress> {
+        const currentUser: IUserModel = req['user'] as IUserModel;
+        return await this._activeService.getProgress(currentUser._id);
     }
 }

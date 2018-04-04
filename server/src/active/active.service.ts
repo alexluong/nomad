@@ -4,7 +4,7 @@ import { find, forEach, includes, map, some } from 'lodash';
 import { Types } from 'mongoose';
 import { join } from 'path';
 import { ActiveRepository } from './active.repository';
-import { Activity, ActivityActionType, IActiveModel, List, ProgressStatus } from './interfaces/active.model';
+import { Activity, ActivityActionType, IActiveModel, List, ProgressStatus, ActiveProgress } from './interfaces/active.model';
 import { ActiveServiceInterface } from './interfaces/active.service.interface';
 import { Active } from './schemas/active.schema';
 
@@ -139,5 +139,10 @@ export class ActiveService implements ActiveServiceInterface {
     async getActivityByActivityId(userId: string, listId: string, activityId: string): Promise<Activity> {
         const active: IActiveModel = await this._activeRepository.getByUserId(userId);
         return find(find(active.activeLists, l => Types.ObjectId(listId).equals(l._id)).activities, a => Types.ObjectId(activityId).equals(a._id));
+    }
+
+    async getProgress(userId: string): Promise<ActiveProgress> {
+        const active: IActiveModel = await this._activeRepository.getByUserId(userId);
+        return active.progress;
     }
 }
