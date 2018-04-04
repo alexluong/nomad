@@ -69,14 +69,14 @@ input {
   width: 37rem;
   height: 24rem;
   margin-top: 10rem;
-  background-color: pink;
+  background-color: #FAFAFA;
   position: relative;
   display: flex;
   flex-direction: column;
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2), 0 4px 5px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.12); }
   .card:hover {
     cursor: pointer;
-    outline: 1px solid #4FF7B5; }
+    outline: 3px solid #4FF7B5; }
   .card__header {
     flex-basis: 12rem;
     background-position: center;
@@ -122,11 +122,11 @@ input {
     outline: 1px solid #4FF7B5; }
 
 .pagination {
+  margin-top: 1rem;
   background-color: blue;
   height: .8rem;
   width: 100%;
   border-radius: 1000rem;
-  overflow: hidden;
   display: flex; }
   .pagination__item {
     flex: 1; }
@@ -137,8 +137,18 @@ input {
   .pagination__item:not(:first-child) {
     border-left: 1px solid #fff; }
 
-.pagination {
-  margin-top: 1rem; }
+.progress-bar {
+  margin-top: 1rem;
+  height: .8rem;
+  width: 100%;
+  border-radius: 1000rem;
+  background-image: linear-gradient(to right, #EBFF00 0%, rgba(20, 255, 0, 0.5) 27.07%, rgba(44, 252, 239, 0.5) 56.35%, rgba(69, 38, 255, 0.5) 78.45%, rgba(255, 28, 191, 0.5) 100%);
+  display: flex;
+  justify-content: flex-end; }
+  .progress-bar__hide {
+    border-top-right-radius: 1000rem;
+    border-bottom-right-radius: 1000rem;
+    background-color: #F2F2F2; }
 
 .top-panel__primary {
   background-color: #e3e3e3;

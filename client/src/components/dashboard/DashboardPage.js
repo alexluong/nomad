@@ -8,8 +8,8 @@ class DashboardPage extends Component {
     const { lists } = this.props;
     return (
       <div className="dashboard">
-        {lists.data.map(list => {
-          return <List key={list.listID} list={list} />
+        {lists.data.map((list, i) => {
+          return <List key={i} list={list} />
         })}
       </div>
     );

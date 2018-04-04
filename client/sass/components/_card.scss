@@ -2,7 +2,7 @@
   width: $card-width;
   height: $card-height;
   margin-top: 10rem;
-  background-color: pink;
+  background-color: $color-background;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -25,7 +25,7 @@
   // }
   &:hover {
     cursor: pointer;
-    outline: 1px solid $color-stroke;
+    outline: 3px solid $color-stroke;
   }
   &__header {
     flex-basis: 12rem;

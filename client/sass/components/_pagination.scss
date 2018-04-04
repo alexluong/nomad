@@ -1,9 +1,9 @@
 .pagination {
+  margin-top: 1rem;
   background-color: blue;
   height: .8rem;
   width: 100%;
   border-radius: 1000rem;
-  overflow: hidden;
   display: flex;
   &__item {
     flex: 1;
@@ -17,8 +17,4 @@
   &__item:not(:first-child) {
     border-left: 1px solid #fff;
   }
-}
-
-.pagination {
-  margin-top: 1rem;
 }
