@@ -11,10 +11,11 @@ import SidePanel from './components/SidePanel';
 // Pages
 // import SampleApp from './components/SampleApp';
 import DashboardPage  from './components/dashboard/DashboardPage';
-import Progress   from './components/Progress' ;
-import Profile    from './components/Profile'  ;
-import Settings   from './components/Settings' ; 
-import SignInPage from './components/auth/SignInPage';
+import Progress       from './components/Progress'        ;
+import Profile        from './components/Profile'         ;
+import Settings       from './components/Settings'        ; 
+import SignInPage     from './components/auth/SignInPage' ;
+import SignOutPage    from './components/auth/SignOutPage';
 
 export const history = createBrowserHistory();
 class App extends Component {
@@ -23,7 +24,8 @@ class App extends Component {
       <Provider store={this.props.store} >
         <Router history={history}>
           <Switch>
-            <Route path="/signin" component={SignInPage} />
+            <Route path="/signin"  component={SignInPage} />
+            <Route path="/signout" component={SignOutPage} />
             <Route path="/" component={MainApp} />
           </Switch>
         </Router>
@@ -41,9 +43,9 @@ class MainApp extends Component {
         <main className="main">
           <Switch>
             <Route path='/dashboard' component={DashboardPage} />
-            <Route path='/progress' component={Progress} />
-            <Route path='/profile' component={Profile} />
-            <Route path='/settings' component={Settings} />
+            <Route path='/progress'  component={Progress} />
+            <Route path='/profile'   component={Profile} />
+            <Route path='/settings'  component={Settings} />
           </Switch>
         </main>
       </div>

@@ -1,10 +1,16 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-export default class TopPanelUser extends Component {
+class TopPanelUser extends Component {
   render() {
-    return (
-      <Link to='/signin'>Sign In</Link>
-    );
+    if (this.props.authenticated) return <Link to='/signout'>Sign Out</Link>;
+    else return <Link to='/signin'>Sign In</Link>;
   }
 }
+
+function mapStateToProps(state) {
+  return { authenticated: state.auth.authenticated };
+}
+
+export default connect(mapStateToProps, null)(TopPanelUser);

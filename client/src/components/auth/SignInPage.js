@@ -10,13 +10,18 @@ class SignInPage extends Component {
   }
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, errorMessage } = this.props;
     return (
       <div className="signin">
         <div className="signin__info">Hi</div>
         <div className="signin__form">
           <div className="signin__form-box">
             <h1 className="heading-primary">Sign In</h1>
+            {
+              errorMessage ? (
+                <div>{errorMessage}</div>
+              ) : null
+            }
             <form onSubmit={handleSubmit(this.onSignIn.bind(this))}>
               <Field name="email" component="input" type="text" placeholder="Email" />
               <Field name="password" component="input" type="password" placeholder="Password" />
@@ -31,7 +36,7 @@ class SignInPage extends Component {
 }
 
 function mapStateToProps(state) {
-  return { errorMessage: state.auth.error };
+  return { errorMessage: state.auth.errorMessage };
 }
 
 export default reduxForm({
