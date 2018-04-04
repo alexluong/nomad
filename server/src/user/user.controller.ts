@@ -11,10 +11,7 @@ import { UserService } from './user.service';
 @Controller('users')
 @ApiUseTags('System')
 export class UserController {
-
-    constructor(private _userService: UserService) {
-
-    }
+    constructor(private _userService: UserService) {}
 
     @Post('register')
     @ApiResponse({
@@ -31,15 +28,12 @@ export class UserController {
         const email: string = registerParams.email;
         const username: string = registerParams.username;
 
-        if (!email || !username)
-            throw new HttpException('Email is required', HttpStatus.BAD_REQUEST);
+        if (!email || !username) throw new HttpException('Email is required', HttpStatus.BAD_REQUEST);
 
         const existed: IUserModel = await this._userService.findByUsernameOrEmail(username, email);
 
-        if (existed instanceof MongoError)
-            throw new HttpException('Server error occurred', HttpStatus.AMBIGUOUS);
-        if (existed)
-            throw new HttpException(`${email} is already existed`, HttpStatus.BAD_REQUEST);
+        if (existed instanceof MongoError) throw new HttpException('Server error occurred', HttpStatus.AMBIGUOUS);
+        if (existed) throw new HttpException(`${email} is already existed`, HttpStatus.BAD_REQUEST);
 
         return await this._userService.createNewUser(registerParams);
     }
@@ -66,11 +60,9 @@ export class UserController {
 
         const fetchedUser: IUserModel = await this._userService.findByUsernameOrEmail(username, email);
 
-        if (fetchedUser instanceof MongoError)
-            throw new HttpException('Server error occurred', HttpStatus.AMBIGUOUS);
+        if (fetchedUser instanceof MongoError) throw new HttpException('Server error occurred', HttpStatus.AMBIGUOUS);
 
-        if (!fetchedUser || fetchedUser === null)
-            throw new HttpException('Username/Email does not exist', HttpStatus.NOT_FOUND);
+        if (!fetchedUser || fetchedUser === null) throw new HttpException('Username/Email does not exist', HttpStatus.NOT_FOUND);
 
         const isMatched: boolean = await this._userService.comparePassword(password, fetchedUser.password);
 

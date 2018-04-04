@@ -7,14 +7,15 @@ import { JwtPayloadInterface } from '../interfaces/jwt-payload.interface';
 
 @Component()
 export class JwtStrategy extends Strategy {
-
     constructor(private readonly _authService: AuthService) {
-        super({
+        super(
+            {
                 jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
                 passReqToCallback: true,
                 secretOrKey: process.env.JWT_SECRET || environment.jwtAuthSecret
             },
-            async (req, payload, next) => await this.verify(req, payload, next));
+            async (req, payload, next) => await this.verify(req, payload, next)
+        );
         use(this);
     }
 

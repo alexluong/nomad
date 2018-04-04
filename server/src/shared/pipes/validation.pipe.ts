@@ -5,7 +5,7 @@ import { validate } from 'class-validator';
 @Pipe()
 export class ValidationPipe implements PipeTransform<any> {
     async transform(value, metadata: ArgumentMetadata) {
-        const {metatype} = metadata;
+        const { metatype } = metadata;
 
         if (!metatype || !this.toValidate(metatype)) {
             return value;
@@ -23,6 +23,6 @@ export class ValidationPipe implements PipeTransform<any> {
 
     private toValidate(metatype): boolean {
         const types = [String, Boolean, Number, Array, Object];
-        return !types.find((type) => metatype === type);
+        return !types.find(type => metatype === type);
     }
 }

@@ -9,29 +9,21 @@ export interface IUserModel extends SharedModel {
     username?: string;
 }
 
-
 export class UserProfile {
-    @ApiModelProperty()
-    age: number;
-    @ApiModelProperty()
-    country: string;
+    @ApiModelProperty() age: number;
+    @ApiModelProperty() country: string;
     @ApiModelProperty({
         enum: ['Male', 'Female', 'Not Specified']
     })
     gender: UserGender;
-    @ApiModelProperty()
-    nameFirst: string;
-    @ApiModelProperty()
-    nameLast: string;
-    @ApiModelProperty()
-    name: string;
+    @ApiModelProperty() nameFirst: string;
+    @ApiModelProperty() nameLast: string;
+    @ApiModelProperty() name: string;
 }
 
 export class UserModel {
-    @ApiModelProperty()
-    email: string;
-    @ApiModelProperty()
-    password: string;
+    @ApiModelProperty() email: string;
+    @ApiModelProperty() password: string;
     @ApiModelProperty({
         enum: ['Admin', 'User']
     })
@@ -40,10 +32,8 @@ export class UserModel {
         type: UserProfile
     })
     profile?: UserProfile;
-    @ApiModelProperty()
-    username?: string;
-    @ApiModelProperty()
-    _id?: string;
+    @ApiModelProperty() username?: string;
+    @ApiModelProperty() _id?: string;
     @ApiModelPropertyOptional({
         type: String,
         format: 'date-time'

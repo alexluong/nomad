@@ -20,6 +20,7 @@
     "bcryptjs": "2.4.3",
     "class-transformer": "0.1.9",
     "class-validator": "0.8.5",
+    "elmah.io": "0.1.0",
     "jsonwebtoken": "8.2.0",
     "lodash": "4.17.5",
     "mongoose": "5.0.12",

@@ -7,8 +7,6 @@ export interface SharedModel extends Document {
 }
 
 export class ApiException {
-    @ApiModelPropertyOptional()
-    statusCode?: number;
-    @ApiModelPropertyOptional()
-    message?: string;
+    @ApiModelPropertyOptional() statusCode?: number;
+    @ApiModelPropertyOptional() message?: string;
 }

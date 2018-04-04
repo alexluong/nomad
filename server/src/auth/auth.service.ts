@@ -6,7 +6,6 @@ import { JwtPayloadInterface } from './interfaces/jwt-payload.interface';
 
 @Component()
 export class AuthService {
-
     jwtOptions: SignOptions;
     jwtSecret: string;
 

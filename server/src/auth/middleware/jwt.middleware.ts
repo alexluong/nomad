@@ -3,10 +3,9 @@ import { authenticate } from 'passport';
 
 @Middleware()
 export class JwtMiddleware implements NestMiddleware {
-
     public resolve() {
         return async (req, res, next) => {
-            return await authenticate('jwt', {session: false}, (err, user, info) => {
+            return await authenticate('jwt', { session: false }, (err, user, info) => {
                 let message;
                 if (err) {
                     next(new UnauthorizedException(err));

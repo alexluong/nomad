@@ -9,5 +9,5 @@ export interface ActiveServiceInterface {
 
     ignoreList(listName: string, userId: string): Promise<IActiveModel>;
 
-    getListByListId(userId: string, listId: string): Promise<List>
+    getListByListId(userId: string, listId: string): Promise<List>;
 }

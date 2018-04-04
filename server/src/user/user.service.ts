@@ -10,10 +10,7 @@ import { UserRepository } from './user.repository';
 
 @Component()
 export class UserService implements UserServiceInterface {
-
-    constructor(private _userRepository: UserRepository,
-                private _authService: AuthService) {
-    }
+    constructor(private _userRepository: UserRepository, private _authService: AuthService) {}
 
     async createNewUser(registerParams: UserRegisterParams): Promise<IUserModel> {
         const newUser: IUserModel = new User();
@@ -26,7 +23,7 @@ export class UserService implements UserServiceInterface {
     }
 
     async loginUser(currentUser: IUserModel): Promise<UserLoginResponse> {
-        const payload = {user: currentUser};
+        const payload = { user: currentUser };
         const token = await this._authService.signPayload(payload);
 
         return {
@@ -42,5 +39,4 @@ export class UserService implements UserServiceInterface {
     async findByUsernameOrEmail(username?: string, email?: string): Promise<IUserModel> {
         return await this._userRepository.getUserByUsernameOrEmail(username, email);
     }
-
 }

@@ -4,11 +4,10 @@ import { IUserModel } from '../../user/interfaces/user.model';
 
 @Guard()
 export class RolesGuard implements CanActivate {
-    constructor(private readonly reflector: Reflector) {
-    }
+    constructor(private readonly reflector: Reflector) {}
 
     canActivate(req, context: ExecutionContext): boolean {
-        const {parent, handler} = context;
+        const { parent, handler } = context;
         const roles = this.reflector.get<string[]>('roles', handler);
         if (!roles) {
             return true;

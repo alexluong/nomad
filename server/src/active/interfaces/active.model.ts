@@ -18,10 +18,8 @@ export enum ProgressStatus {
 export type ActivityActionType = 'complete' | 'ignore';
 
 export class Activity {
-    @ApiModelProperty()
-    name: string;
-    @ApiModelPropertyOptional()
-    description?: string;
+    @ApiModelProperty() name: string;
+    @ApiModelPropertyOptional() description?: string;
     @ApiModelProperty({
         enum: ['Opened', 'Ignored', 'Completed']
     })
@@ -33,10 +31,8 @@ export class Activity {
 }
 
 export class List {
-    @ApiModelProperty()
-    name: string;
-    @ApiModelPropertyOptional()
-    description?: string;
+    @ApiModelProperty() name: string;
+    @ApiModelPropertyOptional() description?: string;
     @ApiModelProperty({
         enum: ['Opened', 'Ignored', 'Completed']
     })
@@ -46,8 +42,7 @@ export class List {
         isArray: true
     })
     activities: Activity[];
-    @ApiModelProperty()
-    listImgURL: string;
+    @ApiModelProperty() listImgURL: string;
     @ApiModelPropertyOptional({
         type: String
     })
@@ -78,8 +73,7 @@ export class ActiveProgress {
 }
 
 export class LastUpdated {
-    @ApiModelProperty()
-    activityId: string;
+    @ApiModelProperty() activityId: string;
     @ApiModelProperty({
         enum: ['Opened', 'Ignored', 'Completed']
     })
@@ -101,8 +95,7 @@ export class ActiveModel {
         type: ActiveProgress
     })
     progress: ActiveProgress;
-    @ApiModelProperty()
-    userId: string;
+    @ApiModelProperty() userId: string;
     @ApiModelProperty({
         type: LastUpdated
     })

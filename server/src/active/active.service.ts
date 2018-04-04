@@ -1,6 +1,6 @@
 import { Component } from '@nestjs/common';
 import { readFileSync } from 'fs';
-import { find, forEach, includes, map } from 'lodash';
+import { find, forEach, includes, map, some } from 'lodash';
 import { Types } from 'mongoose';
 import { join } from 'path';
 import { ActiveRepository } from './active.repository';
@@ -10,11 +10,9 @@ import { Active } from './schemas/active.schema';
 
 @Component()
 export class ActiveService implements ActiveServiceInterface {
-
     private mockedImgURL: 'https://www.aluminati.net/wp-content/uploads/2016/03/img-placeholder.png';
 
     constructor(private readonly _activeRepository: ActiveRepository) {
-
     }
 
     private constructListDataFromJSON(): List[] {
@@ -131,10 +129,15 @@ export class ActiveService implements ActiveServiceInterface {
         });
     }
 
+    async cannotIgnore(list: List): Promise<boolean> {
+        const activities: Activity[] = list.activities;
+        return some(activities, a => {
+            return a.status !== ProgressStatus.Opened;
+        });
+    }
+
     async getActivityByActivityId(userId: string, listId: string, activityId: string): Promise<Activity> {
         const active: IActiveModel = await this._activeRepository.getByUserId(userId);
-        return find(
-            find(active.activeLists, l => Types.ObjectId(listId).equals(l._id)).activities,
-            a => Types.ObjectId(activityId).equals(a._id));
+        return find(find(active.activeLists, l => Types.ObjectId(listId).equals(l._id)).activities, a => Types.ObjectId(activityId).equals(a._id));
     }
 }

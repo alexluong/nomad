@@ -8,13 +8,12 @@ import { UserSchema } from './schemas/user.schema';
 
 @Component()
 export class UserRepository extends SharedRepository<IUserModel> implements UserRepositoryInterface {
-
     constructor(@InjectModel(UserSchema) private readonly _userModel: Model<IUserModel>) {
         super(_userModel);
     }
 
     async getUserByUsernameOrEmail(username?: string, email?: string): Promise<IUserModel> {
-        const query = {$or: [{username}, {email}]};
+        const query = { $or: [{ username }, { email }] };
         return await this._userModel.findOne(query).exec();
     }
 }

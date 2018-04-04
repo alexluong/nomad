@@ -6,9 +6,8 @@ import { AuthService } from './auth.service';
 import { JwtStrategy } from './strategies/jwt.strategy';
 
 @Module({
-    imports: [UserModule, MongooseModule.forFeature([{name: 'User', schema: UserSchema}])],
+    imports: [UserModule, MongooseModule.forFeature([{ name: 'User', schema: UserSchema }])],
     components: [AuthService, JwtStrategy],
     exports: [AuthService, JwtStrategy]
 })
-export class AuthModule {
-}
+export class AuthModule {}

@@ -9,9 +9,7 @@ import { ActiveModel, Activity, IActiveModel, List, ProgressStatus } from './int
 @ApiUseTags('List')
 @ApiBearerAuth()
 export class ActiveController {
-
     constructor(private _activeService: ActiveService) {
-
     }
 
     @Post('create')
@@ -63,6 +61,11 @@ export class ActiveController {
         if (list.status !== ProgressStatus.Opened) {
             throw new HttpException('List status can only be updated once', HttpStatus.BAD_REQUEST);
         }
+        if (this._activeService.cannotIgnore(list)) {
+            throw new HttpException('List status can only be updated if the Activities have not been updated.', HttpStatus.BAD_REQUEST);
+        }
+
+
         return await this._activeService.ignoreList(listId, currentUser._id);
     }
 }
