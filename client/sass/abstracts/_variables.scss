@@ -1,3 +1,8 @@
+// Colors
+$color-stroke: #4FF7B5;
+$color-text: #008F4A;
+$color-background: #FAFAFA;
+
 // Typography
 $default-font-size: 1.6rem;
 
@@ -6,4 +11,5 @@ $side-panel-width: 15rem;
 $top-primary-height: 7.5rem;
 $top-secondary-height: 7.5rem;
 $top-panel-height: calc(#{$top-primary-height} +  #{$top-secondary-height});
-$card-width: 40rem;
+$card-width: 37rem;
+$card-height: 24rem;

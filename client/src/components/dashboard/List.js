@@ -20,48 +20,58 @@ export default class List extends Component {
     });;
   }
 
+  changePage(event, up) {
+    event.stopPropagation();
+    this.setState({
+      activePage: up ? this.state.activePage + 1 : this.state.activePage - 1
+    });
+  }
+
+  renderPaginationControl() {
+    const { activePage, numPage } = this.state;
+    if (numPage > 1)
+      if (activePage !== 0)
+        return (
+          <div className="pagination-nav">
+            <span onClick={(event) => this.changePage(event, false)} >&lt; less</span>
+            <span></span>
+          </div>
+        )
+      else
+        return (
+          <div className="pagination-nav">
+            <span></span>
+            <span onClick={(event) => this.changePage(event, true)} >more &gt;</span>
+          </div>
+        )
+  }
+
   render() {
     const { list } = this.props;
     const { activePage, numPage } = this.state;
     const actPerPage = 3;
+    const placeholderImg = 'https://www.aluminati.net/wp-content/uploads/2016/03/img-placeholder.png';
 
     return (
-      <div className="card">
-        <div className="card__header" style={{backgroundImage: `url(${list.listImgURL})`}}>
-          {list.listName}
-        </div>
-        <div className="card__main">
-          {
-            list.activities
-              .filter((e,i) => i >= activePage * actPerPage && i < (activePage + 1) * actPerPage)
-              .map(activity => {
-                return <Activity key={activity.actID} activity={activity} />
-              })
-          }
+      <div>
+        <div className="card" onClick={() => console.log('click')} >
+          <div className="card__header" style={{backgroundImage: `url(${placeholderImg})`}}>
+            <h2 className="card__header-heading">{list.name}</h2>
+          </div>
+          <div className="card__main">
+            {
+              list.activities
+                .filter((e,i) => i >= activePage * actPerPage && i < (activePage + 1) * actPerPage)
+                .map(activity => {
+                  return <Activity key={activity.actID} activity={activity} />
+                })
+            }
+            {this.renderPaginationControl()}
+          </div>
         </div>
         {
           numPage > 1 ? (
             <div className="card__footer">
-              {
-                numPage > 1 ? (
-                  <div className="pagination-nav">
-                    {
-                      activePage !== 0 ? (
-                        <span
-                        onClick={() => this.setState({activePage: activePage - 1})} 
-                        >Less</span>
-                      ) : (<span></span>)
-                    }
-                    {
-                      activePage !== numPage - 1 ? (
-                        <span
-                        onClick={() => this.setState({activePage: activePage + 1})} 
-                        >More</span>
-                      ) : (<span></span>)
-                    }
-                  </div>
-                ) : (null)
-              }
               <Pagination
                 numPage={numPage}
                 activePage={activePage}

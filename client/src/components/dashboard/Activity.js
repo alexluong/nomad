@@ -5,7 +5,7 @@ export default class Activity extends Component {
     const { activity } = this.props;
     return (
       <div className="activity">
-        <div>{activity.actName}</div>
+        <div>{activity.name}</div>
         <div>Hi</div>
       </div>
     );

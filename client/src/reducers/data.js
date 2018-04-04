@@ -1,4 +1,4 @@
-[
+export default [
     {
         "name": "List 1",
         "description": "Practical things to do before I leave",
