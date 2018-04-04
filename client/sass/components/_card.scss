@@ -2,6 +2,7 @@
   width: $card-width;
   height: $card-height;
   margin-top: 10rem;
+  background-color: pink;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -27,7 +28,7 @@
     outline: 1px solid $color-stroke;
   }
   &__header {
-    flex-basis: 13rem;
+    flex-basis: 12rem;
     background-position: center;
     background-size: $card-width;
     display: flex;
@@ -43,14 +44,24 @@
   }
   &__main {
     font-size: 1.4rem;
-    background-color: pink;
-    flex: auto;
+    flex-basis: 10rem;
     position: relative;
     border-bottom-left-radius: 2px;
     border-bottom-right-radius: 2px;
   }
   &__footer {
-    margin-top: 1rem;
+    flex-basis: 2rem;
+    z-index: 3;
+    font-size: 1.2rem;
+    text-transform: lowercase;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    display: flex;
+    justify-content: space-between;
+    color: blue;
+    *:hover {
+      cursor: pointer;
+    }
   }
 }
 
@@ -58,6 +69,8 @@
   padding-left: 3rem;
   padding-right: 3rem;
   line-height: 3rem;
+  height: 3rem;
+  overflow: hidden;
   z-index: 3;
   display: flex;
   justify-content: space-between;

@@ -69,6 +69,7 @@ input {
   width: 37rem;
   height: 24rem;
   margin-top: 10rem;
+  background-color: pink;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -77,7 +78,7 @@ input {
     cursor: pointer;
     outline: 1px solid #4FF7B5; }
   .card__header {
-    flex-basis: 13rem;
+    flex-basis: 12rem;
     background-position: center;
     background-size: 37rem;
     display: flex;
@@ -91,18 +92,29 @@ input {
       letter-spacing: 3px; }
   .card__main {
     font-size: 1.4rem;
-    background-color: pink;
-    flex: auto;
+    flex-basis: 10rem;
     position: relative;
     border-bottom-left-radius: 2px;
     border-bottom-right-radius: 2px; }
   .card__footer {
-    margin-top: 1rem; }
+    flex-basis: 2rem;
+    z-index: 3;
+    font-size: 1.2rem;
+    text-transform: lowercase;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    display: flex;
+    justify-content: space-between;
+    color: blue; }
+    .card__footer *:hover {
+      cursor: pointer; }
 
 .activity {
   padding-left: 3rem;
   padding-right: 3rem;
   line-height: 3rem;
+  height: 3rem;
+  overflow: hidden;
   z-index: 3;
   display: flex;
   justify-content: space-between; }
@@ -125,20 +137,8 @@ input {
   .pagination__item:not(:first-child) {
     border-left: 1px solid #fff; }
 
-.pagination-nav {
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  z-index: 3;
-  font-size: 1.2rem;
-  text-transform: lowercase;
-  padding-left: 3rem;
-  padding-right: 3rem;
-  display: flex;
-  justify-content: space-between;
-  color: blue; }
-  .pagination-nav *:hover {
-    cursor: pointer; }
+.pagination {
+  margin-top: 1rem; }
 
 .top-panel__primary {
   background-color: #e3e3e3;

@@ -30,20 +30,20 @@ export default class List extends Component {
   renderPaginationControl() {
     const { activePage, numPage } = this.state;
     if (numPage > 1)
-      if (activePage !== 0)
-        return (
-          <div className="pagination-nav">
-            <span onClick={(event) => this.changePage(event, false)} >&lt; less</span>
-            <span></span>
-          </div>
-        )
-      else
-        return (
-          <div className="pagination-nav">
-            <span></span>
-            <span onClick={(event) => this.changePage(event, true)} >more &gt;</span>
-          </div>
-        )
+      return (
+        <div className="card__footer">
+          {
+            activePage !== 0 ? (
+              <span onClick={(event) => this.changePage(event, false)} >&lt; less</span>
+            ) : (<span></span>)
+          }
+          {
+            activePage !== numPage - 1 ? (
+              <span onClick={(event) => this.changePage(event, true)} >more &gt;</span>
+            ) : (<span></span>)
+          }
+        </div>
+      );
   }
 
   render() {
@@ -66,18 +66,16 @@ export default class List extends Component {
                   return <Activity key={activity.actID} activity={activity} />
                 })
             }
-            {this.renderPaginationControl()}
           </div>
+          {this.renderPaginationControl()}
         </div>
         {
           numPage > 1 ? (
-            <div className="card__footer">
-              <Pagination
-                numPage={numPage}
-                activePage={activePage}
-                onPageChange={i => this.setState({activePage: i})}
-              />
-            </div>
+            <Pagination
+              numPage={numPage}
+              activePage={activePage}
+              onPageChange={i => this.setState({activePage: i})}
+            />
           ) : (null)
         }
       </div>
