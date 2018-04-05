@@ -13,14 +13,6 @@ export default class List extends Component {
     }
   }
 
-  renderActivities() {
-    const { activities } = this.props.list;
-    activities.filter((e, i) => i > 0).map(activity => {
-      console.log(activity);
-      return <Activity key={activity.actID} activity={activity} />;
-    });;
-  }
-
   changePage(event, up) {
     event.stopPropagation();
     this.setState({

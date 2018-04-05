@@ -25,6 +25,7 @@ class App extends Component {
         <Router history={history}>
           <Switch>
             <Route path="/signin"  component={SignInPage} />
+            <Route path="/signup"  component={SignInPage} />
             <Route path="/signout" component={SignOutPage} />
             <Route path="/" component={MainApp} />
           </Switch>

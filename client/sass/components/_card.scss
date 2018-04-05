@@ -76,5 +76,27 @@
   justify-content: space-between;
   &:hover {
     outline: 1px solid $color-stroke;
+    box-shadow:
+      0 4px 5px rgba(0, 0, 0, 0.2),
+      0 3px 14px rgba(0, 0, 0, 0.12),
+      0 8px 10px rgba(0, 0, 0, 0.14);
+  }
+  &__icon-box {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  &__icon-ignore {
+    position: absolute;
+    width: 75%;
+    left: -100%;
+    top: 30%;
+  }
+  &__icon-check {
+    position: absolute;
+    width: 75%;
+    right: -90%;
+    top: 30%;
   }
 }

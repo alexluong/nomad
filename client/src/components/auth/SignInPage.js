@@ -5,18 +5,32 @@ import { signIn } from '../../actions/index';
 import { Link } from 'react-router-dom';
 
 class SignInPage extends Component {
+  state = { signin: false }
+  componentWillMount() {
+    if (this.props.match.path.slice(1) === 'signin')
+      this.setState({ signin: true });
+  }
+
   onSignIn({ email, password }) {
     this.props.signIn({ email, password });
   }
 
   render() {
     const { handleSubmit, errorMessage } = this.props;
+    const { signin } = this.state;
+
     return (
       <div className="signin">
         <div className="signin__info">Hi</div>
         <div className="signin__form">
           <div className="signin__form-box">
-            <h1 className="heading-primary">Sign In</h1>
+            {
+              signin ? (
+                <h1 className="heading-primary">Sign in</h1>
+              ) : (
+                <h1 className="heading-primary">Create an account</h1>
+              )
+            }
             {
               errorMessage ? (
                 <div>{errorMessage}</div>
