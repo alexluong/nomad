@@ -1,7 +1,8 @@
+import { IUserModel } from '../../user/interfaces/user.model';
 import { ActivityActionType, IActiveModel, List, Activity, ActiveProgress } from './active.model';
 
 export interface ActiveServiceInterface {
-    createNewActiveLists(userId: string): Promise<IActiveModel>;
+    createNewActiveLists(user: IUserModel): Promise<IActiveModel>;
 
     canCreate(userId: string): Promise<boolean>;
 

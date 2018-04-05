@@ -7,6 +7,7 @@ export interface IUserModel extends SharedModel {
     role: UserRole;
     profile?: UserProfile;
     username?: string;
+    hasBoard?: boolean;
 }
 
 export class UserProfile {
@@ -44,6 +45,8 @@ export class UserModel {
         format: 'date-time'
     })
     updatedAt?: Date;
+    @ApiModelPropertyOptional()
+    hasBoard?: boolean;
 }
 
 export enum UserRole {

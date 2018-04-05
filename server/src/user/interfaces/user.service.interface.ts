@@ -10,4 +10,6 @@ export interface UserServiceInterface {
     comparePassword(input: string, password: string): Promise<boolean>;
 
     findByUsernameOrEmail(username?: string, email?: string): Promise<IUserModel>;
+
+    flagBoardAvailability(user: IUserModel): Promise<IUserModel>;
 }

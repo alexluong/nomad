@@ -3,8 +3,17 @@ import { readFileSync } from 'fs';
 import { find, forEach, includes, map, some } from 'lodash';
 import { Types } from 'mongoose';
 import { join } from 'path';
+import { IUserModel } from '../user/interfaces/user.model';
+import { UserService } from '../user/user.service';
 import { ActiveRepository } from './active.repository';
-import { Activity, ActivityActionType, IActiveModel, List, ProgressStatus, ActiveProgress } from './interfaces/active.model';
+import {
+    ActiveProgress,
+    Activity,
+    ActivityActionType,
+    IActiveModel,
+    List,
+    ProgressStatus
+} from './interfaces/active.model';
 import { ActiveServiceInterface } from './interfaces/active.service.interface';
 import { Active } from './schemas/active.schema';
 
@@ -12,7 +21,8 @@ import { Active } from './schemas/active.schema';
 export class ActiveService implements ActiveServiceInterface {
     private mockedImgURL: 'https://www.aluminati.net/wp-content/uploads/2016/03/img-placeholder.png';
 
-    constructor(private readonly _activeRepository: ActiveRepository) {
+    constructor(private readonly _activeRepository: ActiveRepository,
+                private readonly _userService: UserService) {
     }
 
     private constructListDataFromJSON(): List[] {
@@ -36,7 +46,7 @@ export class ActiveService implements ActiveServiceInterface {
         return lists;
     }
 
-    async createNewActiveLists(userId: string): Promise<IActiveModel> {
+    async createNewActiveLists(user: IUserModel): Promise<IActiveModel> {
         const lists = this.constructListDataFromJSON();
         const newActive: IActiveModel = new Active();
         newActive.activeLists = lists;
@@ -46,7 +56,10 @@ export class ActiveService implements ActiveServiceInterface {
             ignoredActivities: [],
             ignoredLists: []
         };
-        newActive.userId = userId;
+        newActive.userId = user._id;
+
+        user.hasBoard = true;
+        await this._userService.flagBoardAvailability(user);
 
         return await this._activeRepository.create(newActive);
     }

@@ -31,6 +31,10 @@ export const UserSchema = new Schema({
         type: String,
         enum: ['Admin', 'User'],
         default: 'User'
+    },
+    hasBoard: {
+        type: Boolean,
+        default: false
     }
 }, {timestamps: true});
 
