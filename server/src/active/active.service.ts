@@ -6,14 +6,7 @@ import { join } from 'path';
 import { IUserModel } from '../user/interfaces/user.model';
 import { UserService } from '../user/user.service';
 import { ActiveRepository } from './active.repository';
-import {
-    ActiveProgress,
-    Activity,
-    ActivityActionType,
-    IActiveModel,
-    List,
-    ProgressStatus
-} from './interfaces/active.model';
+import { Activity, ActivityActionType, IActiveModel, List, ProgressStatus } from './interfaces/active.model';
 import { ActiveServiceInterface } from './interfaces/active.service.interface';
 import { Active } from './schemas/active.schema';
 
@@ -155,10 +148,10 @@ export class ActiveService implements ActiveServiceInterface {
         return find(find(active.activeLists, l => Types.ObjectId(listId).equals(l._id)).activities, a => Types.ObjectId(activityId).equals(a._id));
     }
 
-    async getProgress(userId: string): Promise<ActiveProgress> {
-        const active: IActiveModel = await this._activeRepository.getByUserId(userId);
-        return active.progress;
-    }
+    // async getProgress(userId: string): Promise<ActiveProgress> {
+    //     const active: IActiveModel = await this._activeRepository.getByUserId(userId);
+    //     return active.progress;
+    // }
 
     async getOneActive(userId: string): Promise<IActiveModel> {
         return await this._activeRepository.getByUserId(userId);

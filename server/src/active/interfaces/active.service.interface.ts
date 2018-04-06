@@ -16,7 +16,7 @@ export interface ActiveServiceInterface {
 
     getActivityByActivityId(userId: string, listId: string, activityId: string): Promise<Activity>;
 
-    getProgress(userId: string): Promise<ActiveProgress>;
+    // getProgress(userId: string): Promise<ActiveProgress>;
 
     getOneActive(userId: string): Promise<IActiveModel>;
 }

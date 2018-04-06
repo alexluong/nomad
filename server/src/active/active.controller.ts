@@ -68,15 +68,15 @@ export class ActiveController {
         return await this._activeService.ignoreList(listId, currentUser._id);
     }
 
-    @Get('progress')
-    @ApiResponse({
-        status: 200,
-        type: ActiveProgress
-    })
-    async getCurrentProgress(@Req() req: Request): Promise<ActiveProgress> {
-        const currentUser: IUserModel = req['user'] as IUserModel;
-        return await this._activeService.getProgress(currentUser._id);
-    }
+    // @Get('progress')
+    // @ApiResponse({
+    //     status: 200,
+    //     type: ActiveProgress
+    // })
+    // async getCurrentProgress(@Req() req: Request): Promise<ActiveProgress> {
+    //     const currentUser: IUserModel = req['user'] as IUserModel;
+    //     return await this._activeService.getProgress(currentUser._id);
+    // }
 
     @Get('current')
     @ApiResponse({

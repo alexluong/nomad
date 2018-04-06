@@ -18,7 +18,6 @@ export class ActiveModule implements NestModule {
             {path: '/api/lists/create', method: RequestMethod.GET},
             {path: 'api/lists/update', method: RequestMethod.GET},
             {path: 'api/lists/ignoreList', method: RequestMethod.GET},
-            {path: 'api/lists/progress', method: RequestMethod.GET},
             {path: 'api/lists/current', method: RequestMethod.GET}
         );
     }
