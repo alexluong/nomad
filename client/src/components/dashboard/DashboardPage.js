@@ -5,10 +5,10 @@ import List from './List';
 
 class DashboardPage extends Component {
   render() {
-    const { lists } = this.props;
+    const { clientLists } = this.props;
     return (
       <div className="dashboard">
-        {lists.data.map((list, i) => {
+        {clientLists.map((list, i) => {
           return <List key={i} list={list} />
         })}
       </div>
@@ -17,7 +17,7 @@ class DashboardPage extends Component {
 }
 
 function mapStateToProps(state) {
-  return { lists: state.lists };
+  return { clientLists: state.lists.clientData };
 }
 
 export default connect(mapStateToProps, null)(DashboardPage);

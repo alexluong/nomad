@@ -12,7 +12,10 @@ export function signIn({ email, password }) {
         // console.log(response);
         // If request is good:
         // - Update state to indicate user is authenticated
-        dispatch({ type: AUTH_USER });
+        dispatch({
+          type: AUTH_USER,
+          payload: response.data.user
+        });
         // - Save the JWT token
         localStorage.setItem('authToken', response.data.authToken);
         // - Redirect to '/dashboard'
