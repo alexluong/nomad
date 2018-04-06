@@ -23,6 +23,7 @@ export class ActiveService implements ActiveServiceInterface {
 
     constructor(private readonly _activeRepository: ActiveRepository,
                 private readonly _userService: UserService) {
+
     }
 
     private constructListDataFromJSON(): List[] {
@@ -157,5 +158,9 @@ export class ActiveService implements ActiveServiceInterface {
     async getProgress(userId: string): Promise<ActiveProgress> {
         const active: IActiveModel = await this._activeRepository.getByUserId(userId);
         return active.progress;
+    }
+
+    async getOneActive(userId: string): Promise<IActiveModel> {
+        return await this._activeRepository.getByUserId(userId);
     }
 }

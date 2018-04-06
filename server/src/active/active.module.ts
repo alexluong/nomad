@@ -15,9 +15,11 @@ import { ActiveSchema } from './schemas/active.schema';
 export class ActiveModule implements NestModule {
     public configure(consumer: MiddlewaresConsumer) {
         consumer.apply(JwtMiddleware).forRoutes(
-            {path: '/api/lists/create', method: RequestMethod.POST},
+            {path: '/api/lists/create', method: RequestMethod.GET},
             {path: 'api/lists/update', method: RequestMethod.GET},
-            {path: 'api/lists/ignoreList', method: RequestMethod.GET}
+            {path: 'api/lists/ignoreList', method: RequestMethod.GET},
+            {path: 'api/lists/progress', method: RequestMethod.GET},
+            {path: 'api/lists/current', method: RequestMethod.GET}
         );
     }
 }

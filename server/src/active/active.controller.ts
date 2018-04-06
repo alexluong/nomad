@@ -1,4 +1,4 @@
-import { Controller, Get, HttpException, HttpStatus, Post, Query, Req } from '@nestjs/common';
+import { Controller, Get, HttpException, HttpStatus, Query, Req } from '@nestjs/common';
 import { ApiBearerAuth, ApiResponse, ApiUseTags } from '@nestjs/swagger';
 import { Request } from 'express';
 import { IUserModel } from '../user/interfaces/user.model';
@@ -12,7 +12,7 @@ export class ActiveController {
     constructor(private _activeService: ActiveService) {
     }
 
-    @Post('create')
+    @Get('create')
     @ApiResponse({
         status: 200,
         type: ActiveModel
@@ -76,5 +76,15 @@ export class ActiveController {
     async getCurrentProgress(@Req() req: Request): Promise<ActiveProgress> {
         const currentUser: IUserModel = req['user'] as IUserModel;
         return await this._activeService.getProgress(currentUser._id);
+    }
+
+    @Get('current')
+    @ApiResponse({
+        status: 200,
+        type: ActiveModel
+    })
+    async getCurrentActive(@Req() req: Request): Promise<IActiveModel> {
+        const currentUser: IUserModel = req['user'] as IUserModel;
+        return await this._activeService.getOneActive(currentUser._id);
     }
 }

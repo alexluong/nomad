@@ -12,4 +12,6 @@ export interface SharedRepositoryInterface<T extends Document> {
     update(resource: T): Promise<T>;
 
     delete(id: string): Promise<T>;
+
+    getOne(value: any, queryBy: string): Promise<T>;
 }

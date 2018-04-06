@@ -25,10 +25,16 @@ export class SharedRepository<T extends Document> implements SharedRepositoryInt
     }
 
     async getByIds(ids: string[]): Promise<T[]> {
-        return await this.model.find({ _id: { $in: ids } }).exec();
+        return await this.model.find({_id: {$in: ids}}).exec();
     }
 
     async update(resource: T): Promise<T> {
-        return await this.model.findByIdAndUpdate(resource._id, resource, { new: true }).exec();
+        return await this.model.findByIdAndUpdate(resource._id, resource, {new: true}).exec();
+    }
+
+    async getOne(value: any, queryBy: string = '_id'): Promise<T> {
+        const query = {};
+        query[queryBy] = value;
+        return this.model.findOne(query).exec();
     }
 }
