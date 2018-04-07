@@ -6,23 +6,51 @@ import { getAuthToken } from '../../localStorage';
 import List from './List';
 
 class DashboardPage extends Component {
-  
+  state = {
+    authenticated: false,
+    loading: false
+  };
+
   componentDidMount() {
-    if (!this.props.hasBoard) {
-      console.log(getAuthToken());
-      this.props.createBoard(getAuthToken());
+    const { auth, lists } = this.props;
+    let authenticated, loading;
+    if (auth.authenticated) {
+      authenticated = true;
+      if (!auth.user.hasBoard) {
+        // Go create board
+        loading = true;
+        this.props.createBoard(getAuthToken()); 
+      } else if(!lists.serverLists) {
+        // Go get serverLists
+        // TODO: GO GET SERVERLISTS
+        loading = true;
+      } else {
+        loading = false;
+      }
+    } else {
+      // Just render clientLists
+      authenticated = false;
     }
+    this.setState({ authenticated, loading });
+  }
+
+  renderLists() {
+    const lists = this.state.authenticated ? this.props.lists.serverLists : this.props.lists.clientLists;
+    return lists.map((list, i) => {
+      return <List key={i} list={list} />
+    })
+  }
+
+  renderLoading(lists) {
+    // TODO: Make a Loading Screen
+    return <div>Loading</div>
   }
 
   render() {
-    console.log(this.props);
-    console.log(this.props);
-    const { clientLists } = this.props;
+    const { loading } = this.state;
     return (
       <div className="dashboard">
-        {clientLists.map((list, i) => {
-          return <List key={i} list={list} />
-        })}
+        { loading ? this.renderLoading() : this.renderLists() }
       </div>
     );
   }
@@ -31,10 +59,8 @@ class DashboardPage extends Component {
 function mapStateToProps(state) {
   console.log(state);
   return {
-    hasBoard: state.auth.user ? state.auth.user.hasBoard : undefined,
-    clientLists: state.lists.clientLists,
-    serverLists: state.lists.serverLists,
-    progress: state.lists.progress
+    auth: state.auth,
+    lists: state.lists
   };
 }
 
