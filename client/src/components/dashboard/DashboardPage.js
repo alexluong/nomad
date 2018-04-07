@@ -1,10 +1,21 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
+import { createBoard } from '../../actions';
 
 import List from './List';
 
 class DashboardPage extends Component {
+  
+  componentDidMount() {
+    if (!this.props.hasBoard) {
+      const token = localStorage.getItem('authToken');
+      this.props.createBoard(token);
+    }
+  }
+
   render() {
+    console.log(this.props);
+    console.log(this.props);
     const { clientLists } = this.props;
     return (
       <div className="dashboard">
@@ -17,7 +28,13 @@ class DashboardPage extends Component {
 }
 
 function mapStateToProps(state) {
-  return { clientLists: state.lists.clientData };
+  console.log(state);
+  return {
+    hasBoard: state.auth.user.hasBoard,
+    clientLists: state.lists.clientLists,
+    serverLists: state.lists.serverLists ? state.lists.serverLists : null,
+    progress: state.lists.progress ? state.lists.progress : null,
+  };
 }
 
-export default connect(mapStateToProps, null)(DashboardPage);
+export default connect(mapStateToProps, { createBoard })(DashboardPage);
