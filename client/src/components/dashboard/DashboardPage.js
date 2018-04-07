@@ -9,6 +9,7 @@ class DashboardPage extends Component {
   
   componentDidMount() {
     if (!this.props.hasBoard) {
+      console.log(getAuthToken());
       this.props.createBoard(getAuthToken());
     }
   }
@@ -30,10 +31,10 @@ class DashboardPage extends Component {
 function mapStateToProps(state) {
   console.log(state);
   return {
-    hasBoard: state.auth.user.hasBoard,
+    hasBoard: state.auth.user ? state.auth.user.hasBoard : undefined,
     clientLists: state.lists.clientLists,
-    serverLists: state.lists.serverLists ? state.lists.serverLists : null,
-    progress: state.lists.progress ? state.lists.progress : null,
+    serverLists: state.lists.serverLists,
+    progress: state.lists.progress
   };
 }
 

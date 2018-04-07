@@ -24,11 +24,11 @@ export const saveState = (state) => {
 // Auth Token
 export const getAuthToken = () => {
   try {
-    localStorage.getItem('authToken');
+    const authToken = localStorage.getItem('authToken');
     if (localStorage === null) {
       return undefined;
     }
-    return localStorage;
+    return authToken;
   } catch (error) {
     console.log(error);
     return undefined;
