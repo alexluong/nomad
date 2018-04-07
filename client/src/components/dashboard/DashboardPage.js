@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { createBoard } from '../../actions';
+import { getAuthToken } from '../../localStorage';
 
 import List from './List';
 
@@ -8,8 +9,7 @@ class DashboardPage extends Component {
   
   componentDidMount() {
     if (!this.props.hasBoard) {
-      const token = localStorage.getItem('authToken');
-      this.props.createBoard(token);
+      this.props.createBoard(getAuthToken());
     }
   }
 

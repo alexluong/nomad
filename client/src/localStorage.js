@@ -1,3 +1,4 @@
+// Persist State
 export const loadState = () => {
   try {
     const serializedState = localStorage.getItem('state');
@@ -19,6 +20,20 @@ export const saveState = (state) => {
     console.log(error);
   }
 };
+
+// Auth Token
+export const getAuthToken = () => {
+  try {
+    localStorage.getItem('authToken');
+    if (localStorage === null) {
+      return undefined;
+    }
+    return localStorage;
+  } catch (error) {
+    console.log(error);
+    return undefined;
+  }
+}
 
 export const saveAuthToken = (token) => {
   try {

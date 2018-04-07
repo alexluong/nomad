@@ -1,7 +1,7 @@
 import data from './data';
 import { CREATE_BOARD } from '../actions/types';
 
-export default function(state = { clientLists: data }, action) {
+export default function(state = {}, action) {
   switch (action.type) {
     case CREATE_BOARD:
       return {
@@ -10,6 +10,6 @@ export default function(state = { clientLists: data }, action) {
         progress: action.payload.progress
       }
     default:
-      return { ...state };
+      return { clientLists: data };
   }
 }
