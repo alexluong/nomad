@@ -1,12 +1,12 @@
 import axios from 'axios';
-import { saveAuthToken, removeAuthToken } from '../localStorage';
+import { saveAuthToken, removeAuthToken, removeState } from '../localStorage';
 import { history } from '../App';
 import { AUTH_USER, AUTH_ERROR, UNAUTH_USER } from './types';
 
 const ROOT_URL = 'http://localhost:8080/api';
 
 export const signIn = ({ email, password }) => {
-  return function(dispatch) {
+  return (dispatch) => {
     // Send request to the server
     axios.post(`${ROOT_URL}/users/login`, { email, password })
       .then(response => {
@@ -31,6 +31,18 @@ export const signIn = ({ email, password }) => {
   }
 }
 
+export const signUp = ({ username, email, password }) => {
+  return (dispatch) => {
+    axios.post(`${ROOT_URL}/users/register`, { username, email, password })
+    .then(response => {
+      history.push('/signin');
+    })
+    .catch(error => {
+      dispatch(authError(error.response.data.message));
+    });
+  }
+}
+
 export const authError = (error) => {
   return {
     type: AUTH_ERROR,
@@ -40,5 +52,6 @@ export const authError = (error) => {
 
 export const signOut = (error) => {
   removeAuthToken();
+  removeState();
   return { type: UNAUTH_USER };
 }

@@ -21,6 +21,14 @@ export const saveState = (state) => {
   }
 };
 
+export const removeState = () => {
+  try {
+    localStorage.removeItem('state');
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 // Auth Token
 export const getAuthToken = () => {
   try {

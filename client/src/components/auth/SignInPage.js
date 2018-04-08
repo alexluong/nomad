@@ -1,61 +1,40 @@
 import React, { Component } from "react";
-import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
-import { signIn } from '../../actions/index';
-import { Link } from 'react-router-dom';
+import SignInForm from './SignInForm';
+import SignUpForm from './SignUpForm';
 
-class SignInPage extends Component {
+export default class SignInPage extends Component {
   state = { signin: false }
-  componentWillMount() {
-    if (this.props.match.path.slice(1) === 'signin')
-      this.setState({ signin: true });
+
+  componentWillReceiveProps(nextProps) {
+    this.checkURL(nextProps);
   }
 
-  onSignIn({ email, password }) {
-    this.props.signIn({ email, password });
+  componentWillMount() {
+    this.checkURL(this.props);
+  }
+
+  checkURL(props) {
+    if (props.match.path.slice(1) === 'signin') {
+      this.setState({ signin: true });
+    } else {
+      this.setState({ signin: false });
+    }
   }
 
   render() {
-    const { handleSubmit, errorMessage } = this.props;
     const { signin } = this.state;
-
     return (
       <div className="signin">
         <div className="signin__info">Hi</div>
         <div className="signin__form">
           <div className="signin__form-box">
-            {
-              signin ? (
-                <h1 className="heading-primary">Sign in</h1>
-              ) : (
-                <h1 className="heading-primary">Create an account</h1>
-              )
-            }
-            {
-              errorMessage ? (
-                <div>{errorMessage}</div>
-              ) : null
-            }
-            <form onSubmit={handleSubmit(this.onSignIn.bind(this))}>
-              <Field name="email" component="input" type="text" placeholder="Email" />
-              <Field name="password" component="input" type="password" placeholder="Password" />
-              <button action="submit" className="btn">Sign in</button>
-              <Link to="/dashboard" className="btn">Continue without Sign in</Link>
-            </form>
+            <h1 className="heading-primary">
+              { signin ? "Sign in" : "Create an account" }
+            </h1>
+            { signin ? <SignInForm /> : <SignUpForm /> }
           </div>
         </div>
       </div>
     );
   }
 }
-
-function mapStateToProps(state) {
-  return { errorMessage: state.auth.errorMessage };
-}
-
-export default reduxForm({
-  form: 'signin',
-  fields: ['email', 'password']
-})(
-  connect(mapStateToProps, { signIn })(SignInPage)
-);
