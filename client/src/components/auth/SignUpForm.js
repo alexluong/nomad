@@ -58,7 +58,7 @@ const validate = values => {
   }
   if (!confirmPassword) {
     errors.confirmPassword = 'Confirm password is required.';
-  } else if (confirmPassword != password) {
+  } else if (confirmPassword !== password) {
     errors.confirmPassword = 'Confirm password does not match.';
   }
 

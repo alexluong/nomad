@@ -6,9 +6,15 @@ import { AUTH_USER, AUTH_ERROR, UNAUTH_USER } from './types';
 const ROOT_URL = 'http://localhost:8080/api';
 
 export const signIn = ({ email, password }) => {
-  return (dispatch) => {
+  return dispatch => {
+    let authentication;
+    if (validateEmail(email)) {
+      authentication = { email, password };
+    } else {
+      authentication = { username: email, password };
+    }
     // Send request to the server
-    axios.post(`${ROOT_URL}/users/login`, { email, password })
+    axios.post(`${ROOT_URL}/users/login`, authentication)
       .then(response => {
         // console.log(response);
         // If request is good:
@@ -32,7 +38,7 @@ export const signIn = ({ email, password }) => {
 }
 
 export const signUp = ({ username, email, password }) => {
-  return (dispatch) => {
+  return dispatch => {
     axios.post(`${ROOT_URL}/users/register`, { username, email, password })
     .then(response => {
       history.push('/signin');
@@ -54,4 +60,9 @@ export const signOut = (error) => {
   removeAuthToken();
   removeState();
   return { type: UNAUTH_USER };
+}
+
+const validateEmail = (email) => {
+  const pattern = new RegExp(/^[+a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i);
+  return pattern.test(email);
 }

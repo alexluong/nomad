@@ -36,6 +36,13 @@ export const getBoard = () => {
 
 export const updateBoard = (complete = true, listId, activityId) => {
   return dispatch => {
-    console.log(complete, listId, activityId);
+    const url = `${ROOT_URL}/lists/update?listId=${listId}&activityId=${activityId}${complete ? '' : '&action=ignore'}`
+    axios.get(url, {
+      'headers': {'Authorization' : `Bearer ${getAuthToken()}` }
+    }).then(response => {
+      console.log(response);
+    }).catch(error => {
+      console.log(error.response);
+    });
   };
 }
