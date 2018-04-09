@@ -1,0 +1,14 @@
+<svg width="21" height="24" viewBox="0 0 21 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>notifications</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(1716 1426)">
+<g id="notifications">
+<g id="Shape">
+<use xlink:href="#path0_fill" transform="translate(-1716 -1426)" fill="#828282"/>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" fill-rule="evenodd" d="M 10.2 24C 11.52 24 12.6 22.92 12.6 21.6L 7.80005 21.6C 7.80005 22.92 8.88005 24 10.2 24ZM 18 16.8L 18 10.2C 18 6.48 15.48 3.48 12 2.64L 12 1.8C 12 0.84 11.16 0 10.2 0C 9.24 0 8.4 0.84 8.4 1.8L 8.4 2.64C 4.92 3.48 2.4 6.48 2.4 10.2L 2.4 16.8L 0 19.2L 0 20.4L 20.4 20.4L 20.4 19.2L 18 16.8Z"/>
+</defs>
+</svg>

@@ -64,7 +64,7 @@ export default class List extends Component {
           </div>
           {this.renderPaginationControl()}
         </div>
-        <ProgressBar progress={20} />
+        <ProgressBar progress={80} />
         {/* {
           numPage > 1 ? (
             <Pagination

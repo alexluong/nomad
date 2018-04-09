@@ -1,5 +1,6 @@
 .side-panel {
-  border-right: 1px solid #000;
+  background-color: $color-background-2;
+  border-right: 1.5px solid $color-stroke;
   height: 100%;
   &__item {
     width: 100%;
@@ -11,7 +12,12 @@
       width: 100%;
       text-decoration: none;
       &.active {
-        border-left: 10px solid purple;
+        border-width: 0 0 0 8px;
+        border-style: solid;
+        border-image: linear-gradient(to bottom right, #2EFF4F 0%, #00FF85 54.7%,#00FFC2 97.79%) 1 100%; 
+      }
+      &:visited {
+        color: #fff;
       }
     }
   }

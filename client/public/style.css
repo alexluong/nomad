@@ -61,7 +61,8 @@ input {
   font-size: inherit;
   line-height: 3;
   padding-left: 2rem;
-  padding-right: 2rem; }
+  padding-right: 2rem;
+  border-style: none; }
   input:active, input:focus {
     outline: none; }
 
@@ -70,13 +71,14 @@ input {
   height: 24rem;
   margin-top: 10rem;
   background-color: #FAFAFA;
+  border-radius: 6px;
   position: relative;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2), 0 4px 5px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.12); }
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2), 0 4px 5px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.12);
+  cursor: pointer; }
   .card:hover {
-    cursor: pointer;
-    outline: 3px solid #4FF7B5; }
+    outline: 1px solid #4FF7B5; }
   .card__header {
     flex-basis: 12rem;
     background-position: center;
@@ -84,8 +86,8 @@ input {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-top-left-radius: 2px;
-    border-top-right-radius: 2px; }
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px; }
     .card__header-heading {
       font-size: 2.4rem;
       text-transform: uppercase;
@@ -106,7 +108,7 @@ input {
     display: flex;
     justify-content: space-between;
     color: blue; }
-    .card__footer *:hover {
+    .card__footer * {
       cursor: pointer; }
 
 .activity {
@@ -119,7 +121,6 @@ input {
   display: flex;
   justify-content: space-between; }
   .activity:hover {
-    outline: 1px solid #4FF7B5;
     box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2), 0 3px 14px rgba(0, 0, 0, 0.12), 0 8px 10px rgba(0, 0, 0, 0.14); }
   .activity__icon-box {
     position: relative;
@@ -166,29 +167,58 @@ input {
     border-bottom-right-radius: 1000rem;
     background-color: #F2F2F2; }
 
-.top-panel__primary {
-  background-color: #e3e3e3;
-  height: 7.5rem;
-  border-bottom: 1px solid #000;
-  position: relative; }
-  .top-panel__primary-side {
-    position: absolute;
-    width: 25rem;
-    height: 100%;
-    top: 0;
-    right: 0;
-    border-left: 1px solid #000;
-    display: flex;
-    align-items: center;
-    justify-content: space-around; }
-
-.top-panel__secondary {
-  background-color: #e3e3e3;
-  height: 7.5rem;
-  border-bottom: 1px solid #000; }
+.top-panel {
+  color: #fff; }
+  .top-panel__primary {
+    background-color: #4C4D4C;
+    height: 7.5rem;
+    border-bottom: 1.5px solid #4FF7B5;
+    display: flex; }
+    .top-panel__primary-first {
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-left: 4rem;
+      padding-right: 4rem; }
+      .top-panel__primary-first .search-bar {
+        width: 70%;
+        position: relative; }
+        .top-panel__primary-first .search-bar input {
+          width: 100%;
+          border-radius: 100rem;
+          padding-left: 4rem;
+          padding-right: 4rem; }
+          .top-panel__primary-first .search-bar input:focus {
+            outline: 1px solid #4FF7B5;
+            outline-offset: 1px; }
+        .top-panel__primary-first .search-bar img {
+          position: absolute;
+          right: 2rem;
+          top: 50%;
+          transform: translate(0, -50%); }
+      .top-panel__primary-first img {
+        width: 2rem;
+        cursor: pointer; }
+    .top-panel__primary-second {
+      flex-basis: 25rem;
+      height: 100%;
+      top: 0;
+      right: 0;
+      border-left: 1.5px solid #4FF7B5;
+      display: flex;
+      align-items: center;
+      justify-content: space-around; }
+      .top-panel__primary-second a:visited {
+        color: #fff; }
+  .top-panel__secondary {
+    background-color: #4C4D4C;
+    height: 7.5rem;
+    border-bottom: 1.5px solid #4FF7B5; }
 
 .side-panel {
-  border-right: 1px solid #000;
+  background-color: #4C4D4C;
+  border-right: 1.5px solid #4FF7B5;
   height: 100%; }
   .side-panel__item {
     width: 100%;
@@ -200,7 +230,14 @@ input {
       width: 100%;
       text-decoration: none; }
       .side-panel__item a.active {
-        border-left: 10px solid purple; }
+        border-width: 0 0 0 8px;
+        border-style: solid;
+        border-image: linear-gradient(to bottom right, #2EFF4F 0%, #00FF85 54.7%, #00FFC2 97.79%) 1 100%; }
+      .side-panel__item a:visited {
+        color: #fff; }
+
+.main {
+  background-color: #4C4D4C; }
 
 .signin {
   width: 100vw;
