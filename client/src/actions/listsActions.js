@@ -1,12 +1,13 @@
 import axios from 'axios';
+import { getAuthToken } from '../localStorage';
 import { CREATE_BOARD, GET_BOARD } from './types';
 
 const ROOT_URL = 'http://localhost:8080/api';
 
-export const createBoard = (authToken) => {
-  return (dispatch) => {
+export const createBoard = () => {
+  return dispatch => {
     axios.get(`${ROOT_URL}/lists/create`, {
-      'headers': {'Authorization' : `Bearer ${authToken}` }
+      'headers': {'Authorization' : `Bearer ${getAuthToken()}` }
     }).then(response => {
       dispatch({
         type: CREATE_BOARD,
@@ -18,11 +19,10 @@ export const createBoard = (authToken) => {
   };
 };
 
-export const getBoard = (authToken) => {
-  return (dispatch) => {
-    console.log('getboard');
+export const getBoard = () => {
+  return dispatch => {
     axios.get(`${ROOT_URL}/lists/current`, {
-      'headers': {'Authorization' : `Bearer ${authToken}` }
+      'headers': {'Authorization' : `Bearer ${getAuthToken()}` }
     }).then(response => {
       dispatch({
         type: GET_BOARD,
@@ -31,5 +31,11 @@ export const getBoard = (authToken) => {
     }).catch(error => {
       console.log(error.response);
     });
-  }
+  };
 };
+
+export const updateBoard = (complete = true, listId, activityId) => {
+  return dispatch => {
+    console.log(complete, listId, activityId);
+  };
+}

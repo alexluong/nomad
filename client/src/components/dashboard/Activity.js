@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
+import { updateBoard } from '../../actions';
 
-export default class Activity extends Component {
+class Activity extends Component {
   state = {
     hover: false
   }
@@ -15,18 +17,15 @@ export default class Activity extends Component {
 
   onBoxClick = (event) => {
     event.stopPropagation();
-    console.log('hello');
   }
 
   onIgnoreClick = (event) => {
     event.stopPropagation();
-    console.log('ignore');
   }
 
   onCheckClick = (event) => {
     event.stopPropagation();
-    console.log('check');
-    console.log(this.props.activity);
+    this.props.updateBoard(true, this.props.listId, this.props.activity._id);
   }
 
   render() {
@@ -53,3 +52,5 @@ export default class Activity extends Component {
     );
   }
 }
+
+export default connect(null, { updateBoard })(Activity)

@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { createBoard, getBoard } from '../../actions';
-import { getAuthToken } from '../../localStorage';
 
 import List from './List';
 
 class DashboardPage extends Component {
   state = {
     authenticated: false,
-    loading: false
+    loading: true
   };
 
   componentDidMount() {
@@ -19,12 +18,12 @@ class DashboardPage extends Component {
       if (!auth.user.hasBoard) {
         // Go create board
         loading = true;
-        this.props.createBoard(getAuthToken()); 
+        this.props.createBoard(); 
       } else if (!lists.serverLists) {
         // Go get serverLists
         // TODO: GO GET SERVERLISTS
         loading = true;
-        this.props.getBoard(getAuthToken())
+        this.props.getBoard()
       } else {
         loading = false;
       }
@@ -58,7 +57,7 @@ class DashboardPage extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     auth: state.auth,
     lists: state.lists

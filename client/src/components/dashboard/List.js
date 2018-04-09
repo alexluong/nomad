@@ -47,7 +47,7 @@ export default class List extends Component {
 
     return (
       <div>
-        <div className="card" onClick={() => console.log('click')} >
+        <div className="card" onClick={() => console.log(this.props.list)} >
           <div
             className="card__header"
             style={{backgroundImage: `linear-gradient(rgba(255, 255, 255, 0), #fff), url(${placeholderImg})`}}>
@@ -58,7 +58,7 @@ export default class List extends Component {
               list.activities
                 .filter((e,i) => i >= activePage * actPerPage && i < (activePage + 1) * actPerPage)
                 .map((activity, i) => {
-                  return <Activity key={i} activity={activity} />
+                  return <Activity key={i} activity={activity} listId={list._id} />
                 })
             }
           </div>
