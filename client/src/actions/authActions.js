@@ -57,9 +57,15 @@ export const authError = (error) => {
 }
 
 export const signOut = (error) => {
-  removeAuthToken();
-  removeState();
-  return { type: UNAUTH_USER };
+  return dispatch => {
+    // Remove stuff in localStorage
+    removeAuthToken();
+    removeState();
+    // Then dispatch
+    dispatch({
+      type: UNAUTH_USER
+    });
+  }
 }
 
 const validateEmail = (email) => {
