@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import { Link } from 'react-router-dom';
 import { signUp } from '../../actions/index';
 
 class SignUpForm extends Component {
@@ -21,13 +22,14 @@ class SignUpForm extends Component {
           <Field name="email" component="input" type="email" placeholder="Email" />
           <Field name="password" component="input" type="password" placeholder="Password" />
           <button action="submit" className="btn">Sign Up</button>
+          <Link to="/signin">Already have an account? Sign in here.</Link>
         </form>
       </div>
     );
   }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
   return { errorMessage: state.auth.errorMessage };
 }
 

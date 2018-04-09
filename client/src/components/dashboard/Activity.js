@@ -26,6 +26,7 @@ export default class Activity extends Component {
   onCheckClick = (event) => {
     event.stopPropagation();
     console.log('check');
+    console.log(this.props.activity);
   }
 
   render() {

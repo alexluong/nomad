@@ -5,3 +5,4 @@ export const AUTH_ERROR  = 'AUTH_ERROR';
 
 // Lists
 export const CREATE_BOARD = 'CREATE_BOARD';
+export const GET_BOARD = 'GET_BOARD';

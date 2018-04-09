@@ -22,13 +22,14 @@ class SignInForm extends Component {
           <Field name="password" component="input" type="password" placeholder="Password" />
           <button action="submit" className="btn">Sign in</button>
           <Link to="/dashboard" className="btn">Continue without Sign in</Link>
+          <Link to="/signup">Don't have an account? Create one.</Link>
         </form>
       </div>
     );
   }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
   return { errorMessage: state.auth.errorMessage };
 }
 

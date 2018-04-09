@@ -11,7 +11,7 @@ import SidePanel from './components/SidePanel';
 // Pages
 // import SampleApp from './components/SampleApp';
 import DashboardPage  from './components/dashboard/DashboardPage';
-import Progress       from './components/Progress'        ;
+import ProgressPage   from './components/ProgressPage'    ;
 import Profile        from './components/Profile'         ;
 import Settings       from './components/Settings'        ; 
 import SignInPage     from './components/auth/SignInPage' ;
@@ -44,7 +44,7 @@ class MainApp extends Component {
         <main className="main">
           <Switch>
             <Route path='/dashboard' component={DashboardPage} />
-            <Route path='/progress'  component={Progress} />
+            <Route path='/progress'  component={ProgressPage} />
             <Route path='/profile'   component={Profile} />
             <Route path='/settings'  component={Settings} />
           </Switch>
