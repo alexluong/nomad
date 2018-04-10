@@ -19,7 +19,6 @@ export class UserService implements UserServiceInterface {
         newUser.username = registerParams.username;
         const salt = await genSalt(10);
         newUser.password = await hash(registerParams.password, salt);
-
         return await this._userRepository.create(newUser);
     }
 

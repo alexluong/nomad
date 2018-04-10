@@ -15,6 +15,13 @@ export const ActiveSchema = new Schema({
             enum: ['Opened', 'Ignored', 'Completed'],
             default: 'Opened'
         },
+        progress: {
+            type: Number,
+            default: 0
+        },
+        imgURL: {
+            type: String
+        },
         activities: [{
             name: {
                 type: String,
@@ -30,20 +37,6 @@ export const ActiveSchema = new Schema({
             }
         }]
     }],
-    progress: {
-        completedLists: [{
-            type: String
-        }],
-        completedActivities: [{
-            type: String
-        }],
-        ignoredLists: [{
-            type: String
-        }],
-        ignoredActivities: [{
-            type: String
-        }]
-    },
     userId: {
         type: String
     },
@@ -58,9 +51,6 @@ export const ActiveSchema = new Schema({
         updatedAt: {
             type: Date
         }
-    },
-    listImgURL: {
-        type: String
     }
 }, {timestamps: true});
 

@@ -78,13 +78,13 @@ export class ActiveController {
     //     return await this._activeService.getProgress(currentUser._id);
     // }
 
-    @Get('current')
-    @ApiResponse({
-        status: 200,
-        type: ActiveModel
-    })
-    async getCurrentActive(@Req() req: Request): Promise<IActiveModel> {
-        const currentUser: IUserModel = req['user'] as IUserModel;
-        return await this._activeService.getOneActive(currentUser._id);
-    }
+    // @Get('current')
+    // @ApiResponse({
+    //     status: 200,
+    //     type: ActiveModel
+    // })
+    // async getCurrentActive(@Req() req: Request): Promise<IActiveModel> {
+    //     const currentUser: IUserModel = req['user'] as IUserModel;
+    //     return await this._activeService.getOneActive(currentUser._id);
+    // }
 }

@@ -26,7 +26,7 @@ export class ActiveService implements ActiveServiceInterface {
         forEach(data, list => {
             const newList: List = Object.assign({}, list, {
                 status: ProgressStatus.Opened,
-                listImgURL: this.mockedImgURL
+                imgURL: this.mockedImgURL
             });
             lists.push(newList);
         });
@@ -44,12 +44,6 @@ export class ActiveService implements ActiveServiceInterface {
         const lists = this.constructListDataFromJSON();
         const newActive: IActiveModel = new Active();
         newActive.activeLists = lists;
-        newActive.progress = {
-            completedActivities: [],
-            completedLists: [],
-            ignoredActivities: [],
-            ignoredLists: []
-        };
         newActive.userId = user._id;
 
         user.hasBoard = true;
@@ -73,13 +67,13 @@ export class ActiveService implements ActiveServiceInterface {
             }
         });
 
-        active.progress.ignoredLists.push(listId);
 
         return await this._activeRepository.update(active);
     }
 
     async updateActivity(action: ActivityActionType = 'complete', listId: string, activityId: string, userId: string): Promise<IActiveModel> {
         const active: IActiveModel = await this._activeRepository.getByUserId(userId);
+
         const lists: List[] = active.activeLists;
         const currentList: List = await this.getListByListId(userId, listId);
 
@@ -88,11 +82,9 @@ export class ActiveService implements ActiveServiceInterface {
                 switch (action) {
                     case 'complete':
                         a.status = ProgressStatus.Completed;
-                        active.progress.completedActivities.push(a.name);
                         break;
                     case 'ignore':
                         a.status = ProgressStatus.Ignored;
-                        active.progress.ignoredActivities.push(a.name);
                         break;
                     default:
                         break;
@@ -100,8 +92,10 @@ export class ActiveService implements ActiveServiceInterface {
             }
         });
 
+        currentList.progress += ActiveService.round(1 / currentList.activities.length, 2);
+
         active.lastUpdatedActivity = {
-            activityId: activityId,
+            activityId,
             action: action === 'complete' ? ProgressStatus.Completed : ProgressStatus.Ignored,
             updatedAt: new Date(Date.now())
         };
@@ -110,7 +104,6 @@ export class ActiveService implements ActiveServiceInterface {
 
         if (!includes(activitiesStatuses, ProgressStatus.Opened)) {
             currentList.status = ProgressStatus.Completed;
-            active.progress.completedLists.push(currentList.name);
         }
 
         forEach(lists, (list, i) => {
@@ -155,5 +148,15 @@ export class ActiveService implements ActiveServiceInterface {
 
     async getOneActive(userId: string): Promise<IActiveModel> {
         return await this._activeRepository.getByUserId(userId);
+    }
+
+    private static round(number: number, precision: number): number {
+        const shift = (number, precision, reverse) => {
+            precision = reverse ? -precision : precision;
+            const numArray = ('' + number).split('e');
+            return +(numArray[0] + 'e' + (numArray[1] ? (+numArray[1] + precision) : precision));
+        };
+
+        return shift(Math.round(shift(number, precision, false)), precision, true);
     }
 }

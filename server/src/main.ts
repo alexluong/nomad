@@ -5,7 +5,7 @@ import { ApplicationModule } from './app.module';
 import { environment } from './environment/environment';
 import { ValidationPipe } from './shared/pipes/validation.pipe';
 
-const port = process.env.PORT || environment.express.port;
+const port = process.env.PORT || environment.express.port
 
 async function bootstrap() {
     const app = await NestFactory.create(ApplicationModule, { cors: true });

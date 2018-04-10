@@ -4,7 +4,6 @@ import { SharedModel } from '../../shared/interfaces/shared.model';
 
 export interface IActiveModel extends SharedModel {
     activeLists: List[];
-    progress: ActiveProgress;
     userId: string;
     lastUpdatedActivity: LastUpdated;
 }
@@ -42,34 +41,12 @@ export class List {
         isArray: true
     })
     activities: Activity[];
-    @ApiModelProperty() listImgURL: string;
+    @ApiModelProperty() imgURL: string;
+    @ApiModelProperty() progress: number;
     @ApiModelPropertyOptional({
         type: String
     })
     _id?: Types.ObjectId;
-}
-
-export class ActiveProgress {
-    @ApiModelPropertyOptional({
-        type: String,
-        isArray: true
-    })
-    completedLists?: string[];
-    @ApiModelPropertyOptional({
-        type: String,
-        isArray: true
-    })
-    completedActivities?: string[];
-    @ApiModelPropertyOptional({
-        type: String,
-        isArray: true
-    })
-    ignoredLists?: string[];
-    @ApiModelPropertyOptional({
-        type: String,
-        isArray: true
-    })
-    ignoredActivities?: string[];
 }
 
 export class LastUpdated {
@@ -91,10 +68,6 @@ export class ActiveModel {
         isArray: true
     })
     activeLists: List[];
-    @ApiModelProperty({
-        type: ActiveProgress
-    })
-    progress: ActiveProgress;
     @ApiModelProperty() userId: string;
     @ApiModelProperty({
         type: LastUpdated
