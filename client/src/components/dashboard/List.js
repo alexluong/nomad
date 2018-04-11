@@ -1,23 +1,31 @@
 import React, { Component } from "react";
 import Activity from './Activity';
 import ProgressBar from './ProgressBar';
-// import Pagination from '../Pagination';
+import { history } from '../../App';
 
 export default class List extends Component {
   constructor(props) {
     super(props);
 
+    const actPerPage = !props.fullList ? 3 : 20;
+    const numPage = Math.ceil(props.list.activities.length / actPerPage);
     this.state = {
-      numPage: Math.ceil(props.list.activities.length / 3),
+      actPerPage,
+      numPage,
       activePage: 0
     }
   }
 
   handleListClick = (e) => {
-    console.log(this.props);
+    history.push({
+      pathname: '/dashboard/list',
+      state: {
+        list: this.props.list
+      }
+    });
   }
 
-  changePage(event, up) {
+  handleChangePage(event, up) {
     event.stopPropagation();
     this.setState({
       activePage: up ? this.state.activePage + 1 : this.state.activePage - 1
@@ -26,17 +34,18 @@ export default class List extends Component {
 
   renderPaginationControl() {
     const { activePage, numPage } = this.state;
+    console.log(this.state);
     if (numPage > 1)
       return (
         <div className="card__footer">
           {
             activePage !== 0 ? (
-              <span onClick={(event) => this.changePage(event, false)} >&lt; less</span>
+              <span onClick={(event) => this.handleChangePage(event, false)} >&lt; less</span>
             ) : (<span></span>)
           }
           {
             activePage !== numPage - 1 ? (
-              <span onClick={(event) => this.changePage(event, true)} >more &gt;</span>
+              <span onClick={(event) => this.handleChangePage(event, true)} >more &gt;</span>
             ) : (<span></span>)
           }
         </div>
@@ -44,14 +53,13 @@ export default class List extends Component {
   }
 
   render() {
-    const { list } = this.props;
-    const { activePage } = this.state;
-    const actPerPage = 3;
+    const { list, fullList } = this.props;
+    const { activePage, actPerPage } = this.state;
     const placeholderImg = '/img/list-header.jpeg';
 
     return (
       <div>
-        <div className="card" onClick={this.handleListClick} >
+        <div className={`card${fullList && ' full-card'}`} onClick={this.handleListClick} >
           <div
             className="card__header"
             style={{backgroundImage: `linear-gradient(rgba(255, 255, 255, 0), #fff), url(${placeholderImg})`}}>
@@ -69,15 +77,6 @@ export default class List extends Component {
           {this.renderPaginationControl()}
         </div>
         <ProgressBar progress={80} />
-        {/* {
-          numPage > 1 ? (
-            <Pagination
-              numPage={numPage}
-              activePage={activePage}
-              onPageChange={i => this.setState({activePage: i})}
-            />
-          ) : (null)
-        } */}
       </div>
     );
   }

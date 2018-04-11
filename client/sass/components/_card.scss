@@ -25,6 +25,9 @@
   //   border-radius: 2px;
   //   background-color: transparent;
   // }
+  &.full-card {
+    height: auto;
+  }
   &:hover {
     outline: 1px solid $color-stroke;
   }

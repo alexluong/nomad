@@ -30,7 +30,7 @@ class Activity extends Component {
 
   onActivityClick = (event) => {
     event.stopPropagation();
-    console.log(this.props.activity);
+    console.log(this.props);
   }
 
   render() {
