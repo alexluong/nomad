@@ -13,6 +13,10 @@ export default class List extends Component {
     }
   }
 
+  handleListClick = (e) => {
+    console.log(this.props);
+  }
+
   changePage(event, up) {
     event.stopPropagation();
     this.setState({
@@ -47,7 +51,7 @@ export default class List extends Component {
 
     return (
       <div>
-        <div className="card" onClick={() => console.log(this.props.list)} >
+        <div className="card" onClick={this.handleListClick} >
           <div
             className="card__header"
             style={{backgroundImage: `linear-gradient(rgba(255, 255, 255, 0), #fff), url(${placeholderImg})`}}>

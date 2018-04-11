@@ -3,6 +3,7 @@ body {
   font-weight: 400;
   font-size: $default-font-size;
   line-height: 1.7;
+  color: $color-text-default;
 }
 
 #root {
@@ -30,7 +31,7 @@ body {
 }
 
 .heading-primary {
-  color: #000;
+  color: $color-text-default;
   font-size: 3.6rem;
   margin-bottom: 3rem;
 }

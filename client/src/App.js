@@ -9,7 +9,7 @@ import TopPanel from './components/top-panel/TopPanel';
 import SidePanel from './components/SidePanel';
 
 // Pages
-// import SampleApp from './components/SampleApp';
+import DashboardListPage  from './components/dashboard/DashboardListPage';
 import DashboardPage  from './components/dashboard/DashboardPage';
 import ProgressPage   from './components/ProgressPage'    ;
 import Profile        from './components/Profile'         ;
@@ -43,6 +43,7 @@ class MainApp extends Component {
         <TopPanel />
         <main className="main">
           <Switch>
+            <Route path='/dashboard/list' component={DashboardListPage} />
             <Route path='/dashboard' component={DashboardPage} />
             <Route path='/progress'  component={ProgressPage} />
             <Route path='/profile'   component={Profile} />

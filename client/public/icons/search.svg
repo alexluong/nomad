@@ -1,18 +1,17 @@
 <svg width="24" height="24" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <title>search</title>
 <desc>Created using Figma</desc>
-<g id="Canvas" transform="translate(5609 1908)">
+<g id="Canvas" transform="translate(5609 2131)">
 <g id="search">
 <g id="Shape">
-<use xlink:href="#path0_fill" transform="translate(-5609 -1908)" fill="url(#paint0_linear)"/>
+<use xlink:href="#path0_fill" transform="translate(-5609 -2131)" fill="url(#paint0_linear)"/>
 </g>
 </g>
 </g>
 <defs>
 <linearGradient id="paint0_linear" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(24 24 -24 25.2574 12 -12.6287)">
-<stop offset="0" stop-color="#2EFF4F"/>
-<stop offset="0.546961" stop-color="#00FF85"/>
-<stop offset="0.977901" stop-color="#00FFC2"/>
+<stop offset="0" stop-color="#2A3654"/>
+<stop offset="0.977901" stop-color="#07B56C"/>
 </linearGradient>
 <path id="path0_fill" fill-rule="evenodd" d="M 17.1429 15.0857L 16.0457 15.0857L 15.6343 14.6743C 17.0057 13.1657 17.8286 11.1086 17.8286 8.91429C 17.8286 3.97714 13.8514 0 8.91429 0C 3.97714 0 0 3.97714 0 8.91429C 0 13.8514 3.97714 17.8286 8.91429 17.8286C 11.1086 17.8286 13.1657 17.0057 14.6743 15.6343L 15.0857 16.0457L 15.0857 17.1429L 21.9429 24L 24 21.9429L 17.1429 15.0857ZM 8.9141 15.0858C 5.48553 15.0858 2.74268 12.3429 2.74268 8.91435C 2.74268 5.48578 5.48553 2.74292 8.9141 2.74292C 12.3427 2.74292 15.0855 5.48578 15.0855 8.91435C 15.0855 12.3429 12.3427 15.0858 8.9141 15.0858Z"/>
 </defs>

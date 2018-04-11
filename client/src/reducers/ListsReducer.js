@@ -6,14 +6,12 @@ export default function(state = {}, action) {
     case CREATE_BOARD:
       return {
         ...state,
-        serverLists: action.payload.activeLists,
-        progress: action.payload.progress
+        serverLists: action.payload.activeLists
       }
     case GET_BOARD:
       return {
         ...state,
-        serverLists: action.payload.activeLists,
-        progress: action.payload.progress
+        serverLists: action.payload.activeLists
       }
     default:
       return { ...state, clientLists: data };

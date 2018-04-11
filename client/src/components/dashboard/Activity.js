@@ -28,13 +28,19 @@ class Activity extends Component {
     this.props.updateBoard(true, this.props.listId, this.props.activity._id);
   }
 
+  onActivityClick = (event) => {
+    event.stopPropagation();
+    console.log(this.props.activity);
+  }
+
   render() {
     const { activity } = this.props;
     return (
       <div
         className="activity"
-        onMouseOver={(e) => this.onBoxHover(e, true)}
-        onMouseLeave={(e) => this.onBoxHover(e, false)}
+        onMouseOver={e => this.onBoxHover(e, true)}
+        onMouseLeave={e => this.onBoxHover(e, false)}
+        onClick={this.onActivityClick}
       >
         <div>{activity.name}</div>
         <div className="activity__icon-box">

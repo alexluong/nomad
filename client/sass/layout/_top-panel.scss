@@ -1,5 +1,5 @@
 .top-panel {
-  color: #fff;
+  color: $color-text-default;
   &__primary {
     background-color: $color-background-2;
     height: $top-primary-height;
@@ -48,7 +48,7 @@
       align-items: center;
       justify-content: space-around;
       a:visited {
-        color: #fff;
+        color: $color-text-default;
       }
     }
   }

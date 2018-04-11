@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createBoard, getBoard } from '../../actions';
 
@@ -34,6 +34,14 @@ class DashboardPage extends Component {
     this.setState({ authenticated, loading });
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.lists.serverLists) {
+      this.setState({
+        authenticated: true,
+        loading: false
+      });
+    }
+  }
 
   renderLists() {
     const lists = this.state.authenticated ? this.props.lists.serverLists : this.props.lists.clientLists;

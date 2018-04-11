@@ -17,7 +17,7 @@
         border-image: linear-gradient(to bottom right, #2EFF4F 0%, #00FF85 54.7%,#00FFC2 97.79%) 1 100%; 
       }
       &:visited {
-        color: #fff;
+        color: $color-text-default;
       }
     }
   }
