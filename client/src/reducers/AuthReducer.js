@@ -1,4 +1,4 @@
-import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, CREATE_BOARD } from '../actions/types';
+import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, CLEAR_ERROR, CREATE_BOARD } from '../actions/types';
 
 export default function(state = {}, action) {
   switch (action.type) {
@@ -8,6 +8,8 @@ export default function(state = {}, action) {
       return { ...state, user: action.payload, authenticated: false };
     case AUTH_ERROR:
       return { ...state, errorMessage: action.payload };
+    case CLEAR_ERROR:
+      return { ...state, errorMessage: '' };
     case CREATE_BOARD:
       return {
         ...state,

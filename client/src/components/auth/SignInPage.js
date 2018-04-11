@@ -1,12 +1,16 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
+
 import SignInForm from './SignInForm';
 import SignUpForm from './SignUpForm';
+import { clearError } from '../../actions';
 
-export default class SignInPage extends Component {
+class SignInPage extends Component {
   state = { signin: false }
 
   componentWillReceiveProps(nextProps) {
     this.checkURL(nextProps);
+    this.props.clearError();
   }
 
   componentWillMount() {
@@ -38,3 +42,5 @@ export default class SignInPage extends Component {
     );
   }
 }
+
+export default connect(null, { clearError })(SignInPage);

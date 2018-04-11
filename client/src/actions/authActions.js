@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { saveAuthToken, removeAuthToken, removeState } from '../localStorage';
 import { history } from '../App';
-import { AUTH_USER, AUTH_ERROR, UNAUTH_USER } from './types';
+import { AUTH_USER, AUTH_ERROR, UNAUTH_USER, CLEAR_ERROR } from './types';
 
 const ROOT_URL = 'http://localhost:8080/api';
 
@@ -49,13 +49,6 @@ export const signUp = ({ username, email, password }) => {
   }
 }
 
-export const authError = (error) => {
-  return {
-    type: AUTH_ERROR,
-    payload: error
-  }
-}
-
 export const signOut = (error) => {
   return dispatch => {
     // Remove stuff in localStorage
@@ -65,6 +58,19 @@ export const signOut = (error) => {
     dispatch({
       type: UNAUTH_USER
     });
+  }
+}
+
+export const authError = (error) => {
+  return {
+    type: AUTH_ERROR,
+    payload: error
+  }
+}
+
+export const clearError = () => {
+  return {
+    type: CLEAR_ERROR
   }
 }
 
