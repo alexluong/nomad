@@ -1,4 +1,4 @@
-import { Component } from '@nestjs/common';
+import { Component, HttpException, HttpStatus } from '@nestjs/common';
 import { readFileSync } from 'fs';
 import { find, forEach, includes, map, some } from 'lodash';
 import { Types } from 'mongoose';
@@ -71,32 +71,55 @@ export class ActiveService implements ActiveServiceInterface {
         return await this._activeRepository.update(active);
     }
 
-    async updateActivity(action: ActivityActionType = 'complete', listId: string, activityId: string, userId: string): Promise<IActiveModel> {
+    async updateActivity(action: ActivityActionType = 'completed', listId: string, activityId: string, userId: string): Promise<IActiveModel> {
         const active: IActiveModel = await this._activeRepository.getByUserId(userId);
+        let reverting: boolean = false;
 
         const lists: List[] = active.activeLists;
         const currentList: List = await this.getListByListId(userId, listId);
 
+        if (!currentList || currentList === null || currentList === undefined) {
+            throw new HttpException('List not found', HttpStatus.BAD_REQUEST);
+        }
+
+        const currentActivity: Activity = await this.getActivityByActivityId(userId, listId, activityId);
+
+        if (!currentActivity || currentActivity === null || currentActivity === undefined) {
+            throw new HttpException('Activity not found', HttpStatus.BAD_REQUEST);
+        }
+
+        if (currentActivity.status.toString().toLowerCase() === action) {
+            throw new HttpException(`Duplicate Activity status: ${action}`, HttpStatus.BAD_REQUEST);
+        }
+
         forEach(currentList.activities, (a: Activity) => {
-            if (Types.ObjectId(activityId).equals(a._id) && a.status === ProgressStatus.Opened) {
+            if (Types.ObjectId(activityId).equals(a._id)) {
                 switch (action) {
-                    case 'complete':
+                    case 'completed':
                         a.status = ProgressStatus.Completed;
                         break;
-                    case 'ignore':
+                    case 'ignored':
                         a.status = ProgressStatus.Ignored;
                         break;
-                    default:
+                    case 'opened':
+                        a.status = ProgressStatus.Opened;
+                        reverting = true;
                         break;
+                    default:
+                        throw new HttpException('Action not found', HttpStatus.BAD_REQUEST);
                 }
             }
         });
 
-        currentList.progress += ActiveService.round(1 / currentList.activities.length, 2);
+        if (reverting) {
+            currentList.progress -= ActiveService.round(1 / currentList.activities.length, 2);
+        } else {
+            currentList.progress += ActiveService.round(1 / currentList.activities.length, 2);
+        }
 
         active.lastUpdatedActivity = {
             activityId,
-            action: action === 'complete' ? ProgressStatus.Completed : ProgressStatus.Ignored,
+            action,
             updatedAt: new Date(Date.now())
         };
 
@@ -104,6 +127,8 @@ export class ActiveService implements ActiveServiceInterface {
 
         if (!includes(activitiesStatuses, ProgressStatus.Opened)) {
             currentList.status = ProgressStatus.Completed;
+        } else {
+            currentList.status = ProgressStatus.Opened;
         }
 
         forEach(lists, (list, i) => {

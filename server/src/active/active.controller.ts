@@ -3,7 +3,14 @@ import { ApiBearerAuth, ApiResponse, ApiUseTags } from '@nestjs/swagger';
 import { Request } from 'express';
 import { IUserModel } from '../user/interfaces/user.model';
 import { ActiveService } from './active.service';
-import { ActiveModel, ActiveProgress, Activity, IActiveModel, List, ProgressStatus } from './interfaces/active.model';
+import {
+    ActiveModel,
+    Activity,
+    ActivityActionType,
+    IActiveModel,
+    List,
+    ProgressStatus
+} from './interfaces/active.model';
 
 @Controller('lists')
 @ApiUseTags('List')
@@ -33,7 +40,7 @@ export class ActiveController {
         status: 200,
         type: ActiveModel
     })
-    async updateActivity(@Req() req: Request, @Query('activityId') activityId: string, @Query('listId') listId: string, @Query('action') action?: 'complete' | 'ignore'): Promise<IActiveModel> {
+    async updateActivity(@Req() req: Request, @Query('activityId') activityId: string, @Query('listId') listId: string, @Query('action') action?: ActivityActionType): Promise<IActiveModel> {
         const currentUser: IUserModel = req['user'] as IUserModel;
         const activity: Activity = await this._activeService.getActivityByActivityId(currentUser._id, listId, activityId);
 
@@ -41,9 +48,6 @@ export class ActiveController {
             throw new HttpException(`Activity with ${activityId} cannot be found`, HttpStatus.NOT_FOUND);
         }
 
-        if (activity.status !== ProgressStatus.Opened) {
-            throw new HttpException('Activity status can only be updated once', HttpStatus.BAD_REQUEST);
-        }
         return await this._activeService.updateActivity(action, listId, activityId, currentUser._id);
     }
 

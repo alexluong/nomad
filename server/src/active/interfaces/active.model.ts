@@ -14,7 +14,7 @@ export enum ProgressStatus {
     Completed = 'Completed' as any
 }
 
-export type ActivityActionType = 'complete' | 'ignore';
+export type ActivityActionType = 'completed' | 'ignored' | 'opened';
 
 export class Activity {
     @ApiModelProperty() name: string;
@@ -52,9 +52,9 @@ export class List {
 export class LastUpdated {
     @ApiModelProperty() activityId: string;
     @ApiModelProperty({
-        enum: ['Opened', 'Ignored', 'Completed']
+        type: String
     })
-    action: ProgressStatus;
+    action: ActivityActionType;
     @ApiModelPropertyOptional({
         type: String,
         format: 'date-time'
