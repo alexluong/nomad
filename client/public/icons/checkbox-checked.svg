@@ -1,19 +1,19 @@
 <svg width="20" height="18" viewBox="0 0 20 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<title>checked box muted</title>
+<title>checked box</title>
 <desc>Created using Figma</desc>
-<g id="Canvas" transform="translate(5134 2769)">
-<g id="checked box muted">
+<g id="Canvas" transform="translate(772 832)">
+<g id="checked box">
 <g id="Rectangle 6.9">
 <mask id="mask0_outline_ins">
-<use xlink:href="#path0_fill" fill="white" transform="translate(-5134 -2767)"/>
+<use xlink:href="#path0_fill" fill="white" transform="translate(-772 -830)"/>
 </mask>
 <g mask="url(#mask0_outline_ins)">
-<use xlink:href="#path1_stroke_2x" transform="translate(-5134 -2767)" fill="#BDBDBD"/>
+<use xlink:href="#path1_stroke_2x" transform="translate(-772 -830)" fill="#008F4A"/>
 </g>
 </g>
 <g id="done">
 <g id="Shape">
-<use xlink:href="#path2_fill" transform="translate(-5131.6 -2768.9)" fill="#4F4F4F"/>
+<use xlink:href="#path2_fill" transform="translate(-769.603 -832)" fill="#008F4A"/>
 </g>
 </g>
 </g>

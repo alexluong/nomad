@@ -85,11 +85,19 @@
       0 3px 14px rgba(0, 0, 0, 0.12),
       0 8px 10px rgba(0, 0, 0, 0.14);
   }
+  &__completed {
+    color: $color-text;
+  }
   &__icon-box {
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
+  }
+  &__icon {
+    &.activity-checked {
+      margin-right: -3px;
+    }
   }
   &__icon-ignore {
     position: absolute;

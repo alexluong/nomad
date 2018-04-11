@@ -25,7 +25,14 @@ const store = createStore(
 
 store.subscribe(throttle(() => {
   const { lists, auth } = store.getState();
-  saveState({ lists, auth: { ...auth, errorMessage: '' } });
+  let savedLists = auth.authenticated ? lists : null;
+  saveState({
+    lists: savedLists,
+    auth: {
+      ...auth,
+      errorMessage: ''
+    }
+  });
 }, 1000));
 
 ReactDOM.render(

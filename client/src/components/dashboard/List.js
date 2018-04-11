@@ -34,7 +34,6 @@ export default class List extends Component {
 
   renderPaginationControl() {
     const { activePage, numPage } = this.state;
-    console.log(this.state);
     if (numPage > 1)
       return (
         <div className="card__footer">
@@ -59,7 +58,7 @@ export default class List extends Component {
 
     return (
       <div>
-        <div className={`card${fullList && ' full-card'}`} onClick={this.handleListClick} >
+        <div className={`card${fullList ? ' full-card' : ''}`} onClick={this.handleListClick} >
           <div
             className="card__header"
             style={{backgroundImage: `linear-gradient(rgba(255, 255, 255, 0), #fff), url(${placeholderImg})`}}>

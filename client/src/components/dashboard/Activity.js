@@ -16,6 +16,12 @@ class Activity extends Component {
   }
 
   onBoxClick = (event) => {
+    const { activity } = this.props;
+    if (activity.status === 'Opened') {
+      this.props.updateBoard(true, this.props.listId, this.props.activity._id);  
+    } else {
+      console.log(activity.status);
+    }
     event.stopPropagation();
   }
 
@@ -35,6 +41,14 @@ class Activity extends Component {
 
   render() {
     const { activity } = this.props;
+    let status = '';
+
+    if (activity.status === 'Completed') {
+      status = 'activity__completed';
+    } else {
+      status = '';
+    }
+
     return (
       <div
         className="activity"
@@ -42,9 +56,16 @@ class Activity extends Component {
         onMouseLeave={e => this.onBoxHover(e, false)}
         onClick={this.onActivityClick}
       >
-        <div>{activity.name}</div>
+        <div className={`${status}`}>{activity.name}</div>
         <div className="activity__icon-box">
-          <img className="activity__icon" src="/icons/checkbox.svg" alt="checkbox" onClick={this.onBoxClick} />
+          { (() => {
+              if (activity.status === 'Completed') {
+                return <img className="activity__icon activity-checked" src="/icons/checkbox-checked.svg" alt="checkbox" onClick={this.onBoxClick} />;
+              } else {
+                return <img className="activity__icon" src="/icons/checkbox.svg" alt="checkbox" onClick={this.onBoxClick} />;
+              }
+            })()
+          }
           { 
             this.state.hover || this.state.otherHover ? (
               [

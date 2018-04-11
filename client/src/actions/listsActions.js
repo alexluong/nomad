@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { getAuthToken } from '../localStorage';
-import { CREATE_BOARD, GET_BOARD } from './types';
+import { CREATE_BOARD, GET_BOARD, UPDATE_BOARD } from './types';
 
 const ROOT_URL = 'http://localhost:8080/api';
 
@@ -40,7 +40,10 @@ export const updateBoard = (complete = true, listId, activityId) => {
     axios.get(url, {
       'headers': {'Authorization' : `Bearer ${getAuthToken()}` }
     }).then(response => {
-      console.log(response);
+      dispatch({
+        type: UPDATE_BOARD,
+        payload: response.data
+      });
     }).catch(error => {
       console.log(error.response);
     });
