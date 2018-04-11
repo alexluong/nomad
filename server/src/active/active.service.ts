@@ -188,7 +188,13 @@ export class ActiveService implements ActiveServiceInterface {
     // }
 
     async getOneActive(userId: string): Promise<IActiveModel> {
-        return await this._activeRepository.getByUserId(userId);
+        const active: IActiveModel = await this._activeRepository.getByUserId(userId);
+
+        if (!active || active === null || active === undefined) {
+            throw new HttpException('Board not found', HttpStatus.BAD_REQUEST);
+        }
+
+        return active;
     }
 
     private static round(number: number, precision: number): number {
