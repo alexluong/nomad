@@ -3,14 +3,7 @@ import { ApiBearerAuth, ApiResponse, ApiUseTags } from '@nestjs/swagger';
 import { Request } from 'express';
 import { IUserModel } from '../user/interfaces/user.model';
 import { ActiveService } from './active.service';
-import {
-    ActiveModel,
-    Activity,
-    ActivityActionType,
-    IActiveModel,
-    List,
-    ProgressStatus
-} from './interfaces/active.model';
+import { ActiveModel, ActivityActionType, IActiveModel, List, ProgressStatus } from './interfaces/active.model';
 
 @Controller('lists')
 @ApiUseTags('List')
@@ -42,12 +35,6 @@ export class ActiveController {
     })
     async updateActivity(@Req() req: Request, @Query('activityId') activityId: string, @Query('listId') listId: string, @Query('action') action?: ActivityActionType): Promise<IActiveModel> {
         const currentUser: IUserModel = req['user'] as IUserModel;
-        const activity: Activity = await this._activeService.getActivityByActivityId(currentUser._id, listId, activityId);
-
-        if (!activity || activity === undefined) {
-            throw new HttpException(`Activity with ${activityId} cannot be found`, HttpStatus.NOT_FOUND);
-        }
-
         return await this._activeService.updateActivity(action, listId, activityId, currentUser._id);
     }
 
@@ -71,24 +58,4 @@ export class ActiveController {
 
         return await this._activeService.ignoreList(listId, currentUser._id);
     }
-
-    // @Get('progress')
-    // @ApiResponse({
-    //     status: 200,
-    //     type: ActiveProgress
-    // })
-    // async getCurrentProgress(@Req() req: Request): Promise<ActiveProgress> {
-    //     const currentUser: IUserModel = req['user'] as IUserModel;
-    //     return await this._activeService.getProgress(currentUser._id);
-    // }
-
-    // @Get('current')
-    // @ApiResponse({
-    //     status: 200,
-    //     type: ActiveModel
-    // })
-    // async getCurrentActive(@Req() req: Request): Promise<IActiveModel> {
-    //     const currentUser: IUserModel = req['user'] as IUserModel;
-    //     return await this._activeService.getOneActive(currentUser._id);
-    // }
 }

@@ -67,25 +67,40 @@ export class ActiveService implements ActiveServiceInterface {
             }
         });
 
-
         return await this._activeRepository.update(active);
     }
 
     async updateActivity(action: ActivityActionType = 'completed', listId: string, activityId: string, userId: string): Promise<IActiveModel> {
         const active: IActiveModel = await this._activeRepository.getByUserId(userId);
+
+        if (!active || active === null || active === undefined) {
+            throw new HttpException(`Board not found for user ${userId}`, HttpStatus.BAD_REQUEST);
+        }
+
         let reverting: boolean = false;
 
         const lists: List[] = active.activeLists;
         const currentList: List = await this.getListByListId(userId, listId);
 
         if (!currentList || currentList === null || currentList === undefined) {
-            throw new HttpException('List not found', HttpStatus.BAD_REQUEST);
+            throw new HttpException({
+                status: HttpStatus.BAD_REQUEST,
+                message: 'List not found',
+                userId,
+                listId
+            }, HttpStatus.BAD_REQUEST);
         }
 
         const currentActivity: Activity = await this.getActivityByActivityId(userId, listId, activityId);
 
         if (!currentActivity || currentActivity === null || currentActivity === undefined) {
-            throw new HttpException('Activity not found', HttpStatus.BAD_REQUEST);
+            throw new HttpException({
+                status: HttpStatus.BAD_REQUEST,
+                message: 'Activity not found',
+                userId,
+                listId,
+                activityId
+            }, HttpStatus.BAD_REQUEST);
         }
 
         if (currentActivity.status.toString().toLowerCase() === action) {
@@ -138,6 +153,7 @@ export class ActiveService implements ActiveServiceInterface {
         });
 
         active.activeLists = lists;
+        active.updatedAt = new Date(Date.now());
 
         return await this._activeRepository.update(active);
     }
