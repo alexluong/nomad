@@ -32,11 +32,13 @@ class DashboardListPage extends Component {
   }
 
   render() {
+    console.log(this.props);
     const list = this.state.list ? this.state.list : this.props.location.state.list;
+    const activity = this.props.location.state.activity || list.activities[0];
     return (
       <div className="dashboard-list">
         <List list={list} fullList={true} />
-        <ActivityBox activity={list.activities[0]} />
+        <ActivityBox activity={activity} />
       </div>
     );
   }

@@ -16,11 +16,12 @@ export default class List extends Component {
     }
   }
 
-  handleListClick = (e) => {
+  handleListClick = (e, activity) => {
     history.push({
       pathname: '/dashboard/list',
       state: {
-        list: this.props.list
+        list: this.props.list,
+        activity: activity ? activity : this.props.list.activities[0]
       }
     });
   }
@@ -69,7 +70,7 @@ export default class List extends Component {
               list.activities
                 .filter((e,i) => i >= activePage * actPerPage && i < (activePage + 1) * actPerPage)
                 .map((activity, i) => {
-                  return <Activity key={i} activity={activity} listId={list._id} />
+                  return <Activity key={i} activity={activity} listId={list._id} handleActivityClick={this.handleListClick} />
                 })
             }
           </div>

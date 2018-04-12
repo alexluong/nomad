@@ -3,7 +3,6 @@ import React, { Component } from "react";
 export default class ActivityBox extends Component {
   render() {
     const { activity } = this.props;
-    console.log(activity);
 
     return (
       <div className="activity-box">
