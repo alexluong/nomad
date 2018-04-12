@@ -8,17 +8,31 @@
     line-height: 10rem;
     a {
       padding-left: 2rem;
-      display: block;
-      width: 100%;
       text-decoration: none;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 100%;
       &.active {
         border-width: 0 0 0 8px;
         border-style: solid;
-        border-image: linear-gradient(to bottom right, #2EFF4F 0%, #00FF85 54.7%,#00FFC2 97.79%) 1 100%; 
+        border-color: #21CB8D;
+        background-color: rgba(0, 143, 74, 0.1);
+        // border-image: linear-gradient(to bottom right, #2EFF4F 0%, #00FF85 54.7%,#00FFC2 97.79%) 1 100%; 
+        &:hover {
+          background-color: lighten(rgba(0, 143, 74, 0.1), 20%);
+        }
       }
       &:visited {
         color: $color-text-default;
       }
+    }
+    &.side-panel__logo {
+      height: $top-panel-height;
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 }

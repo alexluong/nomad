@@ -250,15 +250,26 @@ input {
     line-height: 10rem; }
     .side-panel__item a {
       padding-left: 2rem;
-      display: block;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
       width: 100%;
-      text-decoration: none; }
+      height: 100%; }
       .side-panel__item a.active {
         border-width: 0 0 0 8px;
         border-style: solid;
-        border-image: linear-gradient(to bottom right, #2EFF4F 0%, #00FF85 54.7%, #00FFC2 97.79%) 1 100%; }
+        border-color: #21CB8D;
+        background-color: rgba(0, 143, 74, 0.1); }
+        .side-panel__item a.active:hover {
+          background-color: rgba(0, 245, 127, 0.1); }
       .side-panel__item a:visited {
         color: #4F4F4F; }
+    .side-panel__item.side-panel__logo {
+      height: calc(7.5rem +  7.5rem);
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
 
 .main {
   background-color: #F5F5F5; }

@@ -1,0 +1,14 @@
+<svg width="24" height="24" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>drive-fusiontable</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(3473 2389)">
+<g id="drive-fusiontable">
+<g id="Shape">
+<use xlink:href="#path0_fill" transform="translate(-3473 -2389)" fill="#828282"/>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" fill-rule="evenodd" d="M 21.3333 0L 2.66667 0C 1.2 0 0 1.2 0 2.66667L 0 21.3333C 0 22.8 1.2 24 2.66667 24L 21.3333 24C 22.8 24 24 22.8 24 21.3333L 24 2.66667C 24 1.2 22.8 0 21.3333 0ZM 21.3332 9.59998L 13.3332 18.6666L 7.99984 13.3333L 2.6665 18.6666L 2.6665 14.6666L 7.99984 9.33331L 13.3332 14.6666L 21.3332 5.59998L 21.3332 9.59998Z"/>
+</defs>
+</svg>
