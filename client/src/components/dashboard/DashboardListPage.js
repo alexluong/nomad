@@ -6,7 +6,8 @@ import ActivityBox from './ActivityBox';
 
 class DashboardListPage extends Component {
   state = {
-    list: null
+    list: null,
+    activity: null
   }
 
   componentDidMount() {
@@ -19,10 +20,16 @@ class DashboardListPage extends Component {
 
   getList(props) {
     const listId = props.location.state.list._id;
+    const activityId = props.location.state.activity._id;
     try {
       props.lists.serverLists.filter(list => {
         if (list._id === listId) {
-          this.setState({ list });
+          list.activities.filter(activity => {
+            if (activity._id === activityId) {
+              this.setState({ list, activity });
+            }
+            return true;
+          });
         }
         return true;
       });
@@ -32,9 +39,9 @@ class DashboardListPage extends Component {
   }
 
   render() {
-    console.log(this.props);
-    const list = this.state.list ? this.state.list : this.props.location.state.list;
-    const activity = this.props.location.state.activity || list.activities[0];
+    console.log(this);
+    const list = this.state.list || this.props.location.state.list;
+    const activity = this.state.activity || this.props.location.state.list.activities[0];
     return (
       <div className="dashboard-list">
         <List list={list} fullList={true} />
