@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import List from './List';
+import { connect }          from 'react-redux';
+
+import List        from './List';
+import ActivityBox from './ActivityBox';
 
 class DashboardListPage extends Component {
   state = {
@@ -32,8 +34,9 @@ class DashboardListPage extends Component {
   render() {
     const list = this.state.list ? this.state.list : this.props.location.state.list;
     return (
-      <div className="dashboard">
+      <div className="dashboard-list">
         <List list={list} fullList={true} />
+        <ActivityBox activity={list.activities[0]} />
       </div>
     );
   }

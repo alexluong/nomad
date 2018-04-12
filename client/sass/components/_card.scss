@@ -1,7 +1,7 @@
 .card {
   width: $card-width;
   height: $card-height;
-  margin-top: 10rem;
+  margin-top: $card-margin-top;
   background-color: $color-background;
   border-radius: 6px;
   position: relative;

@@ -1,0 +1,15 @@
+.activity-box {
+  background-color: $color-background;
+  margin-top: $card-margin-top;
+  margin-left: 2rem;
+  padding: 2rem;
+  box-shadow:
+    0 1px 10px rgba(0, 0, 0, 0.2),
+    0 4px 5px rgba(0, 0, 0, 0.12),
+    0 2px 4px rgba(0, 0, 0, 0.12);
+  border-radius: 5px;
+  width: $activity-box-width;
+  &:hover {
+    outline: 1px solid $color-stroke;
+  }
+}
