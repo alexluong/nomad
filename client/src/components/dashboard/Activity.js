@@ -16,22 +16,24 @@ class Activity extends Component {
   }
 
   onBoxClick = (event) => {
-    const { activity } = this.props;
-    if (activity.status === 'Opened') {
-      this.props.updateBoard(true, this.props.listId, this.props.activity._id);  
-    } else {
-      console.log(activity.status);
-    }
     event.stopPropagation();
+    if (this.props.activity.status === 'Opened') {
+      this.props.updateBoard('completed', this.props.listId, this.props.activity._id);  
+    } else {
+      this.props.updateBoard('opened', this.props.listId, this.props.activity._id);  
+    }
   }
 
   onIgnoreClick = (event) => {
     event.stopPropagation();
+    this.props.updateBoard('ignored', this.props.listId, this.props.activity._id);  
   }
 
   onCheckClick = (event) => {
     event.stopPropagation();
-    this.props.updateBoard(true, this.props.listId, this.props.activity._id);
+    if (this.props.activity.status === 'Opened') {
+      this.props.updateBoard('completed', this.props.listId, this.props.activity._id);
+    }
   }
 
   onActivityClick = (event) => {

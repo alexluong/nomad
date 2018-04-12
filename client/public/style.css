@@ -134,16 +134,22 @@ input {
     justify-content: center; }
   .activity__icon.activity-checked {
     margin-right: -3px; }
+  .activity__icon:hover {
+    transform: scale(1.15); }
   .activity__icon-ignore {
     position: absolute;
-    width: 75%;
+    width: 65%;
     left: -100%;
-    top: 30%; }
+    top: 33%; }
+    .activity__icon-ignore:hover {
+      transform: scale(1.3); }
   .activity__icon-check {
     position: absolute;
     width: 75%;
-    right: -90%;
+    right: -100%;
     top: 30%; }
+    .activity__icon-check:hover {
+      transform: scale(1.4); }
 
 .pagination {
   margin-top: 1rem;

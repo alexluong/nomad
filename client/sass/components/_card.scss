@@ -98,17 +98,26 @@
     &.activity-checked {
       margin-right: -3px;
     }
+    &:hover {
+      transform: scale(1.15);
+    }
   }
   &__icon-ignore {
     position: absolute;
-    width: 75%;
+    width: 65%;
     left: -100%;
-    top: 30%;
+    top: 33%;
+    &:hover {
+      transform: scale(1.3);
+    }
   }
   &__icon-check {
     position: absolute;
     width: 75%;
-    right: -90%;
+    right: -100%;
     top: 30%;
+    &:hover {
+      transform: scale(1.4);
+    }
   }
 }
