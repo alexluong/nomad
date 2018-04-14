@@ -10,26 +10,6 @@ body {
   height: 100vh;
 }
 
-#app {
-  height: 100%;
-  display: grid;
-  grid-template-areas:
-    "side-panel top-panel"
-    "side-panel main";
-  grid-template-columns: $side-panel-width 1fr;
-  grid-template-rows: $top-panel-height 1fr;
-
-  .side-panel {
-    grid-area: side-panel;
-  }
-  .top-panel {
-    grid-area: top-panel;
-  }
-  .main {
-    grid-area: main;
-  }
-}
-
 .heading-primary {
   color: $color-text-default;
   font-size: 3.6rem;

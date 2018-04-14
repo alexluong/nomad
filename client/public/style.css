@@ -21,19 +21,6 @@ body {
 #root {
   height: 100vh; }
 
-#app {
-  height: 100%;
-  display: grid;
-  grid-template-areas: "side-panel top-panel" "side-panel main";
-  grid-template-columns: 15rem 1fr;
-  grid-template-rows: calc(7.5rem +  7.5rem) 1fr; }
-  #app .side-panel {
-    grid-area: side-panel; }
-  #app .top-panel {
-    grid-area: top-panel; }
-  #app .main {
-    grid-area: main; }
-
 .heading-primary {
   color: #4F4F4F;
   font-size: 3.6rem;
@@ -249,27 +236,44 @@ input {
     height: 10rem;
     line-height: 10rem; }
     .side-panel__item a {
-      padding-left: 2rem;
       text-decoration: none;
       display: flex;
       align-items: center;
+      justify-content: center;
       width: 100%;
-      height: 100%; }
+      height: 100%;
+      border-width: 0 0 0 8px;
+      border-style: solid;
+      border-color: transparent; }
       .side-panel__item a.active {
-        border-width: 0 0 0 8px;
-        border-style: solid;
         border-color: #21CB8D;
         background-color: rgba(0, 143, 74, 0.1); }
         .side-panel__item a.active:hover {
           background-color: rgba(0, 245, 127, 0.1); }
       .side-panel__item a:visited {
         color: #4F4F4F; }
+      .side-panel__item a:hover {
+        border-color: #008F4A;
+        background-color: rgba(0, 245, 127, 0.1); }
     .side-panel__item.side-panel__logo {
       height: calc(7.5rem +  7.5rem);
       margin-bottom: 2rem;
       display: flex;
       justify-content: center;
       align-items: center; }
+
+#app {
+  height: 100%;
+  display: grid;
+  grid-template-areas: "side-panel top-panel" "side-panel main";
+  grid-template-columns: 11rem 1fr;
+  grid-template-rows: calc(7.5rem +  7.5rem) 1fr; }
+  #app .side-panel {
+    grid-area: side-panel; }
+  #app .top-panel {
+    grid-area: top-panel; }
+  #app .main {
+    grid-area: main; }
 
 .main {
   background-color: #F5F5F5; }
