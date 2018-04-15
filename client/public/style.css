@@ -249,7 +249,7 @@ input {
         border-color: #21CB8D;
         background-color: rgba(0, 143, 74, 0.1); }
         .side-panel__item a.active:hover {
-          background-color: rgba(0, 245, 127, 0.1); }
+          background-color: rgba(0, 143, 74, 0.1); }
       .side-panel__item a:visited {
         color: #4F4F4F; }
       .side-panel__item a:hover {
