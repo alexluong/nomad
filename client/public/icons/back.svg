@@ -1,0 +1,24 @@
+<svg width="24" height="24" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Back button</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(1306 2858)">
+<g id="Back button">
+<g id="Vector">
+<use xlink:href="#path0_stroke" transform="matrix(-1 1.22465e-16 -1.22465e-16 -1 -1289.2 -2838.8)" fill="#BDBDBD"/>
+</g>
+<g id="Rectangle 7">
+<mask id="mask0_outline_ins">
+<use xlink:href="#path1_fill" fill="white" transform="translate(-1306 -2858)"/>
+</mask>
+<g mask="url(#mask0_outline_ins)">
+<use xlink:href="#path2_stroke_2x" transform="translate(-1306 -2858)" fill="#BDBDBD"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_stroke" d="M 8.4 6.6L 9.01782 7.38632L 10.0186 6.6L 9.01782 5.81368L 8.4 6.6ZM -0.617822 0.786318L 7.78218 7.38632L 9.01782 5.81368L 0.617822 -0.786318L -0.617822 0.786318ZM 7.78218 5.81368L -0.617822 12.4137L 0.617822 13.9863L 9.01782 7.38632L 7.78218 5.81368Z"/>
+<path id="path1_fill" d="M 0 2C 0 0.895431 0.895431 0 2 0L 22 0C 23.1046 0 24 0.895431 24 2L 24 22C 24 23.1046 23.1046 24 22 24L 2 24C 0.895431 24 0 23.1046 0 22L 0 2Z"/>
+<path id="path2_stroke_2x" d="M 2 2L 22 2L 22 -2L 2 -2L 2 2ZM 22 2L 22 22L 26 22L 26 2L 22 2ZM 22 22L 2 22L 2 26L 22 26L 22 22ZM 2 22L 2 2L -2 2L -2 22L 2 22ZM 2 22L -2 22C -2 24.2091 -0.209139 26 2 26L 2 22ZM 22 22L 22 26C 24.2091 26 26 24.2091 26 22L 22 22ZM 22 2L 26 2C 26 -0.209139 24.2091 -2 22 -2L 22 2ZM 2 -2C -0.209139 -2 -2 -0.209139 -2 2L 2 2L 2 -2Z"/>
+</defs>
+</svg>

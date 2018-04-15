@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'      ;
 import { connect }          from 'react-redux';
 
-import List        from './List';
+import List        from './List'       ;
 import ActivityBox from './ActivityBox';
+import Breadcrumb  from './Breadcrumb' ;
 
 class DashboardListPage extends Component {
   state = {
@@ -44,8 +45,11 @@ class DashboardListPage extends Component {
     const activity = this.state.activity || this.props.location.state.list.activities[0];
     return (
       <div className="dashboard-list">
-        <List list={list} fullList={true} />
-        <ActivityBox activity={activity} />
+        <Breadcrumb visible={true} listName={list.name} />
+        <div className="dashboard-list__board">
+          <List list={list} fullList={true} />
+          <ActivityBox activity={activity} />
+        </div>
       </div>
     );
   }

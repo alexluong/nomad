@@ -57,7 +57,7 @@ input {
 .card {
   width: 37rem;
   height: 24rem;
-  margin-top: 10rem;
+  margin-top: 2rem;
   background-color: #FAFAFA;
   border-radius: 6px;
   position: relative;
@@ -140,7 +140,7 @@ input {
 
 .activity-box {
   background-color: #FAFAFA;
-  margin-top: 10rem;
+  margin-top: 2rem;
   margin-left: 2rem;
   padding: 2rem;
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2), 0 4px 5px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.12);
@@ -177,6 +177,21 @@ input {
     border-top-right-radius: 1000rem;
     border-bottom-right-radius: 1000rem;
     background-color: #F2F2F2; }
+
+.breadcrumb {
+  line-height: 8rem;
+  padding-left: 2rem;
+  display: flex;
+  justify-content: flex-start; }
+  .breadcrumb__link {
+    display: flex;
+    align-items: center;
+    margin-right: 1.6rem; }
+    .breadcrumb__link-icon {
+      height: 2.4rem; }
+  .breadcrumb__arrow {
+    margin-right: 1.6rem;
+    margin-left: 1.6rem; }
 
 .top-panel {
   color: #4F4F4F; }
@@ -303,13 +318,13 @@ input {
         width: 100%;
         margin-bottom: 2rem; }
 
-.dashboard {
+.dashboard__lists {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   flex-wrap: wrap; }
 
-.dashboard-list {
+.dashboard-list__board {
   display: flex;
   flex-direction: row;
   justify-content: center; }

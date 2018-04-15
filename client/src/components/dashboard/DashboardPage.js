@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createBoard, getBoard } from '../../actions';
 
-import List from './List';
+import List       from './List'      ;
+import Breadcrumb from './Breadcrumb';
 
 class DashboardPage extends Component {
   state = {
@@ -59,7 +60,10 @@ class DashboardPage extends Component {
     const { loading } = this.state;
     return (
       <div className="dashboard">
-        { loading ? this.renderLoading() : this.renderLists() }
+        <Breadcrumb visible={false} />
+        <div className="dashboard__lists">
+          { loading ? this.renderLoading() : this.renderLists() }
+        </div>
       </div>
     );
   }
