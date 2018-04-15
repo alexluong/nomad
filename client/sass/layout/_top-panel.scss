@@ -58,3 +58,30 @@
     border-bottom: 1.5px solid $color-stroke;
   }
 }
+
+
+.top-panel-dashboard {
+  height: 100%;
+  line-height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 6rem;
+  &__item {
+    cursor: pointer;
+  }
+  &__item:not(:last-child) {
+    margin-right: 6rem;
+    position: relative;
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: -3rem;
+      height: 100%;
+      width: 1px;
+      background-color: $color-stroke;
+      cursor: initial;
+    }
+  }
+}

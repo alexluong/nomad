@@ -200,10 +200,8 @@ input {
     margin-left: 1.6rem; }
 
 .spinner {
-  border: 3px solid #f3f3f3;
-  /* Light grey */
-  border-top: 3px solid #3498db;
-  /* Blue */
+  border: 3px solid #F5F5F5;
+  border-top: 3px solid #008F4A;
   border-radius: 50%;
   width: 1.7rem;
   height: 1.7rem;
@@ -257,6 +255,28 @@ input {
     background-color: #F5F5F5;
     height: 7.5rem;
     border-bottom: 1.5px solid #4FF7B5; }
+
+.top-panel-dashboard {
+  height: 100%;
+  line-height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 6rem; }
+  .top-panel-dashboard__item {
+    cursor: pointer; }
+  .top-panel-dashboard__item:not(:last-child) {
+    margin-right: 6rem;
+    position: relative; }
+    .top-panel-dashboard__item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: -3rem;
+      height: 100%;
+      width: 1px;
+      background-color: #4FF7B5;
+      cursor: initial; }
 
 .side-panel {
   background-color: #F5F5F5;

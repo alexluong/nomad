@@ -1,12 +1,22 @@
 import React, { Component } from "react";
-// import RaisedButton from "material-ui/RaisedButton";
-import { withRouter } from 'react-router'
+import { withRouter }       from 'react-router';
+
+import TopPanelDashboard from '../dashboard/TopPanelDashboard';
 
 class TopPanelSecondary extends Component {
   render() {
     return (
       <div className="top-panel__secondary">
-        <p>{this.props.location.pathname.slice(1)}</p>
+        {
+          (() => {
+            switch(this.props.location.pathname.slice(1)) {
+              case 'dashboard':
+                return <TopPanelDashboard />;
+              default:
+                return <TopPanelDashboard />;
+            }
+          })()
+        }
       </div>
     );
   }
