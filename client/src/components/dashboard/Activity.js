@@ -1,10 +1,17 @@
 import React, { Component } from "react";
-import { connect } from 'react-redux';
-import { updateBoard } from '../../actions';
+import { connect }          from 'react-redux';
+
+import { updateBoard }      from '../../actions';
+import Spinner              from '../Spinner';
 
 class Activity extends Component {
   state = {
-    hover: false
+    hover: false,
+    loading: false
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ loading: false });
   }
 
   /* Parameter `box` to know which icon is being hovered
@@ -17,6 +24,7 @@ class Activity extends Component {
 
   onBoxClick = (event) => {
     event.stopPropagation();
+    this.setState({ loading: true });
     if (this.props.activity.status === 'Opened') {
       this.props.updateBoard('completed', this.props.listId, this.props.activity._id);  
     } else {
@@ -26,11 +34,13 @@ class Activity extends Component {
 
   onIgnoreClick = (event) => {
     event.stopPropagation();
+    this.setState({ loading: true });
     this.props.updateBoard('ignored', this.props.listId, this.props.activity._id);  
   }
 
   onCheckClick = (event) => {
     event.stopPropagation();
+    this.setState({ loading: true });
     if (this.props.activity.status === 'Opened') {
       this.props.updateBoard('completed', this.props.listId, this.props.activity._id);
     }
@@ -42,7 +52,8 @@ class Activity extends Component {
   }
 
   render() {
-    const { activity } = this.props;
+    const { activity       } = this.props;
+    const { loading, hover } = this.state;
     let status = '';
 
     if (activity.status === 'Completed') {
@@ -61,15 +72,19 @@ class Activity extends Component {
         <div className={`${status}`}>{activity.name}</div>
         <div className="activity__icon-box">
           { (() => {
-              if (activity.status === 'Completed') {
-                return <img className="activity__icon activity-checked" src="/icons/checkbox-checked.svg" alt="checkbox" onClick={this.onBoxClick} />;
+              if (loading) {
+                return <Spinner />
               } else {
-                return <img className="activity__icon" src="/icons/checkbox.svg" alt="checkbox" onClick={this.onBoxClick} />;
+                if (activity.status === 'Completed') {
+                  return <img className="activity__icon activity-checked" src="/icons/checkbox-checked.svg" alt="checkbox" onClick={this.onBoxClick} />;
+                } else {
+                  return <img className="activity__icon" src="/icons/checkbox.svg" alt="checkbox" onClick={this.onBoxClick} />;
+                }
               }
             })()
           }
           { 
-            this.state.hover || this.state.otherHover ? (
+            hover ? (
               [
                 <img className="activity__icon-ignore" src="/icons/delete.svg" alt="delete" onClick={this.onIgnoreClick} key={1} />,
                 <img className="activity__icon-check" src="/icons/arrow.svg" alt="check" onClick={this.onCheckClick} key={2} />
