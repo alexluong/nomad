@@ -8,7 +8,8 @@ import Breadcrumb from './Breadcrumb';
 class DashboardPage extends Component {
   state = {
     authenticated: false,
-    loading: true
+    loading: true,
+    activePage: 'all-lists'
   };
 
   componentDidMount() {
@@ -48,7 +49,7 @@ class DashboardPage extends Component {
     const lists = this.state.authenticated ? this.props.lists.serverLists : this.props.lists.clientLists;
     return lists.map((list, i) => {
       return <List key={i} list={list} />
-    })
+    });
   }
 
   renderLoading(lists) {
@@ -57,7 +58,7 @@ class DashboardPage extends Component {
   }
 
   render() {
-    const { loading } = this.state;
+    const { loading, activePage } = this.state;
     return (
       <div className="dashboard">
         <Breadcrumb visible={false} />

@@ -265,6 +265,8 @@ input {
   padding-left: 6rem; }
   .top-panel-dashboard__item {
     cursor: pointer; }
+    .top-panel-dashboard__item.active {
+      font-weight: 800; }
   .top-panel-dashboard__item:not(:last-child) {
     margin-right: 6rem;
     position: relative; }
