@@ -46,6 +46,24 @@ class DashboardPage extends Component {
     }
   }
 
+  renderLoading(lists) {
+    // TODO: Make a Loading Screen
+    return <div>Loading</div>
+  }
+
+  renderMain() {
+    switch (this.state.activePage) {
+      case 'all-lists':
+        return this.renderLists();
+      case 'in-progress':
+        return this.renderProgress();
+      case 'finished':
+        return this.renderFinished();
+      default:
+        return this.renderLists();
+    }
+  }
+
   renderLists() {
     const lists = this.state.authenticated ? this.props.lists.serverLists : this.props.lists.clientLists;
     return lists.map((list, i) => {
@@ -53,19 +71,21 @@ class DashboardPage extends Component {
     });
   }
 
-  renderLoading(lists) {
-    // TODO: Make a Loading Screen
-    return <div>Loading</div>
+  renderProgress() {
+    return <div>In Progress</div>
+  }
+
+  renderFinished() {
+    return <div>Finished</div>
   }
 
   render() {
-    console.log(this.state);
-    const { loading, activePage } = this.state;
+    const { loading } = this.state;
     return (
       <div className="dashboard">
         <Breadcrumb visible={false} />
         <div className="dashboard__lists">
-          { loading ? this.renderLoading() : this.renderLists() }
+          { loading ? this.renderLoading() : this.renderMain() }
         </div>
       </div>
     );
