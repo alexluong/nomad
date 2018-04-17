@@ -40,7 +40,8 @@ class DashboardPage extends Component {
     if (nextProps.lists.serverLists) {
       this.setState({
         authenticated: true,
-        loading: false
+        loading: false,
+        activePage: nextProps.navigation.page
       });
     }
   }
@@ -58,6 +59,7 @@ class DashboardPage extends Component {
   }
 
   render() {
+    console.log(this.state);
     const { loading, activePage } = this.state;
     return (
       <div className="dashboard">
@@ -72,8 +74,9 @@ class DashboardPage extends Component {
 
 const mapStateToProps = state => {
   return {
-    auth: state.auth,
-    lists: state.lists
+    auth      : state.auth ,
+    lists     : state.lists,
+    navigation: state.navigation
   };
 }
 

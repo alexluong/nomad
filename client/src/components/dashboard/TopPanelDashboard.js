@@ -1,13 +1,26 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import { connect }          from 'react-redux';
+import { changePage }       from '../../actions';
 
-export default class TopPanelDashboard extends Component {
+class TopPanelDashboard extends Component {
+  state = {
+    active: 'all-lists'
+  }
+
+  componentWillReceiveProps(nextProps) {
+    try {
+      this.setState({ active: nextProps.navigation.page });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   handleClick(page) {
-    console.log(page);
+    this.props.changePage(page);
   }
 
   render() {
-    // const { active } = this.props;
-    const active = 'all-lists';
+    const { active } = this.state;
     const className = {
       active: 'top-panel-dashboard__item active',
       inactive: 'top-panel-dashboard__item'
@@ -21,3 +34,11 @@ export default class TopPanelDashboard extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    navigation: state.navigation
+  }
+}
+
+export default connect(mapStateToProps, { changePage })(TopPanelDashboard);
