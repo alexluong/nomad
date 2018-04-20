@@ -1,5 +1,6 @@
 .top-panel {
   color: $color-text-default;
+  overflow: hidden;
   &__primary {
     background-color: $color-background-2;
     height: $top-primary-height;

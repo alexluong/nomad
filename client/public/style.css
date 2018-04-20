@@ -208,7 +208,8 @@ input {
   animation: spin 2s linear infinite; }
 
 .top-panel {
-  color: #4F4F4F; }
+  color: #4F4F4F;
+  overflow: hidden; }
   .top-panel__primary {
     background-color: #F5F5F5;
     height: 7.5rem;
@@ -283,7 +284,8 @@ input {
 .side-panel {
   background-color: #F5F5F5;
   border-right: 1.5px solid #4FF7B5;
-  height: 100%; }
+  height: 100%;
+  overflow: hidden; }
   .side-panel__item {
     width: 100%;
     height: 10rem;
@@ -331,7 +333,8 @@ input {
 .main {
   background-color: #F5F5F5;
   padding-left: 13rem;
-  padding-right: 13rem; }
+  padding-right: 13rem;
+  overflow: auto; }
 
 .signin {
   width: 100vw;
