@@ -21,10 +21,10 @@
           border-radius: 100rem;
           padding-left: 4rem;
           padding-right: 4rem;
-          &:focus {
-            outline: 1px solid $color-stroke;
-            outline-offset: 1px;
-          }
+          // &:focus {
+          //   outline: 1px solid $color-stroke;
+          //   outline-offset: 1px;
+          // }
         }
         img {
           position: absolute;

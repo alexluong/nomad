@@ -72,7 +72,7 @@ input {
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2), 0 4px 5px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.12);
   cursor: pointer; }
   .card.full-card {
-    height: auto; }
+    height: 47rem; }
   .card:hover {
     outline: 1px solid #4FF7B5; }
   .card__header {
@@ -145,13 +145,15 @@ input {
       transform: scale(1.4); }
 
 .activity-box {
+  height: 47rem;
+  width: 60rem;
+  overflow: auto;
   background-color: #FAFAFA;
   margin-top: 5rem;
   margin-left: 2rem;
   padding: 2rem;
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2), 0 4px 5px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.12);
-  border-radius: 5px;
-  width: 60rem; }
+  border-radius: 5px; }
   .activity-box:hover {
     outline: 1px solid #4FF7B5; }
 
@@ -230,9 +232,6 @@ input {
           border-radius: 100rem;
           padding-left: 4rem;
           padding-right: 4rem; }
-          .top-panel__primary-first .search-bar input:focus {
-            outline: 1px solid #4FF7B5;
-            outline-offset: 1px; }
         .top-panel__primary-first .search-bar img {
           position: absolute;
           right: 2rem;
