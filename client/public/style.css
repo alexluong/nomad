@@ -63,7 +63,7 @@ input {
 .card {
   width: 37rem;
   height: 24rem;
-  margin-top: 2rem;
+  margin-top: 5rem;
   background-color: #FAFAFA;
   border-radius: 6px;
   position: relative;
@@ -146,7 +146,7 @@ input {
 
 .activity-box {
   background-color: #FAFAFA;
-  margin-top: 2rem;
+  margin-top: 5rem;
   margin-left: 2rem;
   padding: 2rem;
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2), 0 4px 5px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.12);
@@ -329,7 +329,9 @@ input {
     grid-area: main; }
 
 .main {
-  background-color: #F5F5F5; }
+  background-color: #F5F5F5;
+  padding-left: 13rem;
+  padding-right: 13rem; }
 
 .signin {
   width: 100vw;
