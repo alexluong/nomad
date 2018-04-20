@@ -27,6 +27,7 @@
   // }
   &.full-card {
     height: $card-full-height;
+    overflow: auto;
   }
   &:hover {
     outline: 1px solid $color-stroke;
