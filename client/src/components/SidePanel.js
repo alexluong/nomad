@@ -11,13 +11,6 @@ class SidePanel extends Component {
     const animationDirection = edge === 'bottom' ? 'bottom' : 'top';
   }
 
-  //Distance Formula
-  distMetric(x, y, x2, y2) {
-    var xDiff = x - x2;
-    var yDiff = y - y2;
-    return (xDiff * xDiff) + (yDiff * yDiff);
-  }
-
   closestEdge(x, y, w, h) {
     const topEdgeDist    = this.distMetric(x ,y, w/2, 0  );
     const bottomEdgeDist = this.distMetric(x ,y, w/2, h  );
@@ -38,6 +31,13 @@ class SidePanel extends Component {
     }
   }
 
+  // Distance Formula
+  distMetric(x, y, x2, y2) {
+    var xDiff = x - x2;
+    var yDiff = y - y2;
+    return (xDiff * xDiff) + (yDiff * yDiff);
+  }
+
   renderLink(page) {
     const active = this.props.location.pathname.slice(1);
     let href = `/${page}`;
@@ -53,9 +53,15 @@ class SidePanel extends Component {
         <li onMouseEnter={this.onHover} className="side-panel__item">
           { this.renderLink('dashboard') }
         </li>
-        <li className="side-panel__item">{ this.renderLink('progress' ) }</li>
-        <li className="side-panel__item">{ this.renderLink('profile'  ) }</li>
-        <li className="side-panel__item">{ this.renderLink('settings' ) }</li>
+        <li onMouseEnter={this.onHover} className="side-panel__item">
+          { this.renderLink('progress') }
+        </li>
+        <li onMouseEnter={this.onHover} className="side-panel__item">
+          { this.renderLink('profile') }
+        </li>
+        <li onMouseEnter={this.onHover} className="side-panel__item">
+          { this.renderLink('settings') }
+        </li>
       </ul>
     );
   }
