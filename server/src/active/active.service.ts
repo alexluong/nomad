@@ -126,6 +126,9 @@ export class ActiveService implements ActiveServiceInterface {
             }
         });
 
+        /* You may wanna change this stuff a bit
+         * Excuse my horrible TypeScript syntax lol
+         */
         let activeListNumber = 0;
         currentList.activities.forEach(activity => {
             if (activity.status === ProgressStatus.Completed) {
@@ -133,6 +136,8 @@ export class ActiveService implements ActiveServiceInterface {
             }
         });
         currentList.progress = ActiveService.round(activeListNumber / currentList.activities.length, 2);
+        /* End of my stuff */
+
         // if (reverting) {
         //     currentList.progress -= ActiveService.round(1 / currentList.activities.length, 2);
         // } else {
