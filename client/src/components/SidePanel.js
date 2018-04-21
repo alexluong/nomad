@@ -6,7 +6,7 @@ class SidePanel extends Component {
   renderLink(page) {
     const active = this.props.location.pathname.slice(1);
     let href = `/${page}`;
-    let src  = `icons/${page}${ active === page ? '-active' : ''}.svg`;
+    let src  = `icons/${page}${ active.includes(page) ? '-active' : ''}.svg`;
     let alt  = page;
     return <NavLink to={href}><img src={src} alt={alt} /></NavLink>;
   }
