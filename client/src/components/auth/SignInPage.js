@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 
+import Info       from './Info'      ;
 import SignInForm from './SignInForm';
 import SignUpForm from './SignUpForm';
 import { clearError } from '../../actions';
@@ -29,7 +30,7 @@ class SignInPage extends Component {
     const { signin } = this.state;
     return (
       <div className="signin">
-        <div className="signin__info">Hi</div>
+        <Info />
         <div className="signin__form">
           <div className="signin__form-box">
             <h1 className="heading-primary">

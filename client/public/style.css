@@ -369,7 +369,27 @@ input {
   .signin__info {
     grid-area: info;
     height: 100%;
-    background-color: purple; }
+    background-color: lightgreen;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    .signin__info-content {
+      display: block;
+      text-align: left;
+      padding: 3rem; }
+      .signin__info-content .info-boxes {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between; }
+      .signin__info-content .info-box {
+        background-color: lightblue;
+        min-width: 20rem; }
+        .signin__info-content .info-box h3 {
+          padding-left: 2rem;
+          padding-top: 2rem; }
+        .signin__info-content .info-box ul {
+          list-style-type: none;
+          padding: 2rem; }
   .signin__form {
     grid-area: form;
     height: 100%;
