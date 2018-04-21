@@ -12,7 +12,9 @@ export default class List extends Component {
     this.state = {
       actPerPage,
       numPage,
-      activePage: 0
+      activePage: 0,
+      slideLeft: false,
+      slideRight: false
     }
   }
 
@@ -29,7 +31,9 @@ export default class List extends Component {
   handleChangePage(event, up) {
     event.stopPropagation();
     this.setState({
-      activePage: up ? this.state.activePage + 1 : this.state.activePage - 1
+      activePage: up ? this.state.activePage + 1 : this.state.activePage - 1,
+      slideLeft : up ? true  : false,
+      slideRight: up ? false : true
     });
   }
 
@@ -54,7 +58,7 @@ export default class List extends Component {
 
   render() {
     const { list, fullList } = this.props;
-    const { activePage, actPerPage } = this.state;
+    const { activePage, actPerPage, slideLeft, slideRight } = this.state;
     const placeholderImg = '/img/list-header.jpeg';
 
     return (
@@ -62,10 +66,14 @@ export default class List extends Component {
         <div className={`card${fullList ? ' full-card' : ''}`} onClick={this.handleListClick} >
           <div
             className="card__header"
-            style={{backgroundImage: `linear-gradient(rgba(255, 255, 255, 0), #fff), url(${placeholderImg})`}}>
+            style={{backgroundImage: `linear-gradient(rgba(255, 255, 255, 0), #fff), url(${placeholderImg})`}}
+          >
             <h2 className="card__header-heading">{list.name}</h2>
           </div>
-          <div className="card__main">
+          <div
+            className={`card__main${slideLeft ? " slide-left" : ''}${slideRight ? " slide-right" : ''}`}
+            onAnimationEnd={() => this.setState({ slideLeft: false, slideRight: false })}
+          >
             {
               list.activities
                 .filter((e,i) => i >= activePage * actPerPage && i < (activePage + 1) * actPerPage)

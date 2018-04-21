@@ -25,10 +25,6 @@
   //   border-radius: 2px;
   //   background-color: transparent;
   // }
-  &.full-card {
-    height: $card-full-height;
-    overflow: auto;
-  }
   &:hover {
     outline: 1px solid $color-stroke;
   }
@@ -66,6 +62,15 @@
     color: blue;
     * {
       cursor: pointer;
+    }
+  }
+
+  &.full-card {
+    height: $card-full-height;
+    overflow: auto;
+    .card__main {
+      flex: 1;
+      overflow: auto;
     }
   }
 }

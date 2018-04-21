@@ -4,6 +4,26 @@
   100% {
     transform: rotate(360deg); } }
 
+@keyframes slideleft {
+  0% {
+    transform: translateX(50%); }
+  100% {
+    transform: translateX(0%); } }
+
+.slide-left {
+  animation-name: slideleft;
+  animation-duration: .5s; }
+
+@keyframes slideright {
+  0% {
+    transform: translateX(-50%); }
+  100% {
+    transform: translateX(0%); } }
+
+.slide-right {
+  animation-name: slideright;
+  animation-duration: .5s; }
+
 *,
 *::after,
 *::before {
@@ -71,9 +91,6 @@ input {
   flex-direction: column;
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2), 0 4px 5px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.12);
   cursor: pointer; }
-  .card.full-card {
-    height: 47rem;
-    overflow: auto; }
   .card:hover {
     outline: 1px solid #4FF7B5; }
   .card__header {
@@ -107,6 +124,12 @@ input {
     color: blue; }
     .card__footer * {
       cursor: pointer; }
+  .card.full-card {
+    height: 47rem;
+    overflow: auto; }
+    .card.full-card .card__main {
+      flex: 1;
+      overflow: auto; }
 
 .activity {
   padding-left: 3rem;

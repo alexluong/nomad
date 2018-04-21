@@ -40,7 +40,6 @@ class DashboardListPage extends Component {
   }
 
   render() {
-    console.log(this);
     const list = this.state.list || this.props.location.state.list;
     const activity = this.state.activity || this.props.location.state.list.activities[0];
     return (
