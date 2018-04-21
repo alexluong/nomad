@@ -126,11 +126,18 @@ export class ActiveService implements ActiveServiceInterface {
             }
         });
 
-        if (reverting) {
-            currentList.progress -= ActiveService.round(1 / currentList.activities.length, 2);
-        } else {
-            currentList.progress += ActiveService.round(1 / currentList.activities.length, 2);
-        }
+        let activeListNumber = 0;
+        currentList.activities.forEach(activity => {
+            if (activity.status === ProgressStatus.Completed) {
+                activeListNumber++;
+            }
+        });
+        currentList.progress = ActiveService.round(activeListNumber / currentList.activities.length, 2);
+        // if (reverting) {
+        //     currentList.progress -= ActiveService.round(1 / currentList.activities.length, 2);
+        // } else {
+        //     currentList.progress += ActiveService.round(1 / currentList.activities.length, 2);
+        // }
 
         active.lastUpdatedActivity = {
             activityId,
