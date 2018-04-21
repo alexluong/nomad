@@ -72,11 +72,24 @@ class DashboardPage extends Component {
   }
 
   renderProgress() {
-    return <div>In Progress</div>
+    const lists = this.state.authenticated ? this.props.lists.serverLists : this.props.lists.clientLists;
+    return lists.map((list, i) => {
+      if (list.progress > 0 && list.progress < 1) {
+        return <List key={i} list={list} />
+      }
+      return null;
+    });
   }
 
   renderFinished() {
-    return <div>Finished</div>
+    // QUESTION: Finished but progress != 1
+    const lists = this.state.authenticated ? this.props.lists.serverLists : this.props.lists.clientLists;
+    return lists.map((list, i) => {
+      if (list.progress === 1) {
+        return <List key={i} list={list} />
+      }
+      return null;
+    });
   }
 
   render() {
