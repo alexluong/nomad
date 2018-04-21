@@ -12,7 +12,7 @@
 
 .slide-left {
   animation-name: slideleft;
-  animation-duration: .5s; }
+  animation-duration: .6s; }
 
 @keyframes slideright {
   0% {
@@ -22,7 +22,7 @@
 
 .slide-right {
   animation-name: slideright;
-  animation-duration: .5s; }
+  animation-duration: .6s; }
 
 *,
 *::after,
