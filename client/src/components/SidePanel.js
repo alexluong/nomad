@@ -12,7 +12,7 @@ class SidePanel extends Component {
     const x = event.pageX - target.offsetLeft;
     const y = event.pageY - target.offsetTop;
     const edge = this.closestEdge(x, y, target.clientWidth, target.clientHeight);
-    const animationDirection = edge === 'bottom' ? 'Bottom' : edge === 'top' ? 'Top' : '';
+    const animationDirection = edge === 'bottom' ? 'up' : edge === 'top' ? 'down' : '';
     this.setState({
       animationDirection,
       page
@@ -53,7 +53,7 @@ class SidePanel extends Component {
     let alt  = page;
     return (
       <NavLink
-        className={`${this.state.page === page ? ` slideFrom${this.state.animationDirection}` : ''}`}
+        className={`${this.state.page === page ? ` slide-${this.state.animationDirection}` : ''}`}
         onAnimationEnd={() => this.setState({ page: '', animationDirection: '' })}
         to={href}
       >

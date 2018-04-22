@@ -36,11 +36,11 @@
   animation-name: slideleft;
   animation-duration: .6s; }
 
-.slideFromTop:after {
+.slide-down:after {
   animation-name: slidedown;
   animation-duration: .3s; }
 
-.slideFromBottom:after {
+.slide-up:after {
   animation-name: slideup;
   animation-duration: .3s; }
 
