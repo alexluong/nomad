@@ -3,12 +3,20 @@ import { withRouter }       from 'react-router';
 import { NavLink }          from 'react-router-dom';
 
 class SidePanel extends Component {
-  onHover = event => {
+  state = {
+    page: '',
+    animationDirection: ''
+  }
+  onHover(event, page) {
     const target = event.currentTarget;
     const x = event.pageX - target.offsetLeft;
     const y = event.pageY - target.offsetTop;
     const edge = this.closestEdge(x, y, target.clientWidth, target.clientHeight);
-    const animationDirection = edge === 'bottom' ? 'bottom' : 'top';
+    const animationDirection = edge === 'bottom' ? 'Bottom' : 'Top';
+    this.setState({
+      animationDirection,
+      page
+    });
   }
 
   closestEdge(x, y, w, h) {
@@ -43,23 +51,43 @@ class SidePanel extends Component {
     let href = `/${page}`;
     let src  = `icons/${page}${ active.includes(page) ? '-active' : ''}.svg`;
     let alt  = page;
-    return <NavLink to={href}><img src={src} alt={alt} /></NavLink>;
+    return (
+      <NavLink
+        className={`${this.state.page === page ? ` slideFrom${this.state.animationDirection}` : ''}`}
+        onAnimationEnd={() => this.setState({ page: '', animationDirection: '' })}
+        to={href}
+      >
+        <img src={src} alt={alt}/>
+      </NavLink>
+    );
   }
 
   render() {
     return (
       <ul className="side-panel">
         <li className="side-panel__item side-panel__logo"><p>LOGO</p></li>
-        <li onMouseEnter={this.onHover} className="side-panel__item">
+        <li
+          onMouseEnter={(e) => this.onHover(e, 'dashboard')}
+          className="side-panel__item"
+        >
           { this.renderLink('dashboard') }
         </li>
-        <li onMouseEnter={this.onHover} className="side-panel__item">
+        <li
+          onMouseEnter={(e) => this.onHover(e, 'progress' )}
+          className="side-panel__item"
+        >
           { this.renderLink('progress') }
         </li>
-        <li onMouseEnter={this.onHover} className="side-panel__item">
+        <li
+          onMouseEnter={(e) => this.onHover(e, 'profile'  )}
+          className="side-panel__item"
+        >
           { this.renderLink('profile') }
         </li>
-        <li onMouseEnter={this.onHover} className="side-panel__item">
+        <li
+          onMouseEnter={(e) => this.onHover(e, 'settings' )}
+          className="side-panel__item"
+        >
           { this.renderLink('settings') }
         </li>
       </ul>

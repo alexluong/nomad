@@ -34,3 +34,31 @@
   animation-name: slideright;
   animation-duration: .6s;
 }
+
+@keyframes slidedown {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes slideup {
+  0% {
+    margin-top: 100%;
+  }
+  100% {
+    margin-top: 0;
+  }
+}
+
+.slideFromTop:after {
+  animation-name: slidedown;
+  animation-duration: .3s;
+}
+
+.slideFromBottom:after {
+  animation-name: slideup;
+  animation-duration: .3s;
+}

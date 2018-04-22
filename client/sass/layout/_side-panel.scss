@@ -17,21 +17,32 @@
       border-width: 0 0 0 8px;
       border-style: solid;
       border-color: transparent;
+      position: relative;
+      &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -8px;
+        width: 8px;
+        height: 100%;
+      }
       &.active {
-        border-color: #21CB8D;
         background-color: rgba(0, 143, 74, 0.1);
-        // border-image: linear-gradient(to bottom right, #2EFF4F 0%, #00FF85 54.7%,#00FFC2 97.79%) 1 100%; 
         &:hover {
-          // border-color: #21CB8D;
           background-color: rgba(0, 143, 74, 0.1);
+        }
+        &:after {
+          background-color: #21CB8D;
         }
       }
       &:visited {
         color: $color-text-default;
       }
       &:hover {
-        border-color: #008F4A;
         background-color: lighten(rgba(0, 143, 74, 0.1), 20%);
+        &:after {
+          background-color: #008F4A;
+        }
       }
     }
     &.side-panel__logo {
