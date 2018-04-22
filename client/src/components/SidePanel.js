@@ -12,7 +12,7 @@ class SidePanel extends Component {
     const x = event.pageX - target.offsetLeft;
     const y = event.pageY - target.offsetTop;
     const edge = this.closestEdge(x, y, target.clientWidth, target.clientHeight);
-    const animationDirection = edge === 'bottom' ? 'Bottom' : 'Top';
+    const animationDirection = edge === 'bottom' ? 'Bottom' : edge === 'top' ? 'Top' : '';
     this.setState({
       animationDirection,
       page
