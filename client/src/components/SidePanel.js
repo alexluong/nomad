@@ -29,15 +29,15 @@ class SidePanel extends Component {
     const min = Math.min(topEdgeDist,bottomEdgeDist,leftEdgeDist,rightEdgeDist);
     switch (min) {
       case leftEdgeDist:
-        return "left";
+        return 'left';
       case rightEdgeDist:
-        return "right";
+        return 'right';
       case topEdgeDist:
-        return "top";
+        return 'top';
       case bottomEdgeDist:
-        return "bottom";
+        return 'bottom';
       default:
-        return "left";
+        return 'left';
     }
   }
 
