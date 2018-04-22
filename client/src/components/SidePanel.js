@@ -4,9 +4,11 @@ import { NavLink }          from 'react-router-dom';
 
 class SidePanel extends Component {
   state = {
+    active: 'dashboard',
     page: '',
     animationDirection: ''
   }
+
   onHover(event, page) {
     const target = event.currentTarget;
     const x = event.pageX - target.offsetLeft;
@@ -46,6 +48,26 @@ class SidePanel extends Component {
     return (xDiff * xDiff) + (yDiff * yDiff);
   }
 
+  getPageValue(page) {
+    switch (page) {
+      case 'dashboard': return 1;
+      case 'progress' : return 2;
+      case 'profile'  : return 3;
+      case 'settings' : return 4;
+      default         : return 1;
+    }
+  }
+
+  handlePageClick(page) {
+    const activeValue = this.getPageValue(this.state.active);
+    const pageValue   = this.getPageValue(page);
+    this.setState({
+      active: page,
+      page,
+      animationDirection: pageValue < activeValue ? 'up' : 'down'
+    });
+  }
+
   renderLink(page) {
     const active = this.props.location.pathname.slice(1);
     let href = `/${page}`;
@@ -53,9 +75,10 @@ class SidePanel extends Component {
     let alt  = page;
     return (
       <NavLink
+        to={href}
         className={`${this.state.page === page ? ` slide-${this.state.animationDirection}` : ''}`}
         onAnimationEnd={() => this.setState({ page: '', animationDirection: '' })}
-        to={href}
+        onClick={(e) => this.handlePageClick(page)}
       >
         <img src={src} alt={alt}/>
       </NavLink>
