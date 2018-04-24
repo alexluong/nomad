@@ -3,7 +3,7 @@ import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, CLEAR_ERROR, CREATE_BOARD } from '.
 export default function(state = {}, action) {
   switch (action.type) {
     case AUTH_USER:
-      return { ...state, user: action.payload, authenticated: true };
+      return { ...state, user: action.payload, authenticated: true, errorMessage: '' };
     case UNAUTH_USER:
       return { ...state, user: action.payload, authenticated: false };
     case AUTH_ERROR:
