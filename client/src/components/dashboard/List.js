@@ -16,6 +16,15 @@ export default class List extends Component {
       slideLeft: false,
       slideRight: false
     }
+    this.sortList();
+  }
+
+  sortList() {
+    // QUESTION: Why is activities array randomly changed?
+    const { list: { activities } } = this.props;
+    activities.sort((a, b) => {
+      return true;
+    });
   }
 
   handleListClick = (e, activity) => {
@@ -60,6 +69,7 @@ export default class List extends Component {
     const { list, fullList } = this.props;
     const { activePage, actPerPage, slideLeft, slideRight } = this.state;
     const placeholderImg = '/img/list-header.jpeg';
+    console.log(list.activities);
 
     return (
       <div>

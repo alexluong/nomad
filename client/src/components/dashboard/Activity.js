@@ -35,13 +35,15 @@ class Activity extends Component {
   onIgnoreClick = (event) => {
     event.stopPropagation();
     this.setState({ loading: true });
-    this.props.updateBoard('ignored', this.props.listId, this.props.activity._id);  
+    if (this.props.activity.status !== 'Ignored') {
+      this.props.updateBoard('ignored', this.props.listId, this.props.activity._id);  
+    }
   }
 
   onCheckClick = (event) => {
     event.stopPropagation();
     this.setState({ loading: true });
-    if (this.props.activity.status === 'Opened') {
+    if (this.props.activity.status !== 'Completed') {
       this.props.updateBoard('completed', this.props.listId, this.props.activity._id);
     }
   }
@@ -58,6 +60,8 @@ class Activity extends Component {
 
     if (activity.status === 'Completed') {
       status = 'activity__completed';
+    } else if (activity.status === 'Ignored') {
+      status = 'activity__ignored';
     } else {
       status = '';
     }
@@ -77,6 +81,8 @@ class Activity extends Component {
               } else {
                 if (activity.status === 'Completed') {
                   return <img className="activity__icon activity-checked" src="/icons/checkbox-checked.svg" alt="checkbox" onClick={this.onBoxClick} />;
+                } else if (activity.status === 'Ignored') {
+                  return <img className="activity__icon" src="/icons/checkbox.svg" alt="checkbox" onClick={this.onBoxClick} />;
                 } else {
                   return <img className="activity__icon" src="/icons/checkbox.svg" alt="checkbox" onClick={this.onBoxClick} />;
                 }

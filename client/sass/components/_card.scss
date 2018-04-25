@@ -94,6 +94,9 @@
   &__completed {
     color: $color-text;
   }
+  &__ignored {
+    text-decoration: line-through;
+  }
   &__icon-box {
     position: relative;
     display: flex;
