@@ -48,6 +48,7 @@ class MainApp extends Component {
             <Route path='/progress'       component={ProgressPage}      />
             <Route path='/profile'        component={Profile}           />
             <Route path='/settings'       component={Settings}          />
+            <Route path='/' render={props => { props.history.push('/dashboard'); return null; }} />
           </Switch>
         </main>
       </div>
