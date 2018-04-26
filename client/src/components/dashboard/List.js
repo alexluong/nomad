@@ -16,7 +16,6 @@ export default class List extends Component {
       slideLeft: false,
       slideRight: false
     }
-    this.sortList();
   }
 
   sortList() {
@@ -69,7 +68,6 @@ export default class List extends Component {
     const { list, fullList } = this.props;
     const { activePage, actPerPage, slideLeft, slideRight } = this.state;
     const placeholderImg = '/img/list-header.jpeg';
-    console.log(list.activities);
 
     return (
       <div>
